@@ -1,0 +1,11 @@
+Models\Children\Anfiteatro.class
+Models\VagaEspecial.class
+Models\Children\Salao.class
+Models\Parents\Espaco.class
+Enum\EnumEspaco.class
+Models\Usuario.class
+Enum\EnumTipoEvento.class
+Models\Cabine.class
+Models\Cliente.class
+Models\Cadeira.class
+Models\Evento.class

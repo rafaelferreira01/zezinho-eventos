@@ -7,6 +7,8 @@ package Models;
 
 import Enum.EnumEspaco;
 import Enum.EnumTipoEvento;
+import java.sql.Time;
+import java.util.Date;
 
 /**
  *
@@ -19,26 +21,30 @@ public class Evento {
    private EnumEspaco espaco; 
    private boolean capacidadeReduzida;
    private EnumTipoEvento tipoEvento;
+   private Date dataEvento;
 
     public Evento() {
     }
 
-    public Evento(int idEvento, String nome, EnumEspaco espaco, boolean capacidadeReduzida, EnumTipoEvento tipoEvento) {
+    public Evento(int idEvento, String nomeEvento, EnumEspaco espaco, boolean capacidadeReduzida, EnumTipoEvento tipoEvento, Date dataEvento) {
         this.idEvento = idEvento;
         this.nomeEvento = nomeEvento;
         this.espaco = espaco;
         this.capacidadeReduzida = capacidadeReduzida;
         this.tipoEvento = tipoEvento;
+        this.dataEvento = dataEvento;
     }
 
-    public int getId() {
+  
+
+    public int getIdEvento() {
         return idEvento;
     }
 
-    public void setId(int idEvento) {
+    public void setIdEvento(int idEvento) {
         this.idEvento = idEvento;
     }
-
+    
     public String getNomeEvento() {
         return nomeEvento;
     }
@@ -69,6 +75,15 @@ public class Evento {
 
     public void setTipoEvento(EnumTipoEvento tipoEvento) {
         this.tipoEvento = tipoEvento;
+    }
+
+
+    public Date getDataEvento() {
+        return dataEvento;
+    }
+
+    public void setDataEvento(Date dataEvento) {
+        this.dataEvento = dataEvento;
     }
    
    
