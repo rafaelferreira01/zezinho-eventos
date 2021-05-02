@@ -38,7 +38,8 @@
                 </div>
             </nav>
         </header>
-
+        
+       
         <div class="layout-main"> 
 
             <aside class="wrapper" id="side-bar">
@@ -88,7 +89,7 @@
                             </li>   
                             <li class="nav-item">
                                 <a class="nav-link"
-                                   href="#"> <i class="oi oi-cart"></i> <span>RelatÃ³rios</span>
+                                   href="#"> <i class="oi oi-cart"></i> <span>Relatórios</span>
                                 </a>
                        
                   
@@ -106,18 +107,7 @@
             
             <img src="/images/Lakeside_Entrance.png" height=420 width=800 >
             
-            <section class="row container-fluid"  >
-                <div class="col-12">
-                    
-                    
-                    <c:if test="${requestScope.page == null}">
-                        <jsp:include page="pages/home.jsp" />
-                    </c:if>   
-                    
-                    <c:if test="${requestScope.page != null}">
-                        <jsp:include page="${requestScope.page}" />
-                    </c:if>   
-                    
+                  
                     
                 </div>
             </section>

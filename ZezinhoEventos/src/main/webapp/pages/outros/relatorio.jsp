@@ -4,12 +4,6 @@
     Author     : Leonardo
 --%>
 
-<%-- 
-    Document   : listagemEventos
-    Created on : 1 de mai. de 2021, 01:29:22
-    Author     : Leonardo
---%>
-
 <table class="table table-striped">
 
     <fieldset>
@@ -21,7 +15,7 @@
                     <div class="row">
                         <div class="col">                  
                             <div class="form-group">                 
-                                <label for="listagemEventos"> Espaço: </label>
+                                <label for="relatorio"> Espaço: </label>
                                 <select name="cpTipoListagemEspaco" value="tipoEventos" class="form-control">  
                                     <option value="-1"> Todos os Espaços </option>
                                     <option value="-1"> Salão </option>
