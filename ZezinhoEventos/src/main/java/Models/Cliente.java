@@ -5,24 +5,30 @@
  */
 package Models;
 
+import Models.espaco.anfiteatro.assento.VagaEspecial;
+import java.util.ArrayList;
+
 /**
  *
  * @author Leonardo
  */
 public class Cliente {
     
-   private int cpf,idAssento;
+   private int cpf;
    private String nome;
-   private Evento evento;
+   
+   private int idAssento;
+   private ArrayList<Evento> meusEventosList;
 
     public Cliente() {
+        this.meusEventosList = new ArrayList<>();
     }
 
     public Cliente(int cpf, int idAssento, String nome, Evento evento) {
         this.cpf = cpf;
         this.idAssento = idAssento;
         this.nome = nome;
-        this.evento = evento;
+        this.meusEventosList = new ArrayList<>();
     }
 
     public int getCpf() {
@@ -33,14 +39,6 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public int getIdAssento() {
-        return idAssento;
-    }
-
-    public void setIdAssento(int idAssento) {
-        this.idAssento = idAssento;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -49,13 +47,23 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public Evento getEvento() {
-        return evento;
+    public int getIdAssento() {
+        return idAssento;
     }
 
-    public void setEvento(Evento evento) {
-        this.evento = evento;
+    public void setIdAssento(int idAssento) {
+        this.idAssento = idAssento;
     }
+
+    public ArrayList<Evento> getMeusEventosList() {
+        return meusEventosList;
+    }
+
+    public void setMeusEventosList(ArrayList<Evento> meusEventosList) {
+        this.meusEventosList = meusEventosList;
+    }
+
+    
    
    
     

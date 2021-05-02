@@ -3,32 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models;
+package Models.espaco.anfiteatro.assento;
 
 /**
  *
  * @author Leonardo
  */
-public class Cabine {
-    
-    private int idCabine;
-    private int vagasDisponiveis = 10;
+public class VagaEspecial extends Assento{
 
-    public Cabine() {
-    }
-    
-    
-
-    public Cabine(int idCabine) {
-        this.idCabine = idCabine;
+    public VagaEspecial() {
+        this.vagasDisponiveis = 20;
     }
 
-    public int getIdCabine() {
-        return idCabine;
+    public VagaEspecial(int idAssento, int vagasDisponiveis) {
+        super(idAssento, 20);
     }
 
-    public void setIdCabine(int idCabine) {
-        this.idCabine = idCabine;
+    public int getIdAssento() {
+        return idAssento;
+    }
+
+    public void setIdAssento(int idAssento) {
+        this.idAssento = idAssento;
     }
 
     public int getVagasDisponiveis() {
@@ -38,7 +34,5 @@ public class Cabine {
     public void setVagasDisponiveis(int vagasDisponiveis) {
         this.vagasDisponiveis = vagasDisponiveis;
     }
-   
-    
     
 }

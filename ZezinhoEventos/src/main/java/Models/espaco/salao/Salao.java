@@ -3,25 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models.Parents;
+package Models.espaco.salao;
+
+import models.espaco.Espaco;
 
 /**
  *
  * @author Leonardo
  */
-public abstract class  Espaco {
+public class Salao extends Espaco {
     
-        private int idEspaco;
-        private double custoExtra;
-        private String tipoEspaco; 
-
-    public Espaco() {
+    public Salao() {
+        this.capacidadeTotal = 500;
+        this.tipoEspaco = "Salao";
     }
 
-    public Espaco(int idEspaco, double custoExtra, String tipoEspaco) {
-        this.idEspaco = idEspaco;
-        this.custoExtra = custoExtra;
-        this.tipoEspaco = tipoEspaco;
+    public Salao(int capacidadeTotal) {
+        this.capacidadeTotal = 500;
+        this.tipoEspaco = "Salao";
+    }
+
+    public Salao(int idEspaco, int capacidadeTotal, double custoExtra, String tipoEspaco) {
+        super(idEspaco, 500, custoExtra, "Salao");
     }
 
     public int getIdEspaco() {
@@ -30,6 +33,14 @@ public abstract class  Espaco {
 
     public void setIdEspaco(int idEspaco) {
         this.idEspaco = idEspaco;
+    }
+
+    public int getCapacidadeTotal() {
+        return capacidadeTotal;
+    }
+
+    public void setCapacidadeTotal(int capacidadeTotal) {
+        this.capacidadeTotal = capacidadeTotal;
     }
 
     public double getCustoExtra() {
@@ -47,6 +58,9 @@ public abstract class  Espaco {
     public void setTipoEspaco(String tipoEspaco) {
         this.tipoEspaco = tipoEspaco;
     }
-        
-        
+
+    
+   
+    
+    
 }

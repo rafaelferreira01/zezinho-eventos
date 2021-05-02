@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | TemplatesPlano-Sequência dos Mortos
  * and open the template in the editor.
  */
-package Models;
+package Models.usuario;
 
+import Models.Evento;
 import java.util.ArrayList;
 import java.util.List;
 
