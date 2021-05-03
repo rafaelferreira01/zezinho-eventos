@@ -26,6 +26,11 @@
                                               <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
 						<!--<img src="img/logo.jpg" alt="logo">-->
 					</div>
+                                      <% if (request.getAttribute("mensagem") != null) { %>
+                                    <div class="alert alert-success">
+                                        <%= request.getAttribute("mensagem") %>                                        
+                                    </div>
+                                    <% } %>
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>

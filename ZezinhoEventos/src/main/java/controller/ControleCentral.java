@@ -7,6 +7,7 @@ package controller;
 
 import controller.actions.ViewLoginAction;
 import controller.actions.LoginVerifyAction;
+import controller.actions.SaveUsuarioAction;
 import controller.actions.ViewCadastroAction;
 import controller.commander.GenericCommander;
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class ControleCentral extends HttpServlet {
         comandos.put(null, new ViewLoginAction(false));
         comandos.put("login", new LoginVerifyAction(false));
         comandos.put("cad", new ViewCadastroAction(false));
+        comandos.put("salvarUsuario", new SaveUsuarioAction(false));
     }
 
     /**

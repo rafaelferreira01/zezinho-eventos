@@ -35,7 +35,7 @@
 							<form method="POST" class="my-login-validation" 
                                                               action="control">
                                                             
-                                                            <input type="hidden" name="ac" value="saveUser"/>
+                                                            <input type="hidden" name="ac" value="salvarUsuario"/>
                                                             
 								<div class="form-group">
 									<label for="email">Nome</label>
