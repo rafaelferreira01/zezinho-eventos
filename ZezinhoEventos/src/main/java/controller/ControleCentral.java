@@ -5,12 +5,14 @@
  */
 package controller;
 
+import controller.actions.ViewLoginAction;
 import controller.actions.LoginVerifyAction;
 import controller.actions.ViewCadastroAction;
 import controller.commander.GenericCommander;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,12 +25,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControleCentral", urlPatterns = {"/control"})
 public class ControleCentral extends HttpServlet {
-    
+
     static HashMap<String, GenericCommander> comandos;
-    
-    static{
+
+    static {
         comandos = new HashMap<>();
-        comandos.put(null,new LoginVerifyAction(false));
+        comandos.put(null, new ViewLoginAction(false));
+        comandos.put("login", new LoginVerifyAction(false));
         comandos.put("cad", new ViewCadastroAction(false));
     }
 
@@ -45,15 +48,24 @@ public class ControleCentral extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             String acao = request.getParameter("ac");
             
-            comandos.get(acao).executa(request, response);
           
-                      
-   
-        }
+            try {
+                
+                comandos.get(acao).executa(request, response);
+                
+            } catch (Exception e) {
+                RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+                
+                request.setAttribute("error", e.getMessage()==null?"ação não encontrada":e.getMessage());
+                
+                rd.forward(request, response);
+            }
+
     }
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -94,4 +106,5 @@ public class ControleCentral extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+    }
+

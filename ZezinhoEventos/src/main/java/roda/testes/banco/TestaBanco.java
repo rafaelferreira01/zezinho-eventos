@@ -27,13 +27,13 @@ public class TestaBanco {
         //criaRegistros(em);
         
 
-        Usuario u = new Usuario(0, "Rafael", "rafa", "123");
+     //   Usuario u = new Usuario(0, "Rafael", "rafa", "123");
         
-        em.getTransaction().begin();
+     //   em.getTransaction().begin();
         
-        em.persist(u);
+     //   em.persist(u);
         
-        em.getTransaction().commit();
+      //  em.getTransaction().commit();
         
 //        
 //        Query q1 = em.createQuery("SELECT u FROM Usuario u where "

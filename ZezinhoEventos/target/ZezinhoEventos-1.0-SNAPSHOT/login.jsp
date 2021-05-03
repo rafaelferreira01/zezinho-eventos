@@ -31,9 +31,11 @@
 							<h4 class="card-title">Login</h4>
 							<form method="POST" class="my-login-validation" novalidate=""
                                                               action="control">
+                                                            <input type="hidden" name="ac" value="login"/>
+                                                           
 								<div class="form-group">
-									<label for="email">E-Mail</label>
-									<input id="email" type="text" class="form-control" name="cpEmail" value="" required="" autofocus="" kl_ab.original_type="email">
+									<label for="email">Login</label>
+									<input id="login" type="text" class="form-control" name="cpLogin" value="" required="" autofocus="" kl_ab.original_type="email">
 									<div class="invalid-feedback">
 										Email is invalid
 									</div>

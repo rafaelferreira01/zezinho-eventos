@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ViewCadastroAction extends GenericCommander{
 
-    public ViewCadastroAction(boolean isLogado) {
-        super(isLogado);
+    public ViewCadastroAction(boolean estaLogado) {
+        super(estaLogado);
     }
 
     @Override
