@@ -5,12 +5,14 @@
  */
 package Models.espaco.salao;
 
+import javax.persistence.Entity;
 import models.espaco.Espaco;
 
 /**
  *
  * @author Leonardo
  */
+@Entity
 public class Salao extends Espaco {
     
     public Salao() {

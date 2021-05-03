@@ -7,13 +7,17 @@ package Models;
 
 import Models.espaco.anfiteatro.assento.VagaEspecial;
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author Leonardo
  */
+@Entity
 public class Cliente {
     
+   @Id
    private int cpf;
    private String nome;
    

@@ -10,12 +10,14 @@ import Models.espaco.anfiteatro.assento.Cadeira;
 import Models.espaco.anfiteatro.assento.VagaEspecial;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
 import models.espaco.Espaco;
 
 /**
  *
  * @author Leonardo
  */
+@Entity
 public class Anfiteatro extends Espaco{
 
     private ArrayList<Cadeira> cadeiraList;

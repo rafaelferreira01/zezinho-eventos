@@ -5,12 +5,16 @@
  */
 package models.espaco;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author Leonardo
  */
+@Entity
 public abstract class Espaco {
-    
+        @Id
         protected int idEspaco;
         protected int capacidadeTotal;
         protected double custoExtra;

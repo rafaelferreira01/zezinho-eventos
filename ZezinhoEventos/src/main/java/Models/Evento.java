@@ -9,13 +9,16 @@ import Enum.EnumEspaco;
 import Enum.EnumTipoEvento;
 import java.sql.Time;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author Leonardo
  */
+@Entity
 public class Evento {
-    
+   @Id
    private int idEvento; 
    private String nomeEvento;
    private EnumEspaco espaco; 

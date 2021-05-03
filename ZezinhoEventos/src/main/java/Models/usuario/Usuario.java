@@ -8,13 +8,17 @@ package Models.usuario;
 import Models.Evento;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author Leonardo
  */
+@Entity
 public class Usuario {
     
+    @Id
     private int idUsuario;
     private String nome,login,senha;
     List<Evento> eventos = new ArrayList<Evento>(); 

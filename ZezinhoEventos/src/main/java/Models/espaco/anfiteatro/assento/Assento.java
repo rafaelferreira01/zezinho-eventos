@@ -5,11 +5,15 @@
  */
 package Models.espaco.anfiteatro.assento;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author suporte
  */
 public abstract class Assento {
+    @Id
     protected int idAssento;
     protected int vagasDisponiveis;
 
