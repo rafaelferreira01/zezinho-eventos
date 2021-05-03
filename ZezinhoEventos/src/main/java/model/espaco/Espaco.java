@@ -21,6 +21,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import model.espaco.assento.Cabine;
+import model.espaco.assento.Cadeira;
+import model.espaco.assento.VagaEspecial;
+import model.espaco.assento.VagaSalao;
 import model.evento.Evento;
 
 /**
