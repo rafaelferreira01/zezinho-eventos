@@ -16,7 +16,7 @@ import model.cliente.Cliente;
  */
 public class ClienteDao extends BaseDao {
     
-    public static List<Cliente> buscarTodos() {
+    public static List<Cliente> buscarTodosClientes() {
 
         Query q = getConexao().createNamedQuery("Cliente.findAll");
         

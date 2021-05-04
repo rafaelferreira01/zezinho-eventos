@@ -3,6 +3,12 @@
     Created on : 1 de mai. de 2021, 01:01:55
     Author     : Leonardo
 --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<h1>Listagem de Clientes</h1>
 
 <table class="table table-striped">
 
@@ -35,6 +41,9 @@
                                 <label for="Cliente">Eventos:</label> 
                                 <select name="cpSearchEventos" value="Eventos" class="form-control">  
                                     <<option value="-1"> Todos Eventos </option>
+                                    <c:forEach items="${requestScope.eventos}" var="e">
+                                    <option value="${e.idEvento}">${e.nomeEvento}</option>
+                                </c:forEach> 
                                 </select>
                             </div>
                         </div>
@@ -59,10 +68,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td> Zezinho </td>
-                                <td> 0940341492409 </td>
-                                <td> Eventos X <td>
-                                <td> A X <td>
-                            </tr>
+
+        <c:if test="${requestScope.clientes.size() == 0}">
+            <tr>
+                <td class="text-center" colspan="4"> 0 clientes cadastrados.</td>
+            </tr> 
+        </c:if>
+
+            <c:forEach var="cliente" items="${requestScope.clientes}">
+
+            <tr>
+                <td>${cliente.nome}</td>
+                <td>${cliente.cpf}</td>
+                <td>${cliente.evento} </td>
+                <td> A X <td>
+          
+
+            </tr>
+
+        </c:forEach>          
+
+
+
+
+    </tbody>
+
+
+</table>
 
