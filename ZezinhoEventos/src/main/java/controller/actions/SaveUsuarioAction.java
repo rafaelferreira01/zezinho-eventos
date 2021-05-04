@@ -31,15 +31,15 @@ public class SaveUsuarioAction extends GenericCommander {
                 request.getParameter("cpLogin"), 
                 request.getParameter("cpSenha"));
         
-   //     if ( UsuarioDao.existeLogin(user) ){            
-   //         request.setAttribute("msgError", "Login já existe no sistema");
+        if ( UsuarioDao.existeLogin(user) ){            
+            request.setAttribute("mensagemErro", "Usuário já existe no sistema");
             
-  //          user.setLogin("");
-  //          request.setAttribute("user", user);
+            user.setLogin("");
+            request.setAttribute("usuario", user);
             
             
-  //          new ViewCadastroAction(false).executa(request, response);            
-  //      }else{        
+           new ViewCadastroAction(false).executa(request, response);            
+        }else{        
         
             UsuarioDao.getConexao().getTransaction().begin();
             UsuarioDao.getConexao().persist(user);
@@ -50,5 +50,6 @@ public class SaveUsuarioAction extends GenericCommander {
             new  ViewLoginAction(false).executa(request, response);
         }
     }
+}
     
 

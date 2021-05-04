@@ -36,6 +36,13 @@ public class UsuarioDao extends BaseDao {
 
     
         }
+      }
+        public static boolean existeLogin(Usuario user) {
+        Query q = getConexao().createQuery("select count(u) from Usuario u where u.login = :login ");
+        
+        q.setParameter("login", user.getLogin());
+        
+         return (long)q.getSingleResult() >= 1; 
     }
 }
      

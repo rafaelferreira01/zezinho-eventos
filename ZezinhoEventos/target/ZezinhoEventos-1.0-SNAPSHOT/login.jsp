@@ -34,7 +34,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-							<form method="POST" class="my-login-validation" novalidate=""
+							<form method="POST" class="my-login-validation" 
                                                               action="control">
                                                             <input type="hidden" name="ac" value="login"/>
                                                            

@@ -19,6 +19,7 @@ model\evento\Evento.class
 model\espaco\assento\Cabine.class
 model\espaco\Espaco_.class
 model\espaco\TipoEspaco_.class
+controller\actions\SaveUsuarioAction.class
 model\espaco\assento\VagaEspecial_.class
 model\espaco\TipoEspaco.class
 controller\commander\GenericCommander.class

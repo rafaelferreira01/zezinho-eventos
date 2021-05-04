@@ -27,7 +27,11 @@
                                               <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
 						<!--<img src="img/logo.jpg" alt="logo">-->
 					</div>
-                                    
+                                              <% if (request.getAttribute("mensagemErro") != null) { %>
+                                    <div class="alert alert-danger">
+                                        <%= request.getAttribute("mensagemErro") %>                                        
+                                    </div>
+                                    <% } %>
                                  
 					<div class="card fat">
 						<div class="card-body">
