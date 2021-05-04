@@ -9,6 +9,8 @@ import controller.actions.ViewLoginAction;
 import controller.actions.LoginVerifyAction;
 import controller.actions.SaveUsuarioAction;
 import controller.actions.ViewCadastroAction;
+import controller.actions.ViewHomeLogadoAction;
+import controller.actions.ViewLogoutAction;
 import controller.commander.GenericCommander;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,6 +37,8 @@ public class ControleCentral extends HttpServlet {
         comandos.put("login", new LoginVerifyAction(false));
         comandos.put("cad", new ViewCadastroAction(false));
         comandos.put("salvarUsuario", new SaveUsuarioAction(false));
+        comandos.put("paginaInicial", new ViewHomeLogadoAction(true));
+        comandos.put("logout", new ViewLogoutAction(true));
     }
 
     /**
@@ -53,10 +57,18 @@ public class ControleCentral extends HttpServlet {
 
             String acao = request.getParameter("ac");
             
-          
-            try {
+            
+                try {
                 
-                comandos.get(acao).executa(request, response);
+                if (!comandos.get(acao).isEstaLogado()|| request.getSession().getAttribute("usuario") != null ){
+                    
+                    comandos.get(acao).executa(request, response);                
+                }else{
+                    request.setAttribute("mensagem", "Acesso não autorizado, pilantra!");
+                    new ViewLoginAction(false).executa(request, response);
+                }
+                
+                
                 
             } catch (Exception e) {
                 RequestDispatcher rd = request.getRequestDispatcher("error.jsp");

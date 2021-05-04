@@ -45,7 +45,7 @@
             <aside class="wrapper" id="side-bar">
                 <nav id="menu" class="sidebar sidebar-open">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="control?ac=home"> <i
+                        <li class="nav-item"><a class="nav-link active" href="control?ac=paginaInicial"> <i
                                     class="oi oi-home"></i> <span>Home</span>
                             </a></li>
                   

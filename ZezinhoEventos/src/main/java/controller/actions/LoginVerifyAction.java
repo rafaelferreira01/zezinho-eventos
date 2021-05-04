@@ -41,7 +41,11 @@ public class LoginVerifyAction extends GenericCommander {
             Usuario u = new UsuarioDao().verificarUsuario(email, senha);
                         
             if ( u != null  ) {
-                response.sendRedirect("layout.jsp");
+                
+                request.getSession().setAttribute("usuario", u);
+                
+                new ViewHomeLogadoAction(true).executa(request,response);
+            
             } else {
                 response.sendRedirect("control?error=1");
             }

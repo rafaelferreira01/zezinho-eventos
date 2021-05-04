@@ -3,6 +3,7 @@ controller\actions\ViewLoginAction.class
 controller\actions\LoginVerifyAction.class
 model\usuario\Usuario.class
 model\espaco\assento\Cadeira_.class
+controller\actions\ViewHomeLogadoAction.class
 model\espaco\Espaco.class
 model\evento\TipoEvento_.class
 model\cliente\Cliente.class
@@ -17,6 +18,7 @@ model\cliente\Cliente_.class
 model\daos\BaseDao.class
 model\evento\Evento.class
 model\espaco\assento\Cabine.class
+controller\actions\ViewLogoutAction.class
 model\espaco\Espaco_.class
 model\espaco\TipoEspaco_.class
 controller\actions\SaveUsuarioAction.class
