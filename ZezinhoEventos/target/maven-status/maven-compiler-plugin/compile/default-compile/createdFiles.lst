@@ -1,4 +1,5 @@
 model\espaco\assento\Cadeira.class
+model\daos\ClienteDao.class
 controller\actions\ViewLoginAction.class
 controller\actions\LoginVerifyAction.class
 model\usuario\Usuario.class
@@ -10,6 +11,7 @@ model\cliente\Cliente.class
 controller\ControleCentral.class
 model\usuario\Usuario_.class
 roda\testes\banco\TestaBanco.class
+.netbeans_automatic_build
 model\espaco\assento\VagaSalao.class
 model\espaco\assento\VagaSalao_.class
 model\daos\UsuarioDao.class
@@ -23,6 +25,7 @@ model\espaco\Espaco_.class
 model\espaco\TipoEspaco_.class
 controller\actions\SaveUsuarioAction.class
 model\espaco\assento\VagaEspecial_.class
+controller\actions\ViewCadastroClientesAction.class
 model\espaco\TipoEspaco.class
 controller\commander\GenericCommander.class
 model\espaco\assento\VagaEspecial.class

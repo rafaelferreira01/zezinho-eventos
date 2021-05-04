@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.usuario.Usuario"%>
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" >
     <head>
@@ -48,12 +49,7 @@
                         <li class="nav-item"><a class="nav-link active" href="control?ac=paginaInicial"> <i
                                     class="oi oi-home"></i> <span>Home</span>
                             </a></li>
-                  
                     
-                        <ul class="nav nav-pills" sec:authorize="hasRole('ADMIN')" >
-                  
-                            
-                            
                                 <li class="nav-item">
                                 <a class="nav-link"
                                    href="control?ac=Clientes"> <i class="oi oi-cart"></i> <span>Cadastro de Clientes </span>
@@ -100,17 +96,10 @@
                             </a>
                         </li>
 
-                    </ul>
-
                 </nav>
             </aside>
             
-            <img src="/images/Lakeside_Entrance.png" height=420 width=800 >
-            
-                  
-                    
-                </div>
-            </section>
+            <!--<img src="/images/Lakeside_Entrance.png" height=420 width=800 >-->
 
         </div>
         <footer class="layout-footer">

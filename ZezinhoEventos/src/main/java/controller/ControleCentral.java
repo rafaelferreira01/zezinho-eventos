@@ -9,6 +9,7 @@ import controller.actions.ViewLoginAction;
 import controller.actions.LoginVerifyAction;
 import controller.actions.SaveUsuarioAction;
 import controller.actions.ViewCadastroAction;
+import controller.actions.ViewCadastroClientesAction;
 import controller.actions.ViewHomeLogadoAction;
 import controller.actions.ViewLogoutAction;
 import controller.commander.GenericCommander;
@@ -39,6 +40,10 @@ public class ControleCentral extends HttpServlet {
         comandos.put("salvarUsuario", new SaveUsuarioAction(false));
         comandos.put("paginaInicial", new ViewHomeLogadoAction(true));
         comandos.put("logout", new ViewLogoutAction(true));
+        
+        comandos.put("Clientes", new ViewCadastroClientesAction(true));
+        comandos.put("clienteCad", new SaveClienteAction(true));
+        
     }
 
     /**

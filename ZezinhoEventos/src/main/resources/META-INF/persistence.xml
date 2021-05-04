@@ -14,8 +14,8 @@
     <class>model.cliente.Cliente</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://25.107.3.0:3306/zezinho_eventos?useTimezone=true&amp;serverTimezone=UTC"/>
-      <property name="javax.persistence.jdbc.user" value="rafael"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/zezinho_eventos?useTimezone=true&amp;serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="belezinha"/>
       <property name="eclipselink.logging.level" value="FINE"/>

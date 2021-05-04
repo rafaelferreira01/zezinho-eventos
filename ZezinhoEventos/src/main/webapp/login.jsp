@@ -40,7 +40,7 @@
                                                            
 								<div class="form-group">
 									<label for="email">Login</label>
-									<input id="login" type="text" class="form-control" name="cpLogin" value="" required="" autofocus="" kl_ab.original_type="email">
+									<input value="zezin" id="login" type="text" class="form-control" name="cpLogin" value="" required="" autofocus="" kl_ab.original_type="email">
 									<div class="invalid-feedback">
 										Email is invalid
 									</div>
@@ -50,7 +50,7 @@
 									<label for="password">Password
 									</label>
 									<div style="position:relative" id="eye-password-0">
-                                                                            <input id="password" type="password" class="form-control" name="cpSenha" required="" data-eye="" style="padding-right: 60px;"><div class="invalid-feedback">
+                                                                            <input value="123" id="password" type="password" class="form-control" name="cpSenha" required="" data-eye="" style="padding-right: 60px;"><div class="invalid-feedback">
 								    	Password is required
 							    	</div><input type="hidden" id="passeye-0"><div class="btn btn-primary btn-sm" id="passeye-toggle-0" style="position: absolute; right: 10px; top: 7px; padding: 2px 7px; font-size: 12px; cursor: pointer;">Show</div></div>
 								    <div class="invalid-feedback">

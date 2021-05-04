@@ -4,6 +4,21 @@
     Author     : Leonardo
 --%>
 
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<h1>${requestScope.titulo}</h1>
+
+
+<c:if test="${requestScope.msg != null}">
+    
+<div class="alert alert-success">
+    ${requestScope.msg}
+</div>
+    
+</c:if>
+
 <form action="control?ac=clienteCad" method="POST">
    
      
