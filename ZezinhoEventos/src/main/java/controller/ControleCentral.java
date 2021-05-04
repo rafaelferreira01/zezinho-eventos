@@ -10,8 +10,12 @@ import controller.actions.LoginVerifyAction;
 import controller.actions.SaveUsuarioAction;
 import controller.actions.ViewCadastroAction;
 import controller.actions.ViewCadastroClientesAction;
+import controller.actions.ViewCadastroEventosAction;
 import controller.actions.ViewHomeLogadoAction;
+import controller.actions.ViewListaClientesAction;
+import controller.actions.ViewListaEventosAction;
 import controller.actions.ViewLogoutAction;
+import controller.actions.ViewRelatorioAction;
 import controller.commander.GenericCommander;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +46,12 @@ public class ControleCentral extends HttpServlet {
         comandos.put("logout", new ViewLogoutAction(true));
         
         comandos.put("Clientes", new ViewCadastroClientesAction(true));
+        comandos.put("listaClientes", new ViewListaClientesAction(true));
         comandos.put("clienteCad", new SaveClienteAction(true));
+        comandos.put("Eventos", new ViewCadastroEventosAction(true));
+        comandos.put("listaEventos", new ViewListaEventosAction(true));
+        comandos.put("relatorio", new ViewRelatorioAction(true));
+        
         
     }
 
