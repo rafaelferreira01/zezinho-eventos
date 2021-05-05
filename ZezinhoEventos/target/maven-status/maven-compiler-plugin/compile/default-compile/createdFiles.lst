@@ -25,13 +25,15 @@ controller\actions\ViewRelatorioAction.class
 model\espaco\assento\Cabine.class
 controller\actions\ViewLogoutAction.class
 model\espaco\Espaco_.class
+<<<<<<< Updated upstream
 controller\SaveClienteAction.class
 model\espaco\TipoEspaco_.class
+=======
+>>>>>>> Stashed changes
 controller\actions\SaveUsuarioAction.class
 controller\actions\ViewCadastroEventosAction.class
 model\espaco\assento\VagaEspecial_.class
 controller\actions\ViewCadastroClientesAction.class
-model\espaco\TipoEspaco.class
 controller\commander\GenericCommander.class
 model\espaco\assento\VagaEspecial.class
 model\espaco\assento\Cabine_.class
