@@ -1,3 +1,5 @@
 /ZezinhoEventos/target/
 /ZezinhoEventos.rar
 *.rar
+/ZezinhoEventos/src/main/resources/META-INF/persistence.xml
+/ZezinhoEventos/target/maven-archiver/pom.properties

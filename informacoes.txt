@@ -1,0 +1,19 @@
+
+insert into zezinho_eventos.espaco values (1,0,0,0,500,null);
+insert into zezinho_eventos.espaco values (2,40,300,10,0,null);
+
+insert into zezinho_eventos.tipoespaco values (1,'Salao',1);
+insert into zezinho_eventos.tipoespaco values (2,'Anfiteatro',2);
+
+insert into zezinho_eventos.tipoevento values (1,'Palestra',null);
+insert into zezinho_eventos.tipoevento values (2,'Show',null);
+insert into zezinho_eventos.tipoevento values (3,'Curso',null);
+insert into zezinho_eventos.tipoevento values (4,'Festa',null);
+
+
+
+
+
+
+
+criar construtor do cliente que recebe só cpf e nome

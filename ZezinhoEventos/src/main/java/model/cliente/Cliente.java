@@ -58,6 +58,14 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
+    
+    //INICIO ADICIONADO MANUALMENTE
+    public Cliente(Integer cpf, String nome) {
+        this.cpf = cpf;
+        this.nome = nome;
+    }
+    //FIM ADICIONADO MANUALMENTE
+
     public Cliente(Integer cpf, String nome, int evento) {
         this.cpf = cpf;
         this.nome = nome;

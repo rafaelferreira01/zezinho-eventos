@@ -16,6 +16,7 @@ roda\testes\banco\TestaBanco.class
 model\espaco\assento\VagaSalao.class
 model\espaco\assento\VagaSalao_.class
 model\daos\UsuarioDao.class
+controller\actions\SaveClienteAction.class
 controller\actions\ViewCadastroAction.class
 model\cliente\Cliente_.class
 model\daos\BaseDao.class
@@ -24,7 +25,6 @@ controller\actions\ViewRelatorioAction.class
 model\espaco\assento\Cabine.class
 controller\actions\ViewLogoutAction.class
 model\espaco\Espaco_.class
-controller\SaveClienteAction.class
 model\espaco\TipoEspaco_.class
 controller\actions\SaveUsuarioAction.class
 controller\actions\ViewCadastroEventosAction.class
