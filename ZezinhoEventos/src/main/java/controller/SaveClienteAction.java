@@ -3,31 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.actions;
+package controller;
 
 import controller.commander.GenericCommander;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Leonardo
+ * @author suporte
  */
-public class ViewCadastroEventosAction extends GenericCommander {
+public class SaveClienteAction extends GenericCommander {
 
-    public ViewCadastroEventosAction(boolean estaLogado) {
-        super(estaLogado);
+    public SaveClienteAction(boolean b) {
+        super(b);
     }
 
     @Override
     public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      RequestDispatcher rd = request.getRequestDispatcher("template.jsp");
-      
-      request.setAttribute("page", "/pages/cadastro/cadastroEventos.jsp");
-      rd.forward(request, response);
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
-    
+     
+   
 }

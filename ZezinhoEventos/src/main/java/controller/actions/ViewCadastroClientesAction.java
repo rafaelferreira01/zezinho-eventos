@@ -33,9 +33,9 @@ public class ViewCadastroClientesAction extends GenericCommander {
         String titulo;
         Cliente cBusca = new Cliente();
 
-        if (request.getParameter("cpf")!=null){//cpf que estava no campo
+        if (request.getParameter("cpf")!=null){
             titulo = "Alterar Cliente";
-            cBusca = ClienteDao.buscarByCPF( Integer.parseInt(request.getParameter("cpf")) );//cpf que estava no campo
+            cBusca = ClienteDao.buscarByCPF( Integer.parseInt(request.getParameter("cpf")) );
         }else{
             titulo = "Novo Cliente";
         }                

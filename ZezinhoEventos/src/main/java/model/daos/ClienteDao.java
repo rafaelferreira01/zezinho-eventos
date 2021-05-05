@@ -67,35 +67,10 @@ public class ClienteDao extends BaseDao {
  //   }
 
     public static List<Cliente> buscarClientesFiltro(String nomeCliente) {
-         Query q = getConexao().createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome ");
-  
+         Query q = getConexao().createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome");
          q.setParameter("nome", "%"+nomeCliente+"%");
-         return q.getResultList();
+          return q.getResultList();
     }
-    
-    
-    // Esse é o completo
-    //public static List<Cliente> buscarClientesFiltro(String nomeCliente, String cpf, Evento evento) {
-     //   Query q = getConexao().createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome AND "
-     //      + " (c FROM Cliente c WHERE c.cpf LIKE :cpf)");
-     //    q.setParameter("nome", "%"+nomeCliente+"%");
-         //q.setParameter("evento", evento.getIdEvento());
-    //     q.setParameter("cpf", "%"+cpf+"%");
-      //    return q.getResultList();
-    //}
-
- 
-
- 
-        //Nome e Cpf
-  //  public static List<Cliente> buscarClientesFiltro(String nomeCliente, Cliente cpf) {
-  //       Query q = getConexao().createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome AND "
-   //        + " (c FROM Cliente c WHERE c.cpf = :cpf)");
-   //      q.setParameter("nome", "%"+nomeCliente+"%");
-         //q.setParameter("evento", evento.getIdEvento());
-   //      q.setParameter("cpf", cpf);
-   //       return q.getResultList();
-    
     
       
 }

@@ -53,8 +53,8 @@ public class ViewListaClientesAction extends GenericCommander {
        else
        {    
            
-          //  Evento evento = new Evento(Integer.parseInt(request.getParameter("cpSearchEvento")));
-          //  String cpf = request.getParameter("cpSearchCPF");
+           // Evento evento = new Evento(Integer.parseInt(request.getParameter("cpSearchEvento")));
+           // String cpf = request.getParameter("cpSearchCPF");
            // clientes =  ClienteDao.buscarClientesFiltro(request.getParameter("cpSearchNomeCliente"),cpf,evento);
             clientes =  ClienteDao.buscarClientesFiltro(request.getParameter("cpSearchNomeCliente"));
             

@@ -30,12 +30,12 @@ public class SaveClienteAction extends GenericCommander {
 
             Cliente cliente;
             String msg;
-            
+         //   Pedindo construtor
 //            if (request.getParameter("cpCPF").equals("")) {
               if (request.getParameter("tipo").equals("cadastrar")) {
 
-                cliente = new Cliente(Integer.parseInt(request.getParameter("cpCPF")),
-                        request.getParameter("cpNomeCliente"));
+             //   cliente = new Cliente(Integer.parseInt(request.getParameter("cpCPF")),
+                //        request.getParameter("cpNomeCliente"));
 
                 msg = "Cliente criado com sucesso!!!";
             } else {
@@ -47,7 +47,7 @@ public class SaveClienteAction extends GenericCommander {
                 msg = "Cliente alterado com sucesso!!!";
             }
 
-            ClienteDao.getConexao().persist(cliente);
+    //        ClienteDao.getConexao().persist(cliente);
             
             ClienteDao.getConexao().getTransaction().commit();
 
