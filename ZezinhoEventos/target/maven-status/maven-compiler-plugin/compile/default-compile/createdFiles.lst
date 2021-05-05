@@ -3,6 +3,7 @@ model\daos\ClienteDao.class
 controller\actions\ViewListaClientesAction.class
 controller\actions\ViewLoginAction.class
 controller\actions\LoginVerifyAction.class
+model\daos\EventoDAO.class
 model\usuario\Usuario.class
 model\espaco\assento\Cadeira_.class
 controller\actions\ViewHomeLogadoAction.class

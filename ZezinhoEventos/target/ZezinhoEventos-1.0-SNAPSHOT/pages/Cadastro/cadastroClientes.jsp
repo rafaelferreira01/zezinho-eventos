@@ -20,7 +20,7 @@
 </c:if>
 
 <form action="control?ac=clienteCad" method="POST">
-   
+   <input type="hidden" name="tipo" value="cadastrar" />
      
     
     <div class="cadCliente">
