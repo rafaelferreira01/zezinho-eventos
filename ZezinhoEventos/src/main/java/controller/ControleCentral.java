@@ -86,7 +86,7 @@ public class ControleCentral extends HttpServlet {
                 
                 
             } catch (Exception e) {
-                RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+                 RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
                 
                 request.setAttribute("error", e.getMessage()==null?"ação não encontrada":e.getMessage());
                 

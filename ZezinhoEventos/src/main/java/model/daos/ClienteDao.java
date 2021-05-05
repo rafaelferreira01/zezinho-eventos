@@ -9,6 +9,8 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import model.cliente.Cliente;
+import model.evento.Evento;
+
 
 /**
  *
@@ -16,7 +18,7 @@ import model.cliente.Cliente;
  */
 public class ClienteDao extends BaseDao {
     
-    public static List<Cliente> buscarTodosClientes() {
+    public static List<Cliente> buscarTodosClientes(Cliente cliente) {
 
         Query q = getConexao().createNamedQuery("Cliente.findAll");
         
@@ -39,4 +41,61 @@ public class ClienteDao extends BaseDao {
 
     }
 
+
+  //  public static List<Cliente> buscarClientesFiltro(String nomeCliente, int cpf, Evento evento) {
+   //    Query q = getConexao().createQuery("select c from Cliente c where c.nome like:nome ");
+
+  //     q.setParameter("nome", "%"+nomeCliente+"%");
+       
+  //     return q.getResultList();
+  //  }
+
+  //  public static List<Cliente> buscarClientesFiltro(String nomeCliente, Cliente cliente, Evento evento) {
+   //     Query q = getConexao().createQuery("select c from Cliente c where c.nome like:nome ");
+
+  //     q.setParameter("nome", "%"+nomeCliente+"%");
+       
+  //       return q.getResultList();
+  //  }
+
+ //   public static List<Cliente> buscarClientesFiltro(String nomeCliente, String cpf, Evento evento) {
+  //       Query q = getConexao().createQuery("select c from Cliente c where c.nome like:nome ");
+
+  //     q.setParameter("nome", "%"+nomeCliente+"%");
+  //     
+      // return q.getResultList();
+ //   }
+
+    public static List<Cliente> buscarClientesFiltro(String nomeCliente) {
+         Query q = getConexao().createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome ");
+  
+         q.setParameter("nome", "%"+nomeCliente+"%");
+         return q.getResultList();
+    }
+    
+    
+    // Esse é o completo
+    //public static List<Cliente> buscarClientesFiltro(String nomeCliente, String cpf, Evento evento) {
+     //   Query q = getConexao().createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome AND "
+     //      + " (c FROM Cliente c WHERE c.cpf LIKE :cpf)");
+     //    q.setParameter("nome", "%"+nomeCliente+"%");
+         //q.setParameter("evento", evento.getIdEvento());
+    //     q.setParameter("cpf", "%"+cpf+"%");
+      //    return q.getResultList();
+    //}
+
+ 
+
+ 
+        //Nome e Cpf
+  //  public static List<Cliente> buscarClientesFiltro(String nomeCliente, Cliente cpf) {
+  //       Query q = getConexao().createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome AND "
+   //        + " (c FROM Cliente c WHERE c.cpf = :cpf)");
+   //      q.setParameter("nome", "%"+nomeCliente+"%");
+         //q.setParameter("evento", evento.getIdEvento());
+   //      q.setParameter("cpf", cpf);
+   //       return q.getResultList();
+    
+    
+      
 }

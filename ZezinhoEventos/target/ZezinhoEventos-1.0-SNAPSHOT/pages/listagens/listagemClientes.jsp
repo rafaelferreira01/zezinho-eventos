@@ -39,8 +39,8 @@
 
                             <div class="form-group">                 
                                 <label for="Cliente">Eventos:</label> 
-                                <select name="cpSearchEventos" value="Eventos" class="form-control">  
-                                    <<option value="-1"> Todos Eventos </option>
+                                <select name="cpSearchEventos" value="" class="form-control">  
+                                    <option value="-1"> Todos Eventos </option>
                                     <c:forEach items="${requestScope.eventos}" var="e">
                                     <option value="${e.idEvento}">${e.nomeEvento}</option>
                                 </c:forEach> 

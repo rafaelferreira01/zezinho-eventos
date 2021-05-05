@@ -6,7 +6,6 @@
 package model.daos;
 
 import java.util.List;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import model.cliente.Cliente;
 import static model.daos.BaseDao.getConexao;
