@@ -1,3 +1,4 @@
+D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\model\daos\EspacoDao.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\model\espaco\Espaco.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\controller\actions\LoginVerifyAction.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\model\espaco\TipoEspaco.java
@@ -15,8 +16,9 @@ D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\controller\actions\ViewListaClientesAction.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\model\espaco\assento\Cadeira.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\controller\ControleCentral.java
-D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\model\daos\EventoDAO.java
+D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\model\daos\EventoDao.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\controller\actions\ViewCadastroClientesAction.java
+D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\model\daos\TipoEventoDao.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\roda\testes\banco\TestaBanco.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\controller\actions\ViewListaEventosAction.java
 D:\Rafael\Vianna\3P\POOA\Atividades\zezinho-eventos\ZezinhoEventos\src\main\java\model\evento\TipoEvento.java

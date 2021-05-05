@@ -17,3 +17,9 @@ insert into zezinho_eventos.tipoevento values (4,'Festa',null);
 
 
 criar construtor do cliente que recebe só cpf e nome
+CRIAR TIPO evento no evento
+
+
+
+
+arrumar situacao onde dá erro quando o usuario tenta cadastrar com o cpf ja existente

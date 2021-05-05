@@ -10,30 +10,31 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import model.cliente.Cliente;
 import static model.daos.BaseDao.getConexao;
+import model.espaco.Espaco;
 import model.evento.Evento;
 
 /**
  *
  * @author Leonardo
  */
-public class EventoDao extends BaseDao {
+public class EspacoDao extends BaseDao {
     
-    public static List<Evento> buscarTodoEventos() {
+    public static List<Espaco> buscarTodosEspacos() {
 
-        Query q = getConexao().createNamedQuery("Evento.findAll");
+        Query q = getConexao().createNamedQuery("Espaco.findAll");
         
         return q.getResultList();        
     }
 
 
-    public static Evento buscarByIdEvento(int id) {
+    public static Espaco buscarByIdEspaco(int id) {
 
-        Query q = getConexao().createNamedQuery("Evento.findByIdEvento");
+        Query q = getConexao().createNamedQuery("Espaco.findByIdespaco");
 
-        q.setParameter("idEvento", id);
+        q.setParameter("idEspaco", id);
         try {
             
-            return (Evento) q.getSingleResult();
+            return (Espaco) q.getSingleResult();
 
         } catch (NoResultException e) {
             return null;

@@ -75,6 +75,14 @@ public class Evento implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private List<TipoEvento> tipoEventoList;
 
+    //INICIO ADICIONADO MANUALMENTE
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
+    private int TipoEvento;
+    //FIM ADICIONADO MANUALMENTE
+    
+    
     public Evento() {
     }
 
@@ -153,6 +161,16 @@ public class Evento implements Serializable {
     public void setTipoEventoList(List<TipoEvento> tipoEventoList) {
         this.tipoEventoList = tipoEventoList;
     }
+
+    public int getTipoEvento() {
+        return TipoEvento;
+    }
+
+    public void setTipoEvento(int TipoEvento) {
+        this.TipoEvento = TipoEvento;
+    }
+    
+    
 
     @Override
     public int hashCode() {

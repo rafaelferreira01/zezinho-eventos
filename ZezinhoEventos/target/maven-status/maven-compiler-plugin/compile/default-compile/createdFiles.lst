@@ -3,7 +3,6 @@ model\daos\ClienteDao.class
 controller\actions\ViewListaClientesAction.class
 controller\actions\ViewLoginAction.class
 controller\actions\LoginVerifyAction.class
-model\daos\EventoDAO.class
 model\usuario\Usuario.class
 model\espaco\assento\Cadeira_.class
 controller\actions\ViewHomeLogadoAction.class
@@ -12,7 +11,9 @@ controller\actions\ViewListaEventosAction.class
 model\evento\TipoEvento_.class
 model\cliente\Cliente.class
 controller\ControleCentral.class
+model\daos\TipoEventoDao.class
 model\usuario\Usuario_.class
+model\daos\EventoDao.class
 roda\testes\banco\TestaBanco.class
 model\espaco\assento\VagaSalao.class
 model\espaco\assento\VagaSalao_.class
@@ -34,6 +35,7 @@ controller\actions\ViewCadastroClientesAction.class
 model\espaco\TipoEspaco.class
 controller\commander\GenericCommander.class
 model\espaco\assento\VagaEspecial.class
+model\daos\EspacoDao.class
 model\espaco\assento\Cabine_.class
 model\evento\Evento_.class
 model\evento\TipoEvento.class

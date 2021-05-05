@@ -10,30 +10,30 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import model.cliente.Cliente;
 import static model.daos.BaseDao.getConexao;
-import model.evento.Evento;
+import model.evento.TipoEvento;
 
 /**
  *
  * @author Leonardo
  */
-public class EventoDao extends BaseDao {
+public class TipoEventoDao extends BaseDao {
     
-    public static List<Evento> buscarTodoEventos() {
+    public static List<TipoEvento> buscarTodosTipoEventos() {
 
-        Query q = getConexao().createNamedQuery("Evento.findAll");
+        Query q = getConexao().createNamedQuery("TipoEvento.findAll");
         
         return q.getResultList();        
     }
 
 
-    public static Evento buscarByIdEvento(int id) {
+    public static TipoEvento buscarByIdTipoEvento(int id) {
 
-        Query q = getConexao().createNamedQuery("Evento.findByIdEvento");
+        Query q = getConexao().createNamedQuery("TipoEvento.findByIdTipoEvento");
 
-        q.setParameter("idEvento", id);
+        q.setParameter("idTipoEvento", id);
         try {
             
-            return (Evento) q.getSingleResult();
+            return (TipoEvento) q.getSingleResult();
 
         } catch (NoResultException e) {
             return null;
