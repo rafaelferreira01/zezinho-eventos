@@ -7,7 +7,6 @@ package model.evento;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,14 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import model.cliente.Cliente;
-import model.espaco.Espaco;
 
 /**
  *
@@ -37,7 +33,8 @@ import model.espaco.Espaco;
     @NamedQuery(name = "Evento.findByNomeEvento", query = "SELECT e FROM Evento e WHERE e.nomeEvento = :nomeEvento"),
     @NamedQuery(name = "Evento.findByDataEvento", query = "SELECT e FROM Evento e WHERE e.dataEvento = :dataEvento"),
     @NamedQuery(name = "Evento.findByCapacidadeReduzida", query = "SELECT e FROM Evento e WHERE e.capacidadeReduzida = :capacidadeReduzida"),
-    @NamedQuery(name = "Evento.findByCustoExtra", query = "SELECT e FROM Evento e WHERE e.custoExtra = :custoExtra")})
+    @NamedQuery(name = "Evento.findByCustoExtra", query = "SELECT e FROM Evento e WHERE e.custoExtra = :custoExtra"),
+    @NamedQuery(name = "Evento.findByCustoInicial", query = "SELECT e FROM Evento e WHERE e.custoInicial = :custoInicial")})
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,12 +61,10 @@ public class Evento implements Serializable {
     @NotNull
     @Column(nullable = false)
     private double custoExtra;
-    @OneToMany(mappedBy = "evento")
-    private List<Cliente> clienteList;
-    @OneToMany(mappedBy = "evento")
-    private List<Espaco> espacoList;
-    @OneToMany(mappedBy = "evento")
-    private List<TipoEvento> tipoEventoList;
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
+    private double custoInicial;
 
     public Evento() {
     }
@@ -78,12 +73,13 @@ public class Evento implements Serializable {
         this.idEvento = idEvento;
     }
 
-    public Evento(Integer idEvento, String nomeEvento, Date dataEvento, boolean capacidadeReduzida, double custoExtra) {
+    public Evento(Integer idEvento, String nomeEvento, Date dataEvento, boolean capacidadeReduzida, double custoExtra, double custoInicial) {
         this.idEvento = idEvento;
         this.nomeEvento = nomeEvento;
         this.dataEvento = dataEvento;
         this.capacidadeReduzida = capacidadeReduzida;
         this.custoExtra = custoExtra;
+        this.custoInicial = custoInicial;
     }
 
     public Integer getIdEvento() {
@@ -126,28 +122,12 @@ public class Evento implements Serializable {
         this.custoExtra = custoExtra;
     }
 
-    public List<Cliente> getClienteList() {
-        return clienteList;
+    public double getCustoInicial() {
+        return custoInicial;
     }
 
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
-    }
-
-    public List<Espaco> getEspacoList() {
-        return espacoList;
-    }
-
-    public void setEspacoList(List<Espaco> espacoList) {
-        this.espacoList = espacoList;
-    }
-
-    public List<TipoEvento> getTipoEventoList() {
-        return tipoEventoList;
-    }
-
-    public void setTipoEventoList(List<TipoEvento> tipoEventoList) {
-        this.tipoEventoList = tipoEventoList;
+    public void setCustoInicial(double custoInicial) {
+        this.custoInicial = custoInicial;
     }
 
     @Override
@@ -172,7 +152,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "roda.testes.banco.Evento[ idEvento=" + idEvento + " ]";
+        return "model.evento.Evento[ idEvento=" + idEvento + " ]";
     }
     
 }

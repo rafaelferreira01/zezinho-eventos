@@ -11,8 +11,9 @@
 
 <form action="control?ac=clienteCad" method="POST">
 
-
-
+    <input type="hidden" name="cpId" value="${requestScope.evento.idevento}" />
+    
+    
     <div class="Evento">
         <label for="Evento" class="form-label">Nome</label>
         <input required type="text" class="form-control" id="nomeEvento" name="cpNomeEvento">
@@ -24,7 +25,15 @@
             <c:forEach items="${requestScope.tipoEventos}" var="te">
                 <option value="${te.idTipoEvento}">${te.descricaoTipoEvento}</option>                                   
             </c:forEach>  
-        </select><br>
+        </select>        
+    </div><br>
+    
+    <div class="mb-3">
+        <label for="dataEvento" class="form-label">Data do evento</label>
+        <input required="" type="date" class="form-control" id="dataEve" name="cpDataEvento"
+             value="${requestScope.time.dataAmericana()}"  >
+    </div>
+    
         
     <div class="Evento">                 
         <label for="Evento "> Espaço </label> 
