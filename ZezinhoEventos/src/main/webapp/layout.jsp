@@ -99,7 +99,7 @@
                 </nav>
             </aside>
             
-            <!--<img src="/images/Lakeside_Entrance.png" height=420 width=800 >-->
+            <img src="images/Lakeside_Entrance.png" height=420 width=800 >
 
         </div>
         <footer class="layout-footer">

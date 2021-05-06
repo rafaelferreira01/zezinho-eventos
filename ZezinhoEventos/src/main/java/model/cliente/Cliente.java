@@ -7,18 +7,21 @@ package model.cliente;
 
 import model.evento.Evento;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import model.espaco.assento.Cabine;
+import model.espaco.assento.Cadeira;
+import model.espaco.assento.VagaEspecial;
+import model.espaco.assento.VagaSalao;
 
 /**
  *
@@ -29,8 +32,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
     @NamedQuery(name = "Cliente.findByCpf", query = "SELECT c FROM Cliente c WHERE c.cpf = :cpf"),
-    @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome"),
-    @NamedQuery(name = "Cliente.findByEvento", query = "SELECT c FROM Cliente c WHERE c.evento = :evento")})
+    @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,24 +46,34 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 45)
     @Column(nullable = false, length = 45)
     private String nome;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private int evento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Evento> eventoList;
+    @JoinColumn(name = "cabine", referencedColumnName = "idCabine")
+    @ManyToOne
+    private Cabine cabine;
+    @JoinColumn(name = "cadeira", referencedColumnName = "idCadeira")
+    @ManyToOne
+    private Cadeira cadeira;
+    @JoinColumn(name = "evento", referencedColumnName = "idEvento")
+    @ManyToOne
+    private Evento evento;
+    @JoinColumn(name = "vagaespecial", referencedColumnName = "idVagaEspecial")
+    @ManyToOne
+    private VagaEspecial vagaespecial;
+    @JoinColumn(name = "vagasalao", referencedColumnName = "idVagasalao")
+    @ManyToOne
+    private VagaSalao vagasalao;
 
     public Cliente() {
     }
+    
+    
 
     public Cliente(Integer cpf) {
         this.cpf = cpf;
     }
 
-    public Cliente(Integer cpf, String nome, int evento) {
+    public Cliente(Integer cpf, String nome) {
         this.cpf = cpf;
         this.nome = nome;
-        this.evento = evento;
     }
 
     public Integer getCpf() {
@@ -80,20 +92,44 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public int getEvento() {
+    public Cabine getCabine() {
+        return cabine;
+    }
+
+    public void setCabine(Cabine cabine) {
+        this.cabine = cabine;
+    }
+
+    public Cadeira getCadeira() {
+        return cadeira;
+    }
+
+    public void setCadeira(Cadeira cadeira) {
+        this.cadeira = cadeira;
+    }
+
+    public Evento getEvento() {
         return evento;
     }
 
-    public void setEvento(int evento) {
+    public void setEvento(Evento evento) {
         this.evento = evento;
     }
 
-    public List<Evento> getEventoList() {
-        return eventoList;
+    public VagaEspecial getVagaespecial() {
+        return vagaespecial;
     }
 
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
+    public void setVagaespecial(VagaEspecial vagaespecial) {
+        this.vagaespecial = vagaespecial;
+    }
+
+    public VagaSalao getVagasalao() {
+        return vagasalao;
+    }
+
+    public void setVagasalao(VagaSalao vagasalao) {
+        this.vagasalao = vagasalao;
     }
 
     @Override
@@ -118,7 +154,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Cliente[ cpf=" + cpf + " ]";
+        return "roda.testes.banco.Cliente[ cpf=" + cpf + " ]";
     }
     
 }

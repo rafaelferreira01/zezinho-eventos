@@ -11,12 +11,14 @@ controller\actions\ViewListaEventosAction.class
 model\evento\TipoEvento_.class
 model\cliente\Cliente.class
 controller\ControleCentral.class
+model\daos\TipoEventoDao.class
 model\usuario\Usuario_.class
 model\daos\EventoDao.class
 roda\testes\banco\TestaBanco.class
 model\espaco\assento\VagaSalao.class
 model\espaco\assento\VagaSalao_.class
 model\daos\UsuarioDao.class
+controller\actions\SaveClienteAction.class
 controller\actions\ViewCadastroAction.class
 model\cliente\Cliente_.class
 model\daos\BaseDao.class
@@ -25,17 +27,13 @@ controller\actions\ViewRelatorioAction.class
 model\espaco\assento\Cabine.class
 controller\actions\ViewLogoutAction.class
 model\espaco\Espaco_.class
-<<<<<<< Updated upstream
-controller\SaveClienteAction.class
-model\espaco\TipoEspaco_.class
-=======
->>>>>>> Stashed changes
 controller\actions\SaveUsuarioAction.class
 controller\actions\ViewCadastroEventosAction.class
 model\espaco\assento\VagaEspecial_.class
 controller\actions\ViewCadastroClientesAction.class
 controller\commander\GenericCommander.class
 model\espaco\assento\VagaEspecial.class
+model\daos\EspacoDao.class
 model\espaco\assento\Cabine_.class
 model\evento\Evento_.class
 model\evento\TipoEvento.class

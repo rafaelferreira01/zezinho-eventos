@@ -9,34 +9,36 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import model.cliente.Cliente;
+import static model.daos.BaseDao.getConexao;
+import model.evento.Evento;
 
 /**
  *
- * @author daves
+ * @author Leonardo
  */
-public class ClienteDao extends BaseDao {
+public class EventoDao extends BaseDao {
     
-    public static List<Cliente> buscarTodosClientes() {
+    public static List<Evento> buscarTodoEventos() {
 
-        Query q = getConexao().createNamedQuery("Cliente.findAll");
+        Query q = getConexao().createNamedQuery("Evento.findAll");
         
         return q.getResultList();        
     }
 
 
-    public static Cliente buscarByCPF(int cpf) {
+    public static Evento buscarByIdEvento(int id) {
 
-        Query q = getConexao().createNamedQuery("Cliente.findByCpf");
+        Query q = getConexao().createNamedQuery("Evento.findByIdEvento");
 
-        q.setParameter("cpf", cpf);
+        q.setParameter("idEvento", id);
         try {
             
-            return (Cliente) q.getSingleResult();
+            return (Evento) q.getSingleResult();
 
         } catch (NoResultException e) {
             return null;
         }
 
     }
-
+    
 }

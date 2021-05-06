@@ -1,9 +1,6 @@
 
-insert into zezinho_eventos.espaco values (1,0,0,0,500,null);
-insert into zezinho_eventos.espaco values (2,40,300,10,0,null);
-
-insert into zezinho_eventos.tipoespaco values (1,'Salao',1);
-insert into zezinho_eventos.tipoespaco values (2,'Anfiteatro',2);
+insert into zezinho_eventos.espaco values (1,'Salao',0,0,0,500,null);
+insert into zezinho_eventos.espaco values (2,'Anfiteatro',40,300,10,0,null);
 
 insert into zezinho_eventos.tipoevento values (1,'Palestra',null);
 insert into zezinho_eventos.tipoevento values (2,'Show',null);
@@ -23,3 +20,31 @@ CRIAR TIPO evento no evento
 
 
 arrumar situacao onde dá erro quando o usuario tenta cadastrar com o cpf ja existente
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="eventosPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>model.espaco.TipoEspaco</class>
+    <class>model.espaco.Espaco</class>
+    <class>model.usuario.Usuario</class>
+    <class>model.evento.TipoEvento</class>
+    <class>model.evento.Evento</class>
+    <class>model.espaco.assento.Cadeira</class>
+    <class>model.espaco.assento.VagaSalao</class>
+    <class>model.espaco.assento.VagaEspecial</class>
+    <class>model.espaco.assento.Cabine</class>
+    <class>model.cliente.Cliente</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/zezinho_eventos?useTimezone=true&amp;serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="belezinha"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+</persistence>

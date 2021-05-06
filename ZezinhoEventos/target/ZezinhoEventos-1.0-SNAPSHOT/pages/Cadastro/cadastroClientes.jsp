@@ -20,7 +20,7 @@
 </c:if>
 
 <form action="control?ac=clienteCad" method="POST">
-   
+   <input type="hidden" name="tipo" value="cadastrar" />
      
     
     <div class="cadCliente">
@@ -30,7 +30,7 @@
     </div>
     <div class="cadCliente">
         <label for="Cliente" class="form-label"> CPF </label>
-        <input required="" type="text" class="form-control" id="cpfCliente" name="cpCPF">
+        <input required="" type="number" class="form-control" id="cpfCliente" name="cpCPF">
     </div>
     
     <div class = "text-center">

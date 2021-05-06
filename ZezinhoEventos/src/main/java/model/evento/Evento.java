@@ -5,19 +5,15 @@
  */
 package model.evento;
 
-import model.espaco.Espaco;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,6 +23,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import model.cliente.Cliente;
+import model.espaco.Espaco;
 
 /**
  *
@@ -67,12 +64,11 @@ public class Evento implements Serializable {
     @NotNull
     @Column(nullable = false)
     private double custoExtra;
-    @JoinColumn(name = "cliente", referencedColumnName = "cpf", nullable = false)
-    @ManyToOne(optional = false)
-    private Cliente cliente;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+    @OneToMany(mappedBy = "evento")
+    private List<Cliente> clienteList;
+    @OneToMany(mappedBy = "evento")
     private List<Espaco> espacoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+    @OneToMany(mappedBy = "evento")
     private List<TipoEvento> tipoEventoList;
 
     public Evento() {
@@ -130,12 +126,12 @@ public class Evento implements Serializable {
         this.custoExtra = custoExtra;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public List<Cliente> getClienteList() {
+        return clienteList;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
     }
 
     public List<Espaco> getEspacoList() {
@@ -176,7 +172,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Evento[ idEvento=" + idEvento + " ]";
+        return "roda.testes.banco.Evento[ idEvento=" + idEvento + " ]";
     }
     
 }

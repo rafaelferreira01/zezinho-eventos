@@ -6,6 +6,7 @@
 package model.espaco.assento;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import model.cliente.Cliente;
 import model.espaco.Espaco;
 
 /**
@@ -27,7 +31,8 @@ import model.espaco.Espaco;
 @Table(catalog = "zezinho_eventos", schema = "")
 @NamedQueries({
     @NamedQuery(name = "VagaSalao.findAll", query = "SELECT v FROM VagaSalao v"),
-    @NamedQuery(name = "VagaSalao.findByIdVagasalao", query = "SELECT v FROM VagaSalao v WHERE v.idVagasalao = :idVagasalao")})
+    @NamedQuery(name = "VagaSalao.findByIdVagasalao", query = "SELECT v FROM VagaSalao v WHERE v.idVagasalao = :idVagasalao"),
+    @NamedQuery(name = "VagaSalao.findByValor", query = "SELECT v FROM VagaSalao v WHERE v.valor = :valor")})
 public class VagaSalao implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,15 +41,26 @@ public class VagaSalao implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer idVagasalao;
-    @JoinColumn(name = "espaco", referencedColumnName = "idespaco", nullable = false)
-    @ManyToOne(optional = false)
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
+    private double valor;
+    @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
+    @ManyToOne
     private Espaco espaco;
+    @OneToMany(mappedBy = "vagasalao")
+    private List<Cliente> clienteList;
 
     public VagaSalao() {
     }
 
     public VagaSalao(Integer idVagasalao) {
         this.idVagasalao = idVagasalao;
+    }
+
+    public VagaSalao(Integer idVagasalao, double valor) {
+        this.idVagasalao = idVagasalao;
+        this.valor = valor;
     }
 
     public Integer getIdVagasalao() {
@@ -55,12 +71,28 @@ public class VagaSalao implements Serializable {
         this.idVagasalao = idVagasalao;
     }
 
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
     public Espaco getEspaco() {
         return espaco;
     }
 
     public void setEspaco(Espaco espaco) {
         this.espaco = espaco;
+    }
+
+    public List<Cliente> getClienteList() {
+        return clienteList;
+    }
+
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
     }
 
     @Override
@@ -85,7 +117,7 @@ public class VagaSalao implements Serializable {
 
     @Override
     public String toString() {
-        return "model.VagaSalao[ idVagasalao=" + idVagasalao + " ]";
+        return "roda.testes.banco.VagaSalao[ idVagasalao=" + idVagasalao + " ]";
     }
     
 }

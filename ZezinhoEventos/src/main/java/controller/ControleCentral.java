@@ -5,6 +5,7 @@
  */
 package controller;
 
+import controller.actions.SaveClienteAction;
 import controller.actions.ViewLoginAction;
 import controller.actions.LoginVerifyAction;
 import controller.actions.SaveUsuarioAction;
@@ -85,7 +86,7 @@ public class ControleCentral extends HttpServlet {
                 
                 
             } catch (Exception e) {
-                 RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
                 
                 request.setAttribute("error", e.getMessage()==null?"ação não encontrada":e.getMessage());
                 

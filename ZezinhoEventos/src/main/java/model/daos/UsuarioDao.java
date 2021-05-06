@@ -44,7 +44,5 @@ public class UsuarioDao extends BaseDao {
         
          return (long)q.getSingleResult() >= 1; 
     }
-        
-    
 }
      

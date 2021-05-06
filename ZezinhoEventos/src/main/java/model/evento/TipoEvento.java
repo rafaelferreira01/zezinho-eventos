@@ -43,8 +43,8 @@ public class TipoEvento implements Serializable {
     @Size(min = 1, max = 45)
     @Column(nullable = false, length = 45)
     private String descricaoTipoEvento;
-    @JoinColumn(name = "evento", referencedColumnName = "idEvento", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "evento", referencedColumnName = "idEvento")
+    @ManyToOne
     private Evento evento;
 
     public TipoEvento() {
@@ -105,7 +105,7 @@ public class TipoEvento implements Serializable {
 
     @Override
     public String toString() {
-        return "model.TipoEvento[ idTipoEvento=" + idTipoEvento + " ]";
+        return "roda.testes.banco.TipoEvento[ idTipoEvento=" + idTipoEvento + " ]";
     }
     
 }

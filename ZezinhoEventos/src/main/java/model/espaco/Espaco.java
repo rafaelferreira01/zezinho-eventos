@@ -6,10 +6,6 @@
 package model.espaco;
 
 import model.evento.Evento;
-import model.espaco.assento.Cadeira;
-import model.espaco.assento.Cabine;
-import model.espaco.assento.VagaSalao;
-import model.espaco.assento.VagaEspecial;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -26,6 +22,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import model.espaco.assento.Cabine;
+import model.espaco.assento.Cadeira;
+import model.espaco.assento.VagaEspecial;
+import model.espaco.assento.VagaSalao;
 
 /**
  *
@@ -208,7 +208,7 @@ public class Espaco implements Serializable {
 
     @Override
     public String toString() {
-        return "model.usuario.Espaco[ idespaco=" + idespaco + " ]";
+        return "roda.testes.banco.Espaco[ idespaco=" + idespaco + " ]";
     }
     
 }
