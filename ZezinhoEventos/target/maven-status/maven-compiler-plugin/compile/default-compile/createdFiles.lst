@@ -33,6 +33,7 @@ model\espaco\assento\VagaEspecial_.class
 controller\actions\ViewCadastroClientesAction.class
 controller\commander\GenericCommander.class
 model\espaco\assento\VagaEspecial.class
+controller\actions\SaveEventoAction.class
 model\daos\EspacoDao.class
 model\espaco\assento\Cabine_.class
 model\evento\Evento_.class

@@ -43,12 +43,19 @@ public class SaveEventoAction extends GenericCommander {
                         Boolean.parseBoolean(request.getParameter("CpCapacidadeReduzida")!=null?"true":"false"),
                         Double.parseDouble(request.getParameter("cpCustoInicial")),
                         0);
+                
+                
+                
+            CabineDao.getConexao().getTransaction().begin();    
+                
+                
+                
+                
+                
                         
                        
-//                time.setUsuario((Usuario) request.getSession().getAttribute("user"));
                 msg = "Evento criado com sucesso!!!";
             } else {
-                
                 evento = EventoDao.buscarByIdEvento(Integer.parseInt(request.getParameter("cpId")) );
                 
                 evento.setNomeEvento(request.getParameter("cpNomeEvento"));
@@ -56,6 +63,16 @@ public class SaveEventoAction extends GenericCommander {
                 evento.setCapacidadeReduzida(Boolean.parseBoolean(request.getParameter("CpCapacidadeReduzida")));
                 evento.setCustoInicial(Double.parseDouble(request.getParameter("cpCustoInicial")));
                 evento.setCustoExtra(Double.parseDouble(request.getParameter("cpCustoExtra")));
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 msg = "Evento alterado com sucesso!!!";
             }
@@ -65,6 +82,16 @@ public class SaveEventoAction extends GenericCommander {
             EventoDao.getConexao().getTransaction().commit();
 
             request.setAttribute("msg", msg);
+            
+            
+            //PARTE DOS ASSENTOS
+            
+            
+            
+            
+            
+            
+            
 
             new ViewCadastroEventosAction(true).executa(request, response);
             

@@ -8,6 +8,7 @@ package controller;
 import controller.actions.SaveClienteAction;
 import controller.actions.ViewLoginAction;
 import controller.actions.LoginVerifyAction;
+import controller.actions.SaveEventoAction;
 import controller.actions.SaveUsuarioAction;
 import controller.actions.ViewCadastroAction;
 import controller.actions.ViewCadastroClientesAction;
@@ -46,6 +47,10 @@ public class ControleCentral extends HttpServlet {
         comandos.put("paginaInicial", new ViewHomeLogadoAction(true));
         comandos.put("logout", new ViewLogoutAction(true));
         
+        
+        
+        comandos.put("eventoCad", new SaveEventoAction(true));   
+                
         comandos.put("Clientes", new ViewCadastroClientesAction(true));
         comandos.put("listaClientes", new ViewListaClientesAction(true));
         comandos.put("clienteCad", new SaveClienteAction(true));
