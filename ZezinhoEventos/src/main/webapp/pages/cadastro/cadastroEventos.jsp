@@ -11,7 +11,8 @@
 
 <form action="control?ac=clienteCad" method="POST">
 
-    <input type="hidden" name="cpId" value="${requestScope.evento.idevento}" />
+    <input type="hidden" name="cpId" value="${requestScope.evento.idEvento}" />
+    <input type="hidden" name="cpCustoExtra" value="${requestScope.evento.custoExtra}" />
     
     
     <div class="Evento">
@@ -30,14 +31,14 @@
     
     <div class="mb-3">
         <label for="dataEvento" class="form-label">Data do evento</label>
-        <input required="" type="date" class="form-control" id="dataEve" name="cpDataEvento"
+        <input required="" type="date" class="form-control" id="dataEvento" name="cpDataEvento"
              value="${requestScope.time.dataAmericana()}"  >
     </div>
     
         
     <div class="Evento">                 
         <label for="Evento "> Espaço </label> 
-        <select name="cpSearchEspaco"  class="form-control">  
+        <select name="cpSearchEspaco" id="cpEspacoEvento" class="form-control" >  
             <c:forEach items="${requestScope.espacos}" var="e">
                 <option value="${e.idespaco}">${e.descricaoEspaco}</option>                                   
             </c:forEach>  
@@ -46,16 +47,72 @@
         
         <div class="form-check">
             <label class="form-check-label" for="flexCheckDefault">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" id="capacidadeNormal" name="CpCapacidade" >
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" id="capacidadeReduzida" name="CpCapacidadeReduzida" >
                 Capacidade Reduzida
             </label>
+        </div>
+        
+        <div class="Evento" id="custoInicial"><br>
+            <label for="custoInicial" class="form-label">Custo Inicial</label>
+            <input required type="number" class="form-control" name="cpCustoInicial">
+        </div>
+        
+        
+        <div class="Evento" id="valorCadeira"><br>
+            <label for="valorCadeira" class="form-label">Valor Cadeira</label>
+            <input required type="number" class="form-control" name="cpValorCadeira">
+        </div>
+        
+        <div class="Evento" id="valorVagaEspecial" >
+            <label for="valorVagaEspecial" class="form-label">Valor Vaga Especial</label>
+            <input required type="number" class="form-control" name="cpVagaEspecial">
+        </div>
+        
+        <div class="Evento" id="valorCabine">
+            <label for="valorCabine" class="form-label">Valor Cabine</label>
+            <input required type="number" class="form-control" name="cpValorCabine">
         </div><br>
-
-       
+        
+        <div class="Evento" id="valorVagaSalao">
+            <label for="valorVagaSalao" class="form-label">Valor Vaga Salão</label>
+            <input required type="number" class="form-control"  name="cpValorVagaSalao">
+        </div><br>
         
         
-
 
         <div class = "text-center">
             <button type="submit" class="btn btn-primary bg-dark">Cadastrar</button>
             </form>
+    
+<!--    <script>
+        
+        console.log($("#cpEspacoEvento").val());
+        
+    </script>-->
+    
+    
+            <script>
+                $(function() {
+                  $("#cpEspacoEvento").change(function() {
+//                    if ($("#salao").is(":selected")) {
+                    if ($(this).val() == '1') {
+                      $("#valorVagaSalao").show();
+                      $("#valorCabine").hide();
+                      $("#valorCabine").val(0)
+                      $("#valorVagaEspecial").hide();
+                      $("#valorVagaEspecial").val(0)
+                      $("#valorCadeira").hide();
+                      $("#valorCadeira").val(0)
+                    } else {
+                      $("#valorVagaSalao").hide();
+                      $("#valorVagaSalao").val(0)
+                      $("#valorCabine").show();
+                      $("#valorVagaEspecial").show();
+                      $("#valorCadeira").show();
+                    }
+                  }).trigger('change');
+                });
+            </script>
+            
+            
+            <!--$("#qJogador").html($(e.currentTarget).data("jogador"));-->
