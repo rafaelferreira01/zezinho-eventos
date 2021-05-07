@@ -13,6 +13,7 @@ import controller.actions.SaveUsuarioAction;
 import controller.actions.ViewCadastroAction;
 import controller.actions.ViewCadastroClientesAction;
 import controller.actions.ViewCadastroEventosAction;
+import controller.actions.ViewComprarIngressoAction;
 import controller.actions.ViewHomeLogadoAction;
 import controller.actions.ViewListaClientesAction;
 import controller.actions.ViewListaEventosAction;
@@ -57,7 +58,8 @@ public class ControleCentral extends HttpServlet {
         comandos.put("Eventos", new ViewCadastroEventosAction(true));
         comandos.put("listaEventos", new ViewListaEventosAction(true));
         comandos.put("relatorio", new ViewRelatorioAction(true));
-        
+        comandos.put("comprarIngresso", new ViewComprarIngressoAction(true));
+       
         
     }
 

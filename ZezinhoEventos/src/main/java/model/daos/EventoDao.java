@@ -18,7 +18,7 @@ import model.evento.Evento;
  */
 public class EventoDao extends BaseDao {
     
-    public static List<Evento> buscarTodoEventos() {
+    public static List<Evento> buscarTodosEventos() {
 
         Query q = getConexao().createNamedQuery("Evento.findAll");
         
