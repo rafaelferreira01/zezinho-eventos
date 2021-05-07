@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.cliente.Cliente;
 import model.daos.ClienteDao;
+import model.daos.EventoDao;
+import model.evento.Evento;
 
 /**
  *
@@ -28,23 +30,46 @@ public class ViewListaClientesAction extends GenericCommander {
 
     @Override
     public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       RequestDispatcher rd = request.getRequestDispatcher("template.jsp");
+      
+       Cliente cliente = new Cliente();
+     
+        
+        RequestDispatcher rd = request.getRequestDispatcher("template.jsp");
        
-       request.setAttribute("page", "/pages/listagens/listagemClientes.jsp");
+       request.setAttribute("eventos", EventoDao.buscarTodosEventos());
+       
+        request.setAttribute("page", "/pages/listagens/listagemClientes.jsp");
+       
+      
+       
+       
+     
       
        List<Cliente> clientes = null;
        if (request.getParameter("cpSearchNomeCliente") == null)
        {
-           request.setAttribute("clientes", ClienteDao.buscarTodosClientes());
+          clientes =  ClienteDao.buscarTodosClientes( (Cliente) request.getAttribute("cliente"));
        }
        else
-       {
-       //      request.setAttribute("clientes", ClienteDao.buscarClientesFiltro());
+       {    
+           
+           // Evento evento = new Evento(Integer.parseInt(request.getParameter("cpSearchEvento")));
+           // String cpf = request.getParameter("cpSearchCPF");
+           // clientes =  ClienteDao.buscarClientesFiltro(request.getParameter("cpSearchNomeCliente"),cpf,evento);
+            clientes =  ClienteDao.buscarClientesFiltro(request.getParameter("cpSearchNomeCliente"));
+            
+          
+
        }
        
-    
+   request.setAttribute("clientes", clientes);
+   request.setAttribute("eventos", EventoDao.buscarTodosEventos());
+   
       
-      rd.forward(request, response);
+   
+   
+     
+    rd.forward(request, response);
     }
     
 }

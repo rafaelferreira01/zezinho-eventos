@@ -37,7 +37,9 @@ public class ViewIngressosAction extends GenericCommander {
       RequestDispatcher rd = request.getRequestDispatcher("template.jsp");
       
       List<Cliente> clientes = null;
-      clientes = ClienteDao.buscarTodosClientes();    
+     // clientes = ClienteDao.buscarTodosClientes();
+       clientes =  ClienteDao.buscarTodosClientes( (Cliente) request.getAttribute("cliente"));
+      // MODIFICAÇÃO -  Alterado passando o cliente como parâmetro, se precisar fazer o buscarTodosClientes com parametro vazio
       
       //ASSENTOS
         int numVagaSalao = 500;

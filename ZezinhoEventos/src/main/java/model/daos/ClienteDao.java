@@ -16,7 +16,7 @@ import model.cliente.Cliente;
  */
 public class ClienteDao extends BaseDao {
     
-    public static List<Cliente> buscarTodosClientes() {
+    public static List<Cliente> buscarTodosClientes(Cliente cliente) {
 
         Query q = getConexao().createNamedQuery("Cliente.findAll");
         
@@ -36,6 +36,12 @@ public class ClienteDao extends BaseDao {
         } catch (NoResultException e) {
             return null;
         }
+    }
+        
+        public static List<Cliente> buscarClientesFiltro(String nomeCliente) {
+         Query q = getConexao().createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome");
+         q.setParameter("nome", "%"+nomeCliente+"%");
+          return q.getResultList();
 
     }
 
