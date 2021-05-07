@@ -41,4 +41,12 @@ public class EventoDao extends BaseDao {
 
     }
     
+    public static Evento buscarUltimoIdEnento() {
+
+        Query q = getConexao().createQuery("SELECT MAX(e.idEvento) FROM Evento e");
+         
+        return (Evento) q.getSingleResult();
+
+    }
+    
 }

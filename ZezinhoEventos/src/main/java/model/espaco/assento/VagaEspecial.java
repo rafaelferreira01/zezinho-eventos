@@ -5,8 +5,8 @@
  */
 package model.espaco.assento;
 
+import model.espaco.Espaco;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,11 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import model.cliente.Cliente;
-import model.espaco.Espaco;
+import model.evento.Evento;
 
 /**
  *
@@ -45,15 +43,23 @@ public class VagaEspecial implements Serializable {
     @NotNull
     @Column(nullable = false)
     private double valor;
-    @OneToMany(mappedBy = "vagaespecial")
-    private List<Cliente> clienteList;
     @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
     @ManyToOne
     private Espaco espaco;
+    @JoinColumn(name = "evento", referencedColumnName = "idEvento")
+    @ManyToOne
+    private Evento evento;
 
     public VagaEspecial() {
     }
 
+    public VagaEspecial(Integer idVagaEspecial, double valor, Espaco espaco, Evento evento) {
+        this.idVagaEspecial = idVagaEspecial;
+        this.valor = valor;
+        this.espaco = espaco;
+        this.evento = evento;
+    }
+    
     public VagaEspecial(Integer idVagaEspecial) {
         this.idVagaEspecial = idVagaEspecial;
     }
@@ -79,20 +85,20 @@ public class VagaEspecial implements Serializable {
         this.valor = valor;
     }
 
-    public List<Cliente> getClienteList() {
-        return clienteList;
-    }
-
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
-    }
-
     public Espaco getEspaco() {
         return espaco;
     }
 
     public void setEspaco(Espaco espaco) {
         this.espaco = espaco;
+    }
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
     @Override
@@ -117,7 +123,7 @@ public class VagaEspecial implements Serializable {
 
     @Override
     public String toString() {
-        return "roda.testes.banco.VagaEspecial[ idVagaEspecial=" + idVagaEspecial + " ]";
+        return "model.espaco.assento.VagaEspecial[ idVagaEspecial=" + idVagaEspecial + " ]";
     }
     
 }

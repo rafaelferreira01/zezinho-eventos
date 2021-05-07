@@ -9,30 +9,29 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import static model.daos.BaseDao.getConexao;
-import model.espaco.Espaco;
 
 /**
  *
  * @author Leonardo
  */
-public class EspacoDao extends BaseDao {
+public class VagaEspecialDao extends BaseDao {
     
-    public static List<Espaco> buscarTodosEspacos() {
+    public static List<VagaEspecialDao> buscarTodasCabines() {
 
-        Query q = getConexao().createNamedQuery("Espaco.findAll");
+        Query q = getConexao().createNamedQuery("VagaEspecial.findAll");
         
         return q.getResultList();        
     }
 
 
-    public static Espaco buscarByIdEspaco(int id) {
+    public static VagaEspecialDao buscarByIdVagaEspecial(int id) {
 
-        Query q = getConexao().createNamedQuery("Espaco.findByIdespaco");
+        Query q = getConexao().createNamedQuery("VagaEspecial.findByIdVagaEspecial");
 
-        q.setParameter("idEspaco", id);
+        q.setParameter("idVagaEspecial", id);
         try {
             
-            return (Espaco) q.getSingleResult();
+            return (VagaEspecialDao) q.getSingleResult();
 
         } catch (NoResultException e) {
             return null;

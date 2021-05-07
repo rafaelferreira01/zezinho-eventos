@@ -5,8 +5,10 @@
  */
 package model.evento;
 
+import model.espaco.Espaco;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -65,6 +68,8 @@ public class Evento implements Serializable {
     @NotNull
     @Column(nullable = false)
     private double custoInicial;
+    @OneToMany(mappedBy = "evento")
+    private List<Espaco> espacoList;
 
     public Evento() {
     }
@@ -130,6 +135,14 @@ public class Evento implements Serializable {
         this.custoInicial = custoInicial;
     }
 
+    public List<Espaco> getEspacoList() {
+        return espacoList;
+    }
+
+    public void setEspacoList(List<Espaco> espacoList) {
+        this.espacoList = espacoList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -152,7 +165,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "model.evento.Evento[ idEvento=" + idEvento + " ]";
+        return "controller.espaco.Evento[ idEvento=" + idEvento + " ]";
     }
     
 }

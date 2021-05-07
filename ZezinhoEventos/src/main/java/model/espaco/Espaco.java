@@ -5,6 +5,7 @@
  */
 package model.espaco;
 
+import model.espaco.TipoEspaco;
 import model.evento.Evento;
 import java.io.Serializable;
 import java.util.List;
@@ -20,12 +21,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import model.espaco.assento.Cabine;
-import model.espaco.assento.Cadeira;
-import model.espaco.assento.VagaEspecial;
-import model.espaco.assento.VagaSalao;
 
 /**
  *
@@ -36,7 +31,6 @@ import model.espaco.assento.VagaSalao;
 @NamedQueries({
     @NamedQuery(name = "Espaco.findAll", query = "SELECT e FROM Espaco e"),
     @NamedQuery(name = "Espaco.findByIdespaco", query = "SELECT e FROM Espaco e WHERE e.idespaco = :idespaco"),
-    @NamedQuery(name = "Espaco.findByDescricaoEspaco", query = "SELECT e FROM Espaco e WHERE e.descricaoEspaco = :descricaoEspaco"),
     @NamedQuery(name = "Espaco.findByVagaespecial", query = "SELECT e FROM Espaco e WHERE e.vagaespecial = :vagaespecial"),
     @NamedQuery(name = "Espaco.findByCadeira", query = "SELECT e FROM Espaco e WHERE e.cadeira = :cadeira"),
     @NamedQuery(name = "Espaco.findByCabine", query = "SELECT e FROM Espaco e WHERE e.cabine = :cabine"),
@@ -49,38 +43,18 @@ public class Espaco implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer idespaco;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(nullable = false, length = 45)
-    private String descricaoEspaco;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private int vagaespecial;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private int cadeira;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private int cabine;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private int vagaSalao;
-    @OneToMany(mappedBy = "espaco")
-    private List<VagaSalao> vagaSalaoList;
-    @OneToMany(mappedBy = "espaco")
-    private List<Cadeira> cadeiraList;
-    @OneToMany(mappedBy = "espaco")
-    private List<Cabine> cabineList;
+    private Integer vagaespecial;
+    private Integer cadeira;
+    private Integer cabine;
+    private Integer vagaSalao;
     @JoinColumn(name = "evento", referencedColumnName = "idEvento")
     @ManyToOne
     private Evento evento;
+    @JoinColumn(name = "tipoespaco", referencedColumnName = "idTipoEspaco")
+    @ManyToOne
+    private TipoEspaco tipoespaco;
     @OneToMany(mappedBy = "espaco")
-    private List<VagaEspecial> vagaEspecialList;
+    private List<TipoEspaco> tipoEspacoList;
 
     public Espaco() {
     }
@@ -89,14 +63,15 @@ public class Espaco implements Serializable {
         this.idespaco = idespaco;
     }
 
-    public Espaco(Integer idespaco, String descricaoEspaco, int vagaespecial, int cadeira, int cabine, int vagaSalao) {
+    
+    //ADICIONADO MANUALMENTE
+    public Espaco(Integer idespaco, Evento evento, TipoEspaco tipoespaco) {
         this.idespaco = idespaco;
-        this.descricaoEspaco = descricaoEspaco;
-        this.vagaespecial = vagaespecial;
-        this.cadeira = cadeira;
-        this.cabine = cabine;
-        this.vagaSalao = vagaSalao;
+        this.evento = evento;
+        this.tipoespaco = tipoespaco;
     }
+    //ADICIONADO MANUALMENTE FIM
+    
 
     public Integer getIdespaco() {
         return idespaco;
@@ -106,68 +81,36 @@ public class Espaco implements Serializable {
         this.idespaco = idespaco;
     }
 
-    public String getDescricaoEspaco() {
-        return descricaoEspaco;
-    }
-
-    public void setDescricaoEspaco(String descricaoEspaco) {
-        this.descricaoEspaco = descricaoEspaco;
-    }
-
-    public int getVagaespecial() {
+    public Integer getVagaespecial() {
         return vagaespecial;
     }
 
-    public void setVagaespecial(int vagaespecial) {
+    public void setVagaespecial(Integer vagaespecial) {
         this.vagaespecial = vagaespecial;
     }
 
-    public int getCadeira() {
+    public Integer getCadeira() {
         return cadeira;
     }
 
-    public void setCadeira(int cadeira) {
+    public void setCadeira(Integer cadeira) {
         this.cadeira = cadeira;
     }
 
-    public int getCabine() {
+    public Integer getCabine() {
         return cabine;
     }
 
-    public void setCabine(int cabine) {
+    public void setCabine(Integer cabine) {
         this.cabine = cabine;
     }
 
-    public int getVagaSalao() {
+    public Integer getVagaSalao() {
         return vagaSalao;
     }
 
-    public void setVagaSalao(int vagaSalao) {
+    public void setVagaSalao(Integer vagaSalao) {
         this.vagaSalao = vagaSalao;
-    }
-
-    public List<VagaSalao> getVagaSalaoList() {
-        return vagaSalaoList;
-    }
-
-    public void setVagaSalaoList(List<VagaSalao> vagaSalaoList) {
-        this.vagaSalaoList = vagaSalaoList;
-    }
-
-    public List<Cadeira> getCadeiraList() {
-        return cadeiraList;
-    }
-
-    public void setCadeiraList(List<Cadeira> cadeiraList) {
-        this.cadeiraList = cadeiraList;
-    }
-
-    public List<Cabine> getCabineList() {
-        return cabineList;
-    }
-
-    public void setCabineList(List<Cabine> cabineList) {
-        this.cabineList = cabineList;
     }
 
     public Evento getEvento() {
@@ -178,12 +121,20 @@ public class Espaco implements Serializable {
         this.evento = evento;
     }
 
-    public List<VagaEspecial> getVagaEspecialList() {
-        return vagaEspecialList;
+    public TipoEspaco getTipoespaco() {
+        return tipoespaco;
     }
 
-    public void setVagaEspecialList(List<VagaEspecial> vagaEspecialList) {
-        this.vagaEspecialList = vagaEspecialList;
+    public void setTipoespaco(TipoEspaco tipoespaco) {
+        this.tipoespaco = tipoespaco;
+    }
+
+    public List<TipoEspaco> getTipoEspacoList() {
+        return tipoEspacoList;
+    }
+
+    public void setTipoEspacoList(List<TipoEspaco> tipoEspacoList) {
+        this.tipoEspacoList = tipoEspacoList;
     }
 
     @Override
@@ -208,7 +159,7 @@ public class Espaco implements Serializable {
 
     @Override
     public String toString() {
-        return "roda.testes.banco.Espaco[ idespaco=" + idespaco + " ]";
+        return "controller.espaco.Espaco[ idespaco=" + idespaco + " ]";
     }
     
 }

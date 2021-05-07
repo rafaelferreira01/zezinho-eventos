@@ -26,7 +26,7 @@
 <form action="control?ac=eventoCad" method="POST">
 
     <input type="hidden" name="cpId" value="${requestScope.evento.idEvento}" />
-    <input type="hidden" name="cpCustoExtra" value="${requestScope.evento.custoExtra}" />
+    <!--<input type="hidden" name="cpCustoExtra" value="${requestScope.evento.custoExtra}" />-->
 
 
     <div class="Evento">
@@ -52,9 +52,9 @@
 
     <div class="Evento">                 
         <label for="Evento "> Espaço </label> 
-        <select name="cpSearchEspaco" id="cpEspacoEvento" class="form-control" >  
+        <select name="cpEspacoEvento" id="cpEspacoEvento" class="form-control" >  
             <c:forEach items="${requestScope.espacos}" var="e">
-                <option value="${e.idespaco}">${e.descricaoEspaco}</option>                                   
+                <option value="${e.idTipoEspaco}">${e.descricaoEspaco}</option>                                   
             </c:forEach>  
         </select>
     </div><br>
@@ -71,6 +71,11 @@
             <label for="custoInicial" class="form-label">Custo Inicial</label>
             <input required type="number" class="form-control" name="cpCustoInicial">
         </div>
+    
+    <div class="Evento" id="CustoExtra"><br>
+            <label for="CustoExtra" class="form-label">Custo Extra</label>
+            <input required type="number" class="form-control" name="cpCustoExtra">
+        </div>
 
 
         <div class="Evento" id="valorCadeira"><br>
@@ -80,7 +85,7 @@
 
         <div class="Evento" id="valorVagaEspecial" >
             <label for="valorVagaEspecial" class="form-label">Valor Vaga Especial</label>
-            <input type="number" class="form-control" name="cpVagaEspecial">
+            <input type="number" class="form-control" name="cpValorVagaEspecial">
         </div>
 
         <div class="Evento" id="valorCabine">

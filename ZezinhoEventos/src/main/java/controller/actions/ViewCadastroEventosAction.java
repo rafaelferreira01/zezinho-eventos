@@ -13,8 +13,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.daos.EspacoDao;
+import model.daos.TipoEspacoDao;
 import model.daos.TipoEventoDao;
 import model.espaco.Espaco;
+import model.espaco.TipoEspaco;
 import model.evento.TipoEvento;
 
 /**
@@ -34,8 +36,8 @@ public class ViewCadastroEventosAction extends GenericCommander {
       List<TipoEvento> tipoEventos = null;
       tipoEventos = TipoEventoDao.buscarTodosTipoEventos();
       
-      List<Espaco> espacos = null;
-      espacos = EspacoDao.buscarTodosEspacos();
+      List<TipoEspaco> espacos = null;
+      espacos = TipoEspacoDao.buscarTodosTiposEspacos();
       
       request.setAttribute("espacos", espacos );
       request.setAttribute("tipoEventos", tipoEventos);
