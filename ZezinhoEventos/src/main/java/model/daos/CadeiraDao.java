@@ -40,17 +40,17 @@ public class CadeiraDao extends BaseDao {
 
     }
     
-    public static List<Cadeira> buscarCadeirasLivres(Evento evento) {
-
-        Query q = getConexao().createQuery("SELECT MAX(e.idEvento) FROM Evento e");
-
-        try {
-
-            return q.getResultList();
-
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
+//    public static List<Cadeira> buscarCadeirasLivres(Evento evento) {
+//
+//        Query q = getConexao().createQuery("SELECT MAX(e.idEvento) FROM Evento e");
+//
+//        try {
+//
+//            return q.getResultList();
+//
+//        } catch (NoResultException e) {
+//            return null;
+//        }
+//    }
 
 }

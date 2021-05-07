@@ -56,18 +56,18 @@ public class ViewIngressosAction extends GenericCommander {
 
 
             
-        List<Cadeira> cadeiras = null;
-        Cadeira cadeira;
-        for(int i = 1; i <= numCadeira; i++){
-             cadeira = new Cadeira(i,
-                    val,
-                    espaco,
-                    evento)
-            
-            
-                    
-                    
-        }
+//        List<Cadeira> cadeiras = null;
+//        Cadeira cadeira;
+//        for(int i = 1; i <= numCadeira; i++){
+//             cadeira = new Cadeira(i,
+//                    val,
+//                    espaco,
+//                    evento)
+//            
+//            
+//                    
+//                    
+//        }
       
       
       
@@ -90,7 +90,7 @@ public class ViewIngressosAction extends GenericCommander {
       
       
       request.setAttribute("clientes", clientes );
-      request.setAttribute("eventos", eventos);
+//      request.setAttribute("eventos", eventos);
       request.setAttribute("page", "/pages/outros/vendaIngressos.jsp");
       
       rd.forward(request, response);
