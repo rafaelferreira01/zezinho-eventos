@@ -5,7 +5,6 @@
  */
 package model.espaco;
 
-import model.espaco.TipoEspaco;
 import model.evento.Evento;
 import java.io.Serializable;
 import java.util.List;
@@ -34,7 +33,11 @@ import javax.persistence.Table;
     @NamedQuery(name = "Espaco.findByVagaespecial", query = "SELECT e FROM Espaco e WHERE e.vagaespecial = :vagaespecial"),
     @NamedQuery(name = "Espaco.findByCadeira", query = "SELECT e FROM Espaco e WHERE e.cadeira = :cadeira"),
     @NamedQuery(name = "Espaco.findByCabine", query = "SELECT e FROM Espaco e WHERE e.cabine = :cabine"),
-    @NamedQuery(name = "Espaco.findByVagaSalao", query = "SELECT e FROM Espaco e WHERE e.vagaSalao = :vagaSalao")})
+    @NamedQuery(name = "Espaco.findByVagaSalao", query = "SELECT e FROM Espaco e WHERE e.vagaSalao = :vagaSalao"),
+    @NamedQuery(name = "Espaco.findByValorCadeira", query = "SELECT e FROM Espaco e WHERE e.valorCadeira = :valorCadeira"),
+    @NamedQuery(name = "Espaco.findByValorCabine", query = "SELECT e FROM Espaco e WHERE e.valorCabine = :valorCabine"),
+    @NamedQuery(name = "Espaco.findByValorVagaEspecial", query = "SELECT e FROM Espaco e WHERE e.valorVagaEspecial = :valorVagaEspecial"),
+    @NamedQuery(name = "Espaco.findByValorVagaSalao", query = "SELECT e FROM Espaco e WHERE e.valorVagaSalao = :valorVagaSalao")})
 public class Espaco implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,6 +50,15 @@ public class Espaco implements Serializable {
     private Integer cadeira;
     private Integer cabine;
     private Integer vagaSalao;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(precision = 22, scale = 0)
+    private Double valorCadeira;
+    @Column(precision = 22, scale = 0)
+    private Double valorCabine;
+    @Column(precision = 22, scale = 0)
+    private Double valorVagaEspecial;
+    @Column(precision = 22, scale = 0)
+    private Double valorVagaSalao;
     @JoinColumn(name = "evento", referencedColumnName = "idEvento")
     @ManyToOne
     private Evento evento;
@@ -62,16 +74,19 @@ public class Espaco implements Serializable {
     public Espaco(Integer idespaco) {
         this.idespaco = idespaco;
     }
-
     
-    //ADICIONADO MANUALMENTE
-    public Espaco(Integer idespaco, Evento evento, TipoEspaco tipoespaco) {
+     //ADICIONADO MANUALMENTE
+    public Espaco(Integer idespaco, model.evento.Evento evento, model.espaco.TipoEspaco tipoespaco) {
         this.idespaco = idespaco;
         this.evento = evento;
         this.tipoespaco = tipoespaco;
     }
+
+    public Espaco(Integer idespaco, Evento evento) {
+        this.idespaco = idespaco;
+        this.evento = evento;
+    }
     //ADICIONADO MANUALMENTE FIM
-    
 
     public Integer getIdespaco() {
         return idespaco;
@@ -111,6 +126,38 @@ public class Espaco implements Serializable {
 
     public void setVagaSalao(Integer vagaSalao) {
         this.vagaSalao = vagaSalao;
+    }
+
+    public Double getValorCadeira() {
+        return valorCadeira;
+    }
+
+    public void setValorCadeira(Double valorCadeira) {
+        this.valorCadeira = valorCadeira;
+    }
+
+    public Double getValorCabine() {
+        return valorCabine;
+    }
+
+    public void setValorCabine(Double valorCabine) {
+        this.valorCabine = valorCabine;
+    }
+
+    public Double getValorVagaEspecial() {
+        return valorVagaEspecial;
+    }
+
+    public void setValorVagaEspecial(Double valorVagaEspecial) {
+        this.valorVagaEspecial = valorVagaEspecial;
+    }
+
+    public Double getValorVagaSalao() {
+        return valorVagaSalao;
+    }
+
+    public void setValorVagaSalao(Double valorVagaSalao) {
+        this.valorVagaSalao = valorVagaSalao;
     }
 
     public Evento getEvento() {
@@ -159,7 +206,7 @@ public class Espaco implements Serializable {
 
     @Override
     public String toString() {
-        return "controller.espaco.Espaco[ idespaco=" + idespaco + " ]";
+        return "model.espaco.Espaco[ idespaco=" + idespaco + " ]";
     }
     
 }

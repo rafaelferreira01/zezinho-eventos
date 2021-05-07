@@ -5,7 +5,6 @@
  */
 package model.espaco;
 
-import model.espaco.Espaco;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -110,7 +109,7 @@ public class TipoEspaco implements Serializable {
 
     @Override
     public String toString() {
-        return "controller.espaco.TipoEspaco[ idTipoEspaco=" + idTipoEspaco + " ]";
+        return "model.espaco.TipoEspaco[ idTipoEspaco=" + idTipoEspaco + " ]";
     }
     
 }

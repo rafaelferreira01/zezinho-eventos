@@ -5,7 +5,6 @@
  */
 package model.evento;
 
-import model.espaco.Espaco;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import model.espaco.Espaco;
 
 /**
  *
@@ -165,7 +165,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "controller.espaco.Evento[ idEvento=" + idEvento + " ]";
+        return "model.espaco.Evento[ idEvento=" + idEvento + " ]";
     }
     
 }
