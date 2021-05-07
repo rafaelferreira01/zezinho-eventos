@@ -4,6 +4,11 @@
     Author     : Leonardo
 --%>
 
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <table class="table table-striped">
 
     <fieldset>
@@ -72,18 +77,37 @@
                             <thead>
                                 <tr>
                                     <th>Nome do Evento</th>
-                                    <th>Espaço</th>
-                                    <th>Tipo</th>
                                     <th>Data</th>
                                     <th>Ação</th>
                                     
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td> Evento Silent Hill</td>
-                                    <td> Anfiteatro </td>
-                                    <td> Curso <td>
-                                    <td> 01/01/2022 <td>
-                                    <td> A X <td>
-                                </tr>
+                           <tbody>
+
+        <c:if test="${requestScope.eventos.size() == 0}">
+            <tr>
+                <td class="text-center" colspan="3"> 0 eventos criados.</td>
+            </tr> 
+        </c:if>
+
+            <c:forEach var="e" items="${requestScope.eventos}">
+
+            <tr>
+                <td> <a href="control?ac=comprarIngresso">
+                    ${e.nomeEvento}
+                </td>
+                <td>${e.dataEvento}</td>
+                <td>A X</td>
+             </tr>
+
+        </c:forEach>       
+             
+         
+
+
+
+    </tbody>
+
+
+</table>
+
