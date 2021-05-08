@@ -9,6 +9,7 @@ package controller.actions;
 
 import controller.commander.GenericCommander;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,12 +49,20 @@ public class ViewListaEventosAction extends GenericCommander {
         if (request.getParameter("cpSearchNomeEvento") == null) {
             request.setAttribute("eventos", EventoDao.buscarTodosEventos());
         } else {
-            //      request.setAttribute("clientes", ClienteDao.buscarClientesFiltro());
+            
+          
+            String dei = request.getParameter("cpdata1"); //yyyy-mm-dd
+            String def = request.getParameter("cpdata2");
+          
+
+               
+               
+               eventos = EventoDao.buscarEventosFiltro(request.getParameter("cpSearchNomeEvento"),dei,def);
         }
         
         
         request.setAttribute("espacos", espacos);
-        request.setAttribute("tipoEventos", tipoEventos);
+       request.setAttribute("tipoEventos", tipoEventos);
 
         request.setAttribute("page", "/pages/listagens/listagemEventos.jsp");
 

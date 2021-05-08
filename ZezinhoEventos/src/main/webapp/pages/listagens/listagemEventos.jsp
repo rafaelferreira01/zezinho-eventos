@@ -51,8 +51,8 @@
 
                                     <div class="form-group">                 
                                         <label for="time" name="cpdata" value="cpDATA">Data do evento: </label> 
-                                        <input type="date" name="cpdata1" value="Inicio" class="form-control"/>  
-                                        até <input type="date" name="cpdata2" value="Fim" class="form-control"/>  
+                                        <input type="date" name="cpDataInicio" value="Inicio" class="form-control"/>  
+                                        até <input type="date" name="cpDataFim" value="Fim" class="form-control"/>  
                                     </div>
                                 </div>
                             </div>
