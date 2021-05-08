@@ -84,7 +84,7 @@
 
                                 <c:forEach var="e" items="${requestScope.eventos}">
                                     <tr>
-                                        <td><a href="control?ac=venderIngresso$id=${e.idEvento}">${e.nomeEvento}</td>
+                                        <td><a href="control?ac=venderIngresso&id=${e.idEvento}">${e.nomeEvento}</td>
                                         <td>${e.dataEvento}</td>
                                         <td>A X</td>
                                     </tr>

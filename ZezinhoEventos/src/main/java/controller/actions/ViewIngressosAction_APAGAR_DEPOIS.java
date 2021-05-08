@@ -26,9 +26,9 @@ import model.evento.TipoEvento;
  *
  * @author suporte
  */
-public class ViewIngressosAction extends GenericCommander {
+public class ViewIngressosAction_APAGAR_DEPOIS extends GenericCommander {
 
-    public ViewIngressosAction(boolean estaLogado) {
+    public ViewIngressosAction_APAGAR_DEPOIS(boolean estaLogado) {
         super(estaLogado);
     }
     

@@ -26,7 +26,7 @@ public class ViewVenderIngressoAction extends GenericCommander {
     public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher rd = request.getRequestDispatcher("template.jsp");
       
-         request.setAttribute("page", "/pages/outros/compraIngressos.jsp");
+         request.setAttribute("page", "/pages/outros/vendaIngressos.jsp");
          
          rd.forward(request, response);
     }
