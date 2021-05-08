@@ -5,6 +5,7 @@
  */
 package controller;
 
+import controller.actions.DeletarClienteAction;
 import controller.actions.SaveClienteAction;
 import controller.actions.ViewLoginAction;
 import controller.actions.LoginVerifyAction;
@@ -56,6 +57,8 @@ public class ControleCentral extends HttpServlet {
         comandos.put("listaClientes", new ViewListaClientesAction(true));
         comandos.put("clienteCad", new SaveClienteAction(true));
         comandos.put("editCliente", new ViewCadastroClientesAction(true));
+        comandos.put("apgCliente", new DeletarClienteAction(true));
+         
         comandos.put("Eventos", new ViewCadastroEventosAction(true));
         comandos.put("listaEventos", new ViewListaEventosAction(true));
         comandos.put("relatorio", new ViewRelatorioAction(true));
