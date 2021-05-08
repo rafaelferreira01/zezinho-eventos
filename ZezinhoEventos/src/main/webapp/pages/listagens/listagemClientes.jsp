@@ -81,7 +81,12 @@
                 <td>${cliente.nome}</td>
                 <td>${cliente.cpf}</td>
                 <td>${cliente.evento} </td>
-                <td> A X <td>
+                <td> 
+                    <a href="control?ac=editCliente&cpf=${cliente.cpf}"><span> <i class="fa fa-edit"></i></span></a>
+                    <a href="#" class="btnExc" data-toggle="modal" data-target="#questionModal" data-time="${t.nome}" data-id="${t.idtime}">
+                    <i class="fa fa-trash"></i>
+                   </a>
+                     
           
 
             </tr>

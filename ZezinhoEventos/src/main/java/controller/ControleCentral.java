@@ -55,10 +55,12 @@ public class ControleCentral extends HttpServlet {
         comandos.put("Clientes", new ViewCadastroClientesAction(true));
         comandos.put("listaClientes", new ViewListaClientesAction(true));
         comandos.put("clienteCad", new SaveClienteAction(true));
+         comandos.put("editCliente", new ViewCadastroClientesAction(true));
         comandos.put("Eventos", new ViewCadastroEventosAction(true));
         comandos.put("listaEventos", new ViewListaEventosAction(true));
         comandos.put("relatorio", new ViewRelatorioAction(true));
         comandos.put("comprarIngresso", new ViewComprarIngressoAction(true));
+        
        
         
     }
