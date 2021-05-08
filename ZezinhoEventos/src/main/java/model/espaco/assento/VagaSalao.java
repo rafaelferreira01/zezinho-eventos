@@ -5,7 +5,6 @@
  */
 package model.espaco.assento;
 
-import model.espaco.Espaco;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,7 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import model.evento.Evento;
+import model.espaco.Espaco;
 
 /**
  *
@@ -46,22 +45,9 @@ public class VagaSalao implements Serializable {
     @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
     @ManyToOne
     private Espaco espaco;
-    @JoinColumn(name = "evento", referencedColumnName = "idEvento")
-    @ManyToOne
-    private Evento evento;
 
     public VagaSalao() {
     }
-
-    //ADICIONADO MANUALMENTE
-    public VagaSalao(Integer idVagasalao, double valor, Espaco espaco, Evento evento) {
-        this.idVagasalao = idVagasalao;
-        this.valor = valor;
-        this.espaco = espaco;
-        this.evento = evento;
-    }
-    //FIM ADICIONADO MANUALMENTE
-    
 
     public VagaSalao(Integer idVagasalao) {
         this.idVagasalao = idVagasalao;
@@ -94,14 +80,6 @@ public class VagaSalao implements Serializable {
 
     public void setEspaco(Espaco espaco) {
         this.espaco = espaco;
-    }
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
     }
 
     @Override

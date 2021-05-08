@@ -5,7 +5,6 @@
  */
 package model.espaco.assento;
 
-import model.espaco.Espaco;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,7 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import model.evento.Evento;
+import javax.validation.constraints.Size;
+import model.espaco.Espaco;
 
 /**
  *
@@ -30,6 +30,7 @@ import model.evento.Evento;
 @NamedQueries({
     @NamedQuery(name = "Cabine.findAll", query = "SELECT c FROM Cabine c"),
     @NamedQuery(name = "Cabine.findByIdCabine", query = "SELECT c FROM Cabine c WHERE c.idCabine = :idCabine"),
+    @NamedQuery(name = "Cabine.findByDescricao", query = "SELECT c FROM Cabine c WHERE c.descricao = :descricao"),
     @NamedQuery(name = "Cabine.findByValor", query = "SELECT c FROM Cabine c WHERE c.valor = :valor")})
 public class Cabine implements Serializable {
 
@@ -39,6 +40,9 @@ public class Cabine implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer idCabine;
+    @Size(max = 4)
+    @Column(length = 4)
+    private String descricao;
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
@@ -46,20 +50,10 @@ public class Cabine implements Serializable {
     @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
     @ManyToOne
     private Espaco espaco;
-    @JoinColumn(name = "evento", referencedColumnName = "idEvento")
-    @ManyToOne
-    private Evento evento;
 
     public Cabine() {
     }
 
-    public Cabine(Integer idCabine, double valor, Espaco espaco, Evento evento) {
-        this.idCabine = idCabine;
-        this.valor = valor;
-        this.espaco = espaco;
-        this.evento = evento;
-    }
-    
     public Cabine(Integer idCabine) {
         this.idCabine = idCabine;
     }
@@ -77,6 +71,14 @@ public class Cabine implements Serializable {
         this.idCabine = idCabine;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public double getValor() {
         return valor;
     }
@@ -91,14 +93,6 @@ public class Cabine implements Serializable {
 
     public void setEspaco(Espaco espaco) {
         this.espaco = espaco;
-    }
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
     }
 
     @Override

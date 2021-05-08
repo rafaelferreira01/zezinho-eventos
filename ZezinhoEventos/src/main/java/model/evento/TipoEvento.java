@@ -6,16 +6,16 @@
 package model.evento;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -43,9 +43,8 @@ public class TipoEvento implements Serializable {
     @Size(min = 1, max = 45)
     @Column(nullable = false, length = 45)
     private String descricaoTipoEvento;
-    @JoinColumn(name = "evento", referencedColumnName = "idEvento")
-    @ManyToOne
-    private Evento evento;
+    @OneToMany(mappedBy = "tipoevento")
+    private List<Evento> eventoList;
 
     public TipoEvento() {
     }
@@ -75,12 +74,12 @@ public class TipoEvento implements Serializable {
         this.descricaoTipoEvento = descricaoTipoEvento;
     }
 
-    public Evento getEvento() {
-        return evento;
+    public List<Evento> getEventoList() {
+        return eventoList;
     }
 
-    public void setEvento(Evento evento) {
-        this.evento = evento;
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
     }
 
     @Override
@@ -105,7 +104,7 @@ public class TipoEvento implements Serializable {
 
     @Override
     public String toString() {
-        return "roda.testes.banco.TipoEvento[ idTipoEvento=" + idTipoEvento + " ]";
+        return "model.espaco.assento.TipoEvento[ idTipoEvento=" + idTipoEvento + " ]";
     }
     
 }

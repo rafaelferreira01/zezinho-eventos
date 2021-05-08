@@ -5,7 +5,6 @@
  */
 package model.espaco.assento;
 
-import model.espaco.Espaco;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,7 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import model.evento.Evento;
+import javax.validation.constraints.Size;
+import model.espaco.Espaco;
 
 /**
  *
@@ -30,6 +30,7 @@ import model.evento.Evento;
 @NamedQueries({
     @NamedQuery(name = "Cadeira.findAll", query = "SELECT c FROM Cadeira c"),
     @NamedQuery(name = "Cadeira.findByIdCadeira", query = "SELECT c FROM Cadeira c WHERE c.idCadeira = :idCadeira"),
+    @NamedQuery(name = "Cadeira.findByDescricao", query = "SELECT c FROM Cadeira c WHERE c.descricao = :descricao"),
     @NamedQuery(name = "Cadeira.findByValor", query = "SELECT c FROM Cadeira c WHERE c.valor = :valor")})
 public class Cadeira implements Serializable {
 
@@ -39,6 +40,9 @@ public class Cadeira implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer idCadeira;
+    @Size(max = 4)
+    @Column(length = 4)
+    private String descricao;
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
@@ -46,19 +50,19 @@ public class Cadeira implements Serializable {
     @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
     @ManyToOne
     private Espaco espaco;
-    @JoinColumn(name = "evento", referencedColumnName = "idEvento")
-    @ManyToOne
-    private Evento evento;
 
     public Cadeira() {
     }
-
-    public Cadeira(Integer idCadeira, double valor, Espaco espaco, Evento evento) {
+    
+    //
+    
+    public Cadeira(Integer idCadeira, String descricao, double valor, Espaco espaco) {
         this.idCadeira = idCadeira;
+        this.descricao = descricao;
         this.valor = valor;
         this.espaco = espaco;
-        this.evento = evento;
     }
+    //
     
     public Cadeira(Integer idCadeira) {
         this.idCadeira = idCadeira;
@@ -77,6 +81,14 @@ public class Cadeira implements Serializable {
         this.idCadeira = idCadeira;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public double getValor() {
         return valor;
     }
@@ -91,14 +103,6 @@ public class Cadeira implements Serializable {
 
     public void setEspaco(Espaco espaco) {
         this.espaco = espaco;
-    }
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
     }
 
     @Override

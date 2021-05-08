@@ -12,10 +12,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.daos.EspacoDao;
 import model.daos.TipoEspacoDao;
 import model.daos.TipoEventoDao;
-import model.espaco.Espaco;
 import model.espaco.TipoEspaco;
 import model.evento.TipoEvento;
 

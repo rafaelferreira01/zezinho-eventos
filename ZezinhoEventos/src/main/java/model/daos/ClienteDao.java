@@ -16,7 +16,14 @@ import model.cliente.Cliente;
  */
 public class ClienteDao extends BaseDao {
     
-    public static List<Cliente> buscarTodosClientes(Cliente cliente) {
+    public static List<Cliente> buscarTodosClientes(Cliente cliente) {//APAGAR? VER COM PIJAMA SE ISSO ESTÁ SENDO UTILIZADO
+
+        Query q = getConexao().createNamedQuery("Cliente.findAll");
+        
+        return q.getResultList();        
+    }
+    
+    public static List<Cliente> buscarTodosClientes() {
 
         Query q = getConexao().createNamedQuery("Cliente.findAll");
         

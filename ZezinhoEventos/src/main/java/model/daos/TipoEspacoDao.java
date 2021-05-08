@@ -9,7 +9,6 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import static model.daos.BaseDao.getConexao;
-import model.espaco.Espaco;
 import model.espaco.TipoEspaco;
 
 /**

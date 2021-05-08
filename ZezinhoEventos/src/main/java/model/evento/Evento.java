@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -68,6 +70,9 @@ public class Evento implements Serializable {
     @NotNull
     @Column(nullable = false)
     private double custoInicial;
+    @JoinColumn(name = "tipoevento", referencedColumnName = "idTipoEvento")
+    @ManyToOne
+    private TipoEvento tipoevento;
     @OneToMany(mappedBy = "evento")
     private List<Espaco> espacoList;
 
@@ -135,6 +140,14 @@ public class Evento implements Serializable {
         this.custoInicial = custoInicial;
     }
 
+    public TipoEvento getTipoevento() {
+        return tipoevento;
+    }
+
+    public void setTipoevento(TipoEvento tipoevento) {
+        this.tipoevento = tipoevento;
+    }
+
     public List<Espaco> getEspacoList() {
         return espacoList;
     }
@@ -165,7 +178,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.Evento[ idEvento=" + idEvento + " ]";
+        return "model.espaco.assento.Evento[ idEvento=" + idEvento + " ]";
     }
     
 }

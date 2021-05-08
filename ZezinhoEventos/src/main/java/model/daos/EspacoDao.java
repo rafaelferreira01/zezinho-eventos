@@ -10,6 +10,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import static model.daos.BaseDao.getConexao;
 import model.espaco.Espaco;
+import model.evento.Evento;
 
 /**
  *
@@ -30,6 +31,21 @@ public class EspacoDao extends BaseDao {
         Query q = getConexao().createNamedQuery("Espaco.findByIdespaco");
 
         q.setParameter("idEspaco", id);
+        try {
+            
+            return (Espaco) q.getSingleResult();
+
+        } catch (NoResultException e) {
+            return null;
+        }
+
+    }
+    
+    public static Espaco buscarByEvento(int id) {
+
+        Query q = getConexao().createQuery("SELECT e FROM Espaco e WHERE e.evento = :id");
+
+        q.setParameter("evento", id);
         try {
             
             return (Espaco) q.getSingleResult();

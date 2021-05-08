@@ -5,7 +5,6 @@
  */
 package model.espaco;
 
-import model.evento.Evento;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -20,6 +19,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import model.espaco.assento.Cabine;
+import model.espaco.assento.Cadeira;
+import model.espaco.TipoEspaco;
+import model.evento.Evento;
+import model.espaco.assento.VagaEspecial;
+import model.espaco.assento.VagaSalao;
 
 /**
  *
@@ -30,14 +35,15 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Espaco.findAll", query = "SELECT e FROM Espaco e"),
     @NamedQuery(name = "Espaco.findByIdespaco", query = "SELECT e FROM Espaco e WHERE e.idespaco = :idespaco"),
-    @NamedQuery(name = "Espaco.findByVagaespecial", query = "SELECT e FROM Espaco e WHERE e.vagaespecial = :vagaespecial"),
-    @NamedQuery(name = "Espaco.findByCadeira", query = "SELECT e FROM Espaco e WHERE e.cadeira = :cadeira"),
-    @NamedQuery(name = "Espaco.findByCabine", query = "SELECT e FROM Espaco e WHERE e.cabine = :cabine"),
-    @NamedQuery(name = "Espaco.findByVagaSalao", query = "SELECT e FROM Espaco e WHERE e.vagaSalao = :vagaSalao"),
+    @NamedQuery(name = "Espaco.findByQuantvagaespecial", query = "SELECT e FROM Espaco e WHERE e.quantvagaespecial = :quantvagaespecial"),
+    @NamedQuery(name = "Espaco.findByQuantcadeira", query = "SELECT e FROM Espaco e WHERE e.quantcadeira = :quantcadeira"),
+    @NamedQuery(name = "Espaco.findByQuantcabine", query = "SELECT e FROM Espaco e WHERE e.quantcabine = :quantcabine"),
+    @NamedQuery(name = "Espaco.findByQuantvagaSalao", query = "SELECT e FROM Espaco e WHERE e.quantvagaSalao = :quantvagaSalao"),
     @NamedQuery(name = "Espaco.findByValorCadeira", query = "SELECT e FROM Espaco e WHERE e.valorCadeira = :valorCadeira"),
     @NamedQuery(name = "Espaco.findByValorCabine", query = "SELECT e FROM Espaco e WHERE e.valorCabine = :valorCabine"),
     @NamedQuery(name = "Espaco.findByValorVagaEspecial", query = "SELECT e FROM Espaco e WHERE e.valorVagaEspecial = :valorVagaEspecial"),
     @NamedQuery(name = "Espaco.findByValorVagaSalao", query = "SELECT e FROM Espaco e WHERE e.valorVagaSalao = :valorVagaSalao")})
+
 public class Espaco implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,10 +52,10 @@ public class Espaco implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer idespaco;
-    private Integer vagaespecial;
-    private Integer cadeira;
-    private Integer cabine;
-    private Integer vagaSalao;
+    private Integer quantvagaespecial;
+    private Integer quantcadeira;
+    private Integer quantcabine;
+    private Integer quantvagaSalao;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(precision = 22, scale = 0)
     private Double valorCadeira;
@@ -59,6 +65,12 @@ public class Espaco implements Serializable {
     private Double valorVagaEspecial;
     @Column(precision = 22, scale = 0)
     private Double valorVagaSalao;
+    @OneToMany(mappedBy = "espaco")
+    private List<VagaSalao> vagaSalaoList;
+    @OneToMany(mappedBy = "espaco")
+    private List<Cadeira> cadeiraList;
+    @OneToMany(mappedBy = "espaco")
+    private List<Cabine> cabineList;
     @JoinColumn(name = "evento", referencedColumnName = "idEvento")
     @ManyToOne
     private Evento evento;
@@ -66,27 +78,25 @@ public class Espaco implements Serializable {
     @ManyToOne
     private TipoEspaco tipoespaco;
     @OneToMany(mappedBy = "espaco")
-    private List<TipoEspaco> tipoEspacoList;
+    private List<VagaEspecial> vagaEspecialList;
 
     public Espaco() {
     }
-
-    public Espaco(Integer idespaco) {
-        this.idespaco = idespaco;
-    }
     
-     //ADICIONADO MANUALMENTE
-    public Espaco(Integer idespaco, model.evento.Evento evento, model.espaco.TipoEspaco tipoespaco) {
+    //
+
+    public Espaco(Integer idespaco, Evento evento, TipoEspaco tipoespaco) {
         this.idespaco = idespaco;
         this.evento = evento;
         this.tipoespaco = tipoespaco;
     }
+    
+    
 
-    public Espaco(Integer idespaco, Evento evento) {
+    //
+    public Espaco(Integer idespaco) {
         this.idespaco = idespaco;
-        this.evento = evento;
     }
-    //ADICIONADO MANUALMENTE FIM
 
     public Integer getIdespaco() {
         return idespaco;
@@ -96,36 +106,36 @@ public class Espaco implements Serializable {
         this.idespaco = idespaco;
     }
 
-    public Integer getVagaespecial() {
-        return vagaespecial;
+    public Integer getQuantvagaespecial() {
+        return quantvagaespecial;
     }
 
-    public void setVagaespecial(Integer vagaespecial) {
-        this.vagaespecial = vagaespecial;
+    public void setQuantvagaespecial(Integer quantvagaespecial) {
+        this.quantvagaespecial = quantvagaespecial;
     }
 
-    public Integer getCadeira() {
-        return cadeira;
+    public Integer getQuantcadeira() {
+        return quantcadeira;
     }
 
-    public void setCadeira(Integer cadeira) {
-        this.cadeira = cadeira;
+    public void setQuantcadeira(Integer quantcadeira) {
+        this.quantcadeira = quantcadeira;
     }
 
-    public Integer getCabine() {
-        return cabine;
+    public Integer getQuantcabine() {
+        return quantcabine;
     }
 
-    public void setCabine(Integer cabine) {
-        this.cabine = cabine;
+    public void setQuantcabine(Integer quantcabine) {
+        this.quantcabine = quantcabine;
     }
 
-    public Integer getVagaSalao() {
-        return vagaSalao;
+    public Integer getQuantvagaSalao() {
+        return quantvagaSalao;
     }
 
-    public void setVagaSalao(Integer vagaSalao) {
-        this.vagaSalao = vagaSalao;
+    public void setQuantvagaSalao(Integer quantvagaSalao) {
+        this.quantvagaSalao = quantvagaSalao;
     }
 
     public Double getValorCadeira() {
@@ -160,6 +170,30 @@ public class Espaco implements Serializable {
         this.valorVagaSalao = valorVagaSalao;
     }
 
+    public List<VagaSalao> getVagaSalaoList() {
+        return vagaSalaoList;
+    }
+
+    public void setVagaSalaoList(List<VagaSalao> vagaSalaoList) {
+        this.vagaSalaoList = vagaSalaoList;
+    }
+
+    public List<Cadeira> getCadeiraList() {
+        return cadeiraList;
+    }
+
+    public void setCadeiraList(List<Cadeira> cadeiraList) {
+        this.cadeiraList = cadeiraList;
+    }
+
+    public List<Cabine> getCabineList() {
+        return cabineList;
+    }
+
+    public void setCabineList(List<Cabine> cabineList) {
+        this.cabineList = cabineList;
+    }
+
     public Evento getEvento() {
         return evento;
     }
@@ -176,12 +210,12 @@ public class Espaco implements Serializable {
         this.tipoespaco = tipoespaco;
     }
 
-    public List<TipoEspaco> getTipoEspacoList() {
-        return tipoEspacoList;
+    public List<VagaEspecial> getVagaEspecialList() {
+        return vagaEspecialList;
     }
 
-    public void setTipoEspacoList(List<TipoEspaco> tipoEspacoList) {
-        this.tipoEspacoList = tipoEspacoList;
+    public void setVagaEspecialList(List<VagaEspecial> vagaEspecialList) {
+        this.vagaEspecialList = vagaEspecialList;
     }
 
     @Override
@@ -206,7 +240,7 @@ public class Espaco implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.Espaco[ idespaco=" + idespaco + " ]";
+        return "model.espaco.assento.Espaco[ idespaco=" + idespaco + " ]";
     }
     
 }

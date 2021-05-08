@@ -5,7 +5,6 @@
  */
 package model.espaco.assento;
 
-import model.espaco.Espaco;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,7 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import model.evento.Evento;
+import javax.validation.constraints.Size;
+import model.espaco.Espaco;
 
 /**
  *
@@ -30,6 +30,7 @@ import model.evento.Evento;
 @NamedQueries({
     @NamedQuery(name = "VagaEspecial.findAll", query = "SELECT v FROM VagaEspecial v"),
     @NamedQuery(name = "VagaEspecial.findByIdVagaEspecial", query = "SELECT v FROM VagaEspecial v WHERE v.idVagaEspecial = :idVagaEspecial"),
+    @NamedQuery(name = "VagaEspecial.findByDescricao", query = "SELECT v FROM VagaEspecial v WHERE v.descricao = :descricao"),
     @NamedQuery(name = "VagaEspecial.findByValor", query = "SELECT v FROM VagaEspecial v WHERE v.valor = :valor")})
 public class VagaEspecial implements Serializable {
 
@@ -39,6 +40,9 @@ public class VagaEspecial implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer idVagaEspecial;
+    @Size(max = 4)
+    @Column(length = 4)
+    private String descricao;
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
@@ -46,20 +50,10 @@ public class VagaEspecial implements Serializable {
     @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
     @ManyToOne
     private Espaco espaco;
-    @JoinColumn(name = "evento", referencedColumnName = "idEvento")
-    @ManyToOne
-    private Evento evento;
 
     public VagaEspecial() {
     }
 
-    public VagaEspecial(Integer idVagaEspecial, double valor, Espaco espaco, Evento evento) {
-        this.idVagaEspecial = idVagaEspecial;
-        this.valor = valor;
-        this.espaco = espaco;
-        this.evento = evento;
-    }
-    
     public VagaEspecial(Integer idVagaEspecial) {
         this.idVagaEspecial = idVagaEspecial;
     }
@@ -77,6 +71,14 @@ public class VagaEspecial implements Serializable {
         this.idVagaEspecial = idVagaEspecial;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public double getValor() {
         return valor;
     }
@@ -91,14 +93,6 @@ public class VagaEspecial implements Serializable {
 
     public void setEspaco(Espaco espaco) {
         this.espaco = espaco;
-    }
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
     }
 
     @Override

@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -44,9 +42,6 @@ public class TipoEspaco implements Serializable {
     private String descricaoEspaco;
     @OneToMany(mappedBy = "tipoespaco")
     private List<Espaco> espacoList;
-    @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
-    @ManyToOne
-    private Espaco espaco;
 
     public TipoEspaco() {
     }
@@ -79,14 +74,6 @@ public class TipoEspaco implements Serializable {
         this.espacoList = espacoList;
     }
 
-    public Espaco getEspaco() {
-        return espaco;
-    }
-
-    public void setEspaco(Espaco espaco) {
-        this.espaco = espaco;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -109,7 +96,7 @@ public class TipoEspaco implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.TipoEspaco[ idTipoEspaco=" + idTipoEspaco + " ]";
+        return "model.espaco.assento.TipoEspaco[ idTipoEspaco=" + idTipoEspaco + " ]";
     }
     
 }
