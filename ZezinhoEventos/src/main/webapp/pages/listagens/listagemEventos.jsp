@@ -23,32 +23,27 @@
                         <input  type="text" name="cpSearchNomeEvento" class="form-control"
                                 placeholder="Nome do Evento"/>  
                     </div> 
-
-
                     <div class="row">
                         <div class="col">                  
                             <div class="form-group">                 
-                                <label for="listagemEventos"> Espaço: </label>
-                                <select name="cpTipoListagemEspaco" value="tipoEventos" class="form-control">  
-                                    <option value="-1"> Todos os Espaços </option>
-                                    <option value="-1"> Salão </option>
-                                    <option value="2"> Anfiteatro </option>
+                                <label for="Evento "> Espaço </label> 
+                                <select name="cpEspacoEvento" id="cpEspacoEvento" class="form-control" >  
+                                    <c:forEach items="${requestScope.espacos}" var="e">
+                                        <option value="${e.idTipoEspaco}">${e.descricaoEspaco}</option>                                   
+                                    </c:forEach>  
                                 </select>
-
-
                             </div> 
+
                             <div class="row">
                                 <div class="col">     
                                     <div class="form-group">                 
-                                        <label for="Cliente">Tipos de Eventos:</label> 
-                                        <select name="cpTipoListagemEventos" value="tipoEventos" class="form-control">  
+                                        <label for="cpTipoEvento "> Tipo de Evento </label> 
+                                        <select name="cpTipoEvento"  class="form-control">  
                                             <option value="-1"> Todos os tipos </option>
-                                            <option value=" 1"> Palestra </option>
-                                            <option value="2"> Show </option>
-                                            <option value="3"> Curso </option>
-                                            <option value="4"> Festa </option>
-
-                                        </select>
+                                            <c:forEach items="${requestScope.tipoEventos}" var="te">
+                                                <option value="${te.idTipoEvento}">${te.descricaoTipoEvento}</option>                                   
+                                            </c:forEach>  
+                                        </select>  
                                     </div>
                                 </div>
 
@@ -58,16 +53,13 @@
                                         <label for="time" name="cpdata" value="cpDATA">Data do evento: </label> 
                                         <input type="date" name="cpdata1" value="Inicio" class="form-control"/>  
                                         até <input type="date" name="cpdata2" value="Fim" class="form-control"/>  
-
                                     </div>
                                 </div>
                             </div>
 
-
                             <div class="form-group">               
                                 <button type="submit" class="btn btn-primary" >Pesquisar</button>
                             </div>
-
 
 
                             </form>
@@ -79,35 +71,31 @@
                                     <th>Nome do Evento</th>
                                     <th>Data</th>
                                     <th>Ação</th>
-                                    
+
                                 </tr>
                             </thead>
-                           <tbody>
+                            <tbody>
 
-        <c:if test="${requestScope.eventos.size() == 0}">
-            <tr>
-                <td class="text-center" colspan="3"> 0 eventos criados.</td>
-            </tr> 
-        </c:if>
+                                <c:if test="${requestScope.eventos.size() == 0}">
+                                    <tr>
+                                        <td class="text-center" colspan="3"> 0 eventos criados.</td>
+                                    </tr> 
+                                </c:if>
 
-            <c:forEach var="e" items="${requestScope.eventos}">
-
-            <tr>
-                <td> <a href="control?ac=comprarIngresso">
-                    ${e.nomeEvento}
-                </td>
-                <td>${e.dataEvento}</td>
-                <td>A X</td>
-             </tr>
-
-        </c:forEach>       
-             
-         
+                                <c:forEach var="e" items="${requestScope.eventos}">
+                                    <tr>
+                                        <td><a href="control?ac=venderIngresso">${e.nomeEvento}</td>
+                                        <td>${e.dataEvento}</td>
+                                        <td>A X</td>
+                                    </tr>
+                                </c:forEach>       
 
 
 
-    </tbody>
 
 
-</table>
+                            </tbody>
+
+
+                            </table>
 

@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Leonardo
  */
-public class ViewComprarIngressoAction extends GenericCommander {
+public class ViewVenderIngressoAction extends GenericCommander {
 
-    public ViewComprarIngressoAction(boolean estaLogado) {
+    public ViewVenderIngressoAction(boolean estaLogado) {
         super(estaLogado);
     }
 

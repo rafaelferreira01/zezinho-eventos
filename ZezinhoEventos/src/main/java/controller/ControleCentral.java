@@ -13,7 +13,7 @@ import controller.actions.SaveUsuarioAction;
 import controller.actions.ViewCadastroAction;
 import controller.actions.ViewCadastroClientesAction;
 import controller.actions.ViewCadastroEventosAction;
-import controller.actions.ViewComprarIngressoAction;
+import controller.actions.ViewVenderIngressoAction;
 import controller.actions.ViewHomeLogadoAction;
 import controller.actions.ViewListaClientesAction;
 import controller.actions.ViewListaEventosAction;
@@ -55,11 +55,11 @@ public class ControleCentral extends HttpServlet {
         comandos.put("Clientes", new ViewCadastroClientesAction(true));
         comandos.put("listaClientes", new ViewListaClientesAction(true));
         comandos.put("clienteCad", new SaveClienteAction(true));
-         comandos.put("editCliente", new ViewCadastroClientesAction(true));
+        comandos.put("editCliente", new ViewCadastroClientesAction(true));
         comandos.put("Eventos", new ViewCadastroEventosAction(true));
         comandos.put("listaEventos", new ViewListaEventosAction(true));
         comandos.put("relatorio", new ViewRelatorioAction(true));
-        comandos.put("comprarIngresso", new ViewComprarIngressoAction(true));
+        comandos.put("venderIngresso", new ViewVenderIngressoAction(true));
         
        
         

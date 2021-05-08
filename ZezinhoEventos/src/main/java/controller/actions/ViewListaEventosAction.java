@@ -15,7 +15,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.daos.EventoDao;
+import model.daos.TipoEspacoDao;
+import model.daos.TipoEventoDao;
+import model.espaco.TipoEspaco;
 import model.evento.Evento;
+import model.evento.TipoEvento;
 
 /**
  *
@@ -31,29 +35,29 @@ public class ViewListaEventosAction extends GenericCommander {
     public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       RequestDispatcher rd = request.getRequestDispatcher("template.jsp");
       
-         request.setAttribute("page", "/pages/listagens/listagemEventos.jsp");
-      
-    //  List<TipoEvento> tipoEventos = null;
-    //  tipoEventos = TipoEventoDao.buscarTodosTipoEventos();
-      
-     
-      //request.setAttribute("espacos", EspacoDao.buscarTodosEspacos() );
-     // request.setAttribute("tipoEventos", tipoEventos);
          
-            List<Evento> eventos = null;
-       if (request.getParameter("cpSearchNomeEvento") == null)
-       {
-           request.setAttribute("eventos", EventoDao.buscarTodosEventos());
-       }
-       else
-       {
-       //      request.setAttribute("clientes", ClienteDao.buscarClientesFiltro());
-       }
-
-      rd.forward(request, response);
-     
-
       
+        List<TipoEvento> tipoEventos = null;//preencher a combo de tipo de eventos
+        tipoEventos = TipoEventoDao.buscarTodosTipoEventos();
+
+        List<TipoEspaco> espacos = null;//preencher a combo de espacos
+        espacos = TipoEspacoDao.buscarTodosTiposEspacos();
+        
+
+        List<Evento> eventos = null;
+        if (request.getParameter("cpSearchNomeEvento") == null) {
+            request.setAttribute("eventos", EventoDao.buscarTodosEventos());
+        } else {
+            //      request.setAttribute("clientes", ClienteDao.buscarClientesFiltro());
+        }
+        
+        
+        request.setAttribute("espacos", espacos);
+        request.setAttribute("tipoEventos", tipoEventos);
+
+        request.setAttribute("page", "/pages/listagens/listagemEventos.jsp");
+
+        rd.forward(request, response);
     }
-    
+
 }

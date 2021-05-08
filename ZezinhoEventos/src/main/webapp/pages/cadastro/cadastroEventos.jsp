@@ -35,8 +35,8 @@
     </div><br>
 
     <div class="Evento">                 
-        <label for="Evento "> Tipo de Evento </label> 
-        <select name="cpSearchEvento"  class="form-control">  
+        <label for="cpTipoEvento "> Tipo de Evento </label> 
+        <select name="cpTipoEvento"  class="form-control">  
             <c:forEach items="${requestScope.tipoEventos}" var="te">
                 <option value="${te.idTipoEvento}">${te.descricaoTipoEvento}</option>                                   
             </c:forEach>  
