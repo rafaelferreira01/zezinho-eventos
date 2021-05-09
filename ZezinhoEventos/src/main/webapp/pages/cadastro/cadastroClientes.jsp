@@ -20,10 +20,12 @@
 </c:if>
 
 <form action="control?ac=clienteCad" method="POST">
-     <input type="hidden" name="cpCPF" value="${requestScope.cliente.cpf}" />
- 
+  
+   <input type="hidden" name="cpAlterar" value="${requestScope.cliente.cpf}" />
+   
+     
     
-    <div class="cadCliente">
+ <div class="cadCliente">
         <label for="Cliente" class="form-label">Nome</label>
         <input required type="text" class="form-control" id="nomeCliente" name="cpNomeCliente"
                value = ${requestScope.cliente.nome}>

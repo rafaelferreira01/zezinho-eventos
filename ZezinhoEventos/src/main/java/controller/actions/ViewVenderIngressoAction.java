@@ -71,11 +71,11 @@ public class ViewVenderIngressoAction extends GenericCommander {
         List<Cadeira> cadeirasDisponivels = new ArrayList<Cadeira>();
 
         for (int i = 1; i <= numCadeira; i++) {
-            cadeira = new Cadeira(0, valorCadeira, espaco, evento);
+//            cadeira = new Cadeira(0, valorCadeira, espaco, evento);
         
             
             
-            cadeirasDisponivels.add(cadeira);
+  //          cadeirasDisponivels.add(cadeira);
         }
 
         

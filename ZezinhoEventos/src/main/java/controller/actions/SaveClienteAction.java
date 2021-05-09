@@ -31,8 +31,8 @@ public class SaveClienteAction extends GenericCommander {
             Cliente cliente;
             String msg;
             
-              if (request.getParameter("cpCPF").equals("")) {
-           
+                if (request.getParameter("cpAlterar").equals("")) {
+            //  if (request.getParameter("tipo").equals("cadastrar")) {
 
                 cliente = new Cliente(Integer.parseInt(request.getParameter("cpCPF")),
                         request.getParameter("cpNomeCliente"));
