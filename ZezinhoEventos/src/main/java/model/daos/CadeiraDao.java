@@ -35,11 +35,11 @@ public class CadeiraDao extends BaseDao {
 //
 //    }
     
-    public static List<Cadeira> buscarTodasCadeirasByEvento(int evento) {
+    public static List<Cadeira> buscarTodasCadeirasByEvento(Evento evento) {
 
         Query q = getConexao().createQuery("SELECT c FROM Cadeira c WHERE c.descricao = :descricao and (c.evento.idevento = evento:)");
         
-        q.setParameter("evento", evento);
+        q.setParameter("evento", evento.getIdEvento());
         
         return q.getResultList();       
 

@@ -41,11 +41,11 @@ public class EspacoDao extends BaseDao {
 
     }
     
-    public static Espaco buscarByEvento(int id) {
+    public static Espaco buscarByEvento(Evento evento) {
 
-        Query q = getConexao().createQuery("SELECT e FROM Espaco e WHERE e.evento = :id");
+        Query q = getConexao().createQuery("SELECT e FROM Espaco e WHERE e.evento.idEvento = :evento");
 
-        q.setParameter("evento", id);
+        q.setParameter("evento", evento.getIdEvento());
         try {
             
             return (Espaco) q.getSingleResult();

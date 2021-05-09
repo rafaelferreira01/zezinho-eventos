@@ -90,10 +90,24 @@ public class Espaco implements Serializable {
         this.evento = evento;
         this.tipoespaco = tipoespaco;
     }
-    
-    
 
+    public Espaco(Integer idespaco, Integer quantvagaespecial, Integer quantcadeira, Integer quantcabine, Integer quantvagaSalao, Double valorCadeira, Double valorCabine, Double valorVagaEspecial, Double valorVagaSalao, Evento evento, TipoEspaco tipoespaco) {
+        this.idespaco = idespaco;
+        this.quantvagaespecial = quantvagaespecial;
+        this.quantcadeira = quantcadeira;
+        this.quantcabine = quantcabine;
+        this.quantvagaSalao = quantvagaSalao;
+        this.valorCadeira = valorCadeira;
+        this.valorCabine = valorCabine;
+        this.valorVagaEspecial = valorVagaEspecial;
+        this.valorVagaSalao = valorVagaSalao;
+        this.evento = evento;
+        this.tipoespaco = tipoespaco;
+    }
     //
+    
+    
+    
     public Espaco(Integer idespaco) {
         this.idespaco = idespaco;
     }

@@ -83,6 +83,7 @@ public class Evento implements Serializable {
         this.idEvento = idEvento;
     }
 
+    //
     public Evento(Integer idEvento, String nomeEvento, Date dataEvento, boolean capacidadeReduzida, double custoExtra, double custoInicial) {
         this.idEvento = idEvento;
         this.nomeEvento = nomeEvento;
@@ -91,6 +92,20 @@ public class Evento implements Serializable {
         this.custoExtra = custoExtra;
         this.custoInicial = custoInicial;
     }
+
+    public Evento(Integer idEvento, String nomeEvento, Date dataEvento, boolean capacidadeReduzida, double custoExtra, double custoInicial, TipoEvento tipoevento) {
+        this.idEvento = idEvento;
+        this.nomeEvento = nomeEvento;
+        this.dataEvento = dataEvento;
+        this.capacidadeReduzida = capacidadeReduzida;
+        this.custoExtra = custoExtra;
+        this.custoInicial = custoInicial;
+        this.tipoevento = tipoevento;
+    }
+    
+    
+    //
+    
 
     public Integer getIdEvento() {
         return idEvento;

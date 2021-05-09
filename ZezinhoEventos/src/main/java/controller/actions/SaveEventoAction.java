@@ -17,6 +17,7 @@ import model.daos.CadeiraDao;
 import model.daos.EspacoDao;
 import model.daos.EventoDao;
 import model.daos.TipoEspacoDao;
+import model.daos.TipoEventoDao;
 import model.daos.VagaEspecialDao;
 import model.daos.VagaSalaoDao;
 import model.espaco.Espaco;
@@ -25,6 +26,7 @@ import model.espaco.assento.Cabine;
 import model.espaco.assento.Cadeira;
 import model.espaco.assento.VagaEspecial;
 import model.evento.Evento;
+import model.evento.TipoEvento;
 import model.espaco.assento.VagaSalao;
 
 /**
@@ -49,106 +51,73 @@ public class SaveEventoAction extends GenericCommander {
             String msg;
             if (request.getParameter("cpId").equals("")) {//se for evento novo
 
-                evento = new Evento(0,
-                        request.getParameter("cpNomeEvento"),
-                        sdf.parse(request.getParameter("cpDataEvento")),
-                        Boolean.parseBoolean(request.getParameter("CpCapacidadeReduzida")!=null?"true":"false"),
-                        Double.parseDouble(request.getParameter("cpCustoExtra")),
-                        Double.parseDouble(request.getParameter("cpCustoInicial")));
                 
-                EventoDao.getConexao().persist(evento);
-                EventoDao.getConexao().getTransaction().commit();
-            
-            
+                //TIPOEVENTO
+                TipoEvento tipoEvento;
+                tipoEvento = TipoEventoDao.buscarByIdTipoEvento(Integer.parseInt(request.getParameter("cpTipoEvento")));
+                
                 //TIPOESPACO
                 TipoEspaco tipoEspaco;
                 tipoEspaco = TipoEspacoDao.buscarByIdTipoEspaco(Integer.parseInt(request.getParameter("cpEspacoEvento")));
+                
+                //EVENTO
+                evento = new Evento(0,
+                        request.getParameter("cpNomeEvento"),
+                        sdf.parse(request.getParameter("cpDataEvento")),
+                        Boolean.parseBoolean(request.getParameter("CpCapacidadeReduzida") != null ? "true" : "false"),
+                        Double.parseDouble(request.getParameter("cpCustoExtra")),
+                        Double.parseDouble(request.getParameter("cpCustoInicial")),
+                        tipoEvento);
+
+                EventoDao.getConexao().persist(evento);
+                EventoDao.getConexao().getTransaction().commit();
+
+
+                //ASSENTOS
+                int quantCabine = 0;
+                int quantCadeira = 0;
+                int quantVagaEspecial = 0;
+                int quantVagaSalao = 0;
+
+                if (tipoEspaco.getIdTipoEspaco() == 1) {//se for Salao
+                    quantVagaSalao = 500;
+                    if (evento.getCapacidadeReduzida()) {
+                        quantVagaSalao = 250;
+                    }
+                } else {
+                    quantCabine = 10;
+                    quantCadeira = 100;
+                    quantVagaEspecial = 20;
+                    if (evento.getCapacidadeReduzida()) {
+                        quantCabine = 5;
+                        quantCadeira = 20;
+                        quantVagaEspecial = 10;
+                    }
+                }
                 
                 //ESPACO
                 EspacoDao.getConexao().getTransaction().begin();
                 Espaco espaco;
                 
-                espaco = new Espaco(0, evento, tipoEspaco);
-                
+                espaco = new Espaco(0,
+                        quantVagaEspecial,
+                        quantCadeira,
+                        quantCabine,
+                        quantVagaSalao,
+                        Double.parseDouble(request.getParameter("cpValorCadeira")),
+                        Double.parseDouble(request.getParameter("cpValorCabine")),
+                        Double.parseDouble(request.getParameter("cpValorVagaEspecial")),
+                        Double.parseDouble(request.getParameter("cpValorVagaSalao")),
+                        evento,
+                        tipoEspaco);
+
                 EspacoDao.getConexao().persist(espaco);
                 EspacoDao.getConexao().getTransaction().commit();
-                
-                
-                
-//                //ASSENTOS
-//                int numVagaSalao = 500;
-//                int numCabine = 10;
-//                int numCadeira = 40;
-//                int numVagaEspecial = 20;
-//                
-//                if (evento.getCapacidadeReduzida()==true){
-//                    numVagaSalao = 250;
-//                    numCabine = 5;
-//                    numCadeira = 20;
-//                    numVagaEspecial = 10;
-//                }
-//                
-//                if (tipoEspaco.getIdTipoEspaco() == 1) {//se for Salao
-//                    VagaSalao vagasalao;
-//
-//                    for (int i = 1; i <= numVagaSalao; i++) {
-//                        VagaSalaoDao.getConexao().getTransaction().begin();
-//
-//                        vagasalao = new VagaSalao(0,
-//                                Double.parseDouble(request.getParameter("cpValorVagaSalao")),
-//                                espaco,
-//                                evento);
-//
-//                        VagaSalaoDao.getConexao().persist(vagasalao);
-//                        VagaSalaoDao.getConexao().getTransaction().commit();
-//
-//                    }
-//
-//                } else {
-//
-//                    Cabine cabine;
-//                    for (int i = 1; i <= numCabine; i++) {
-//                        CabineDao.getConexao().getTransaction().begin();
-//
-//                        cabine = new Cabine(0,
-//                                Double.parseDouble(request.getParameter("cpValorCabine")),
-//                                espaco,
-//                                evento);
-//
-//                        CabineDao.getConexao().persist(cabine);
-//                        CabineDao.getConexao().getTransaction().commit();
-//                    }
-//                    
-//                    Cadeira cadeira;
-//                    for (int i = 1; i <= numCadeira; i++) {
-//                        CadeiraDao.getConexao().getTransaction().begin();
-//
-//                        cadeira = new Cadeira(0,
-//                                Double.parseDouble(request.getParameter("cpValorCadeira")),
-//                                espaco,
-//                                evento);
-//
-//                        CadeiraDao.getConexao().persist(cadeira);
-//                        CadeiraDao.getConexao().getTransaction().commit();
-//                    }
-//                    
-//                    VagaEspecial vagaEspecial;
-//                    for (int i = 1; i <= numVagaEspecial; i++) {
-//                        VagaEspecialDao.getConexao().getTransaction().begin();
-//
-//                        vagaEspecial = new VagaEspecial(0,
-//                                Double.parseDouble(request.getParameter("cpValorVagaEspecial")),
-//                                espaco,
-//                                evento);
-//
-//                        VagaEspecialDao.getConexao().persist(vagaEspecial);
-//                        VagaEspecialDao.getConexao().getTransaction().commit();
-//                    }
-//                    
-//                }
 
                 msg = "Evento criado com sucesso!!!";
             } else {
+                
+                //NAO FIZ NADA AQUI - RAFAEL
                 evento = EventoDao.buscarByIdEvento(Integer.parseInt(request.getParameter("cpId")));
 
                 evento.setNomeEvento(request.getParameter("cpNomeEvento"));
