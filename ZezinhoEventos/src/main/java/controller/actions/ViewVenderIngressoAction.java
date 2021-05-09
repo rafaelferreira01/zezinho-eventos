@@ -44,7 +44,8 @@ public class ViewVenderIngressoAction extends GenericCommander {
         double valorVagaEspecial = espaco.getValorVagaEspecial();
         
         
-        List<Cliente> clientes = ClienteDao.buscarTodosClientes();
+        List<Cliente> clientes = null;
+        clientes = ClienteDao.buscarTodosClientes();
         
         int numVagaSalao = 500;
         int numCabine = 10;
@@ -62,7 +63,7 @@ public class ViewVenderIngressoAction extends GenericCommander {
         List<Cadeira> cadeirasTotal = new ArrayList<Cadeira>();//lista com todas cadeiras do evento, ocupadas ou não
         Cadeira cadeira = new Cadeira();
         for (int i = 1; i <= numCadeira; i++) {//
-            cadeira.setDescricao("CD"+i);
+            cadeira.setDescricao("CA"+i);
             cadeirasTotal.add(cadeira);
         }
         
@@ -70,14 +71,6 @@ public class ViewVenderIngressoAction extends GenericCommander {
 //        List<Cadeira> cadeirasOcupadas = CadeiraDao.buscarTodasCadeirasByEvento(evento);//lista de cadeiras ocupadas
         
 
-<<<<<<< Updated upstream
-        for (int i = 1; i <= numCadeira; i++) {
-//            cadeira = new Cadeira(0, valorCadeira, espaco, evento);
-        
-            
-            
-  //          cadeirasDisponivels.add(cadeira);
-=======
         List<Cadeira> cadeirasDisponivels = new ArrayList<Cadeira>();//cadeiras ainda disponiveis (nao reservadas)
         
         
@@ -88,7 +81,6 @@ public class ViewVenderIngressoAction extends GenericCommander {
                     cadeirasDisponivels.add(cadeirasTotal.get(i));
                 }
             }         
->>>>>>> Stashed changes
         }
 
         
