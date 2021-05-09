@@ -86,4 +86,13 @@ public class EventoDao extends BaseDao {
     
     
     } 
+
+    public static List<Evento> buscarEventosFiltro(String nome) {
+        
+         Query q = getConexao().createQuery("SELECT e FROM Evento e WHERE e.nomeEvento LIKE :nome");
+         
+         q.setParameter("nome","%" + nome + "%");
+         
+          return q.getResultList();
+    }
 }
