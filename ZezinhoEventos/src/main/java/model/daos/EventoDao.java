@@ -55,31 +55,33 @@ public class EventoDao extends BaseDao {
     
 
     public static List<Evento> buscarEventosFiltro(String nome, String dei, String def) {
-      //  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
-         Query q = getConexao().createQuery("SELECT e FROM Evento e WHERE e.nomeEvento LIKE :nome");
-         //       + "(e.dataEvento >= :dei and e.dataEvento <= :def )");
+         Query q = getConexao().createQuery("SELECT e FROM Evento e WHERE e.nomeEvento LIKE :nome AND"
+                + "(e.dataEvento >= :dei and e.dataEvento <= :def )");
+          
 
        
        q.setParameter("nome","%" + nome + "%");
        
-   //     try {
-    //        q.setParameter("dei", sdf.parse(dei));
-    //    } catch (ParseException ex) {
-    //        try {
-    //            q.setParameter("dei", sdf.parse("1500-01-01"));
-    //        } catch (ParseException ex1) {
-     //       }
-    //    }
+       try {
+            q.setParameter("dei", sdf.parse(dei));
+        } catch (ParseException ex) {
+            try {
+                q.setParameter("dt1", sdf.parse("1500-01-01"));
+            } catch (ParseException ex1) {
+            }
+        }
 
-    //    try {
-            //q.setParameter("dt1", dt1);
-    //        q.setParameter("def", sdf.parse(def));
-    //    } catch (ParseException ex) {
-     //       q.setParameter("def", new Date());
-    //    }
-//
+        try {
+          
+            q.setParameter("def", sdf.parse(def));
+        } catch (ParseException ex) {
+            q.setParameter("def", new Date());
+        }
+
         return q.getResultList();
+
     
         
  //   }

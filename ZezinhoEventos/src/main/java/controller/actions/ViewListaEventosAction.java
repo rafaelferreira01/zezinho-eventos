@@ -53,8 +53,8 @@ public class ViewListaEventosAction extends GenericCommander {
         if ( request.getParameter("cpSearchNomeEvento") == null ){
             eventos =  EventoDao.buscarTodosEventos();
         }else{
-            String dei = request.getParameter("cpdata1"); //yyyy-mm-dd
-            String def = request.getParameter("cpdata2");
+            String dei = request.getParameter("cpDataInicio"); //yyyy-mm-dd
+            String def = request.getParameter("cpDataFim");
             eventos = EventoDao.buscarEventosFiltro(request.getParameter("cpSearchNomeEvento"),dei,def);
             
         }
