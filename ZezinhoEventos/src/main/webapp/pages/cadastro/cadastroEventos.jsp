@@ -69,33 +69,33 @@
 
         <div class="Evento" id="custoInicial"><br>
             <label for="custoInicial" class="form-label">Custo Inicial</label>
-            <input required type="number" class="form-control" name="cpCustoInicial">
+            <input required type="number" min="0" value="0" class="form-control" name="cpCustoInicial">
         </div>
     
     <div class="Evento" id="CustoExtra"><br>
             <label for="CustoExtra" class="form-label">Custo Extra</label>
-            <input required type="number" class="form-control" name="cpCustoExtra">
+            <input required type="number" min="0" value="0" class="form-control" name="cpCustoExtra">
         </div>
 
 
         <div class="Evento" id="valorCadeira"><br>
             <label for="valorCadeira" class="form-label">Valor Cadeira</label>
-            <input type="number" class="form-control" name="cpValorCadeira">
+            <input type="number" min="0" value="0" class="form-control" name="cpValorCadeira">
         </div>
 
         <div class="Evento" id="valorVagaEspecial" >
             <label for="valorVagaEspecial" class="form-label">Valor Vaga Especial</label>
-            <input type="number" class="form-control" name="cpValorVagaEspecial">
+            <input type="number" min="0" value="0" class="form-control" name="cpValorVagaEspecial">
         </div>
 
         <div class="Evento" id="valorCabine">
             <label for="valorCabine" class="form-label">Valor Cabine</label>
-            <input type="number" class="form-control" name="cpValorCabine">
+            <input type="number" min="0" value="0" class="form-control" name="cpValorCabine">
         </div><br>
 
         <div class="Evento" id="valorVagaSalao">
             <label for="valorVagaSalao" class="form-label">Valor Vaga Salão</label>
-            <input type="number" class="form-control"  name="cpValorVagaSalao">
+            <input type="number" min="0" value="0" class="form-control"  name="cpValorVagaSalao">
         </div><br>
 
 
@@ -119,17 +119,25 @@
             if ($(this).val() == '1') {
                 $("#valorVagaSalao").show();
                 $("#valorCabine").hide();
-                $("#valorCabine").val(0)
+//                $("#valorCabine").val(0)
                 $("#valorVagaEspecial").hide();
-                $("#valorVagaEspecial").val(0)
+//                $("#valorVagaEspecial").val(0)
                 $("#valorCadeira").hide();
-                $("#valorCadeira").val(0)
+//                $("#valorCadeira").val(0)
+                document.getElementById("valorCadeira").required = false;
+                document.getElementById("valorCabine").required = false;
+                document.getElementById("valorVagaEspecial").required = false;
+                document.getElementById("valorVagaSalao").required = true;
             } else {
                 $("#valorVagaSalao").hide();
                 $("#valorVagaSalao").val(0)
                 $("#valorCabine").show();
                 $("#valorVagaEspecial").show();
                 $("#valorCadeira").show();
+                document.getElementById("valorCadeira").required = true;
+                document.getElementById("valorCabine").required = true;
+                document.getElementById("valorVagaEspecial").required = true;
+                document.getElementById("valorVagaSalao").required = false;
             }
         }).trigger('change');
     });

@@ -49,6 +49,8 @@ public class SaveEventoAction extends GenericCommander {
 
             Evento evento;
             String msg;
+            
+            
             if (request.getParameter("cpId").equals("")) {//se for evento novo
 
                 
