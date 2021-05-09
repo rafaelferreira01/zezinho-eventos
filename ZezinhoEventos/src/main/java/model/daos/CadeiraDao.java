@@ -10,6 +10,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import static model.daos.BaseDao.getConexao;
 import model.espaco.assento.Cadeira;
+import model.evento.Evento;
 
 /**
  *
@@ -17,11 +18,31 @@ import model.espaco.assento.Cadeira;
  */
 public class CadeiraDao extends BaseDao {
     
-    public static List<Cadeira> buscarTodasCabines() {
+    public static List<Cadeira> buscarTodasCadeiras() {
 
         Query q = getConexao().createNamedQuery("Cadeira.findAll");
         
         return q.getResultList();        
+    }
+    
+//    public static List<Cadeira> buscarTodasCadeirasByEvento(Evento evento) {
+//
+//        Query q = getConexao().createQuery("SELECT c FROM Cadeira c WHERE c.descricao = :descricao and (c.evento.idevento = evento:)");
+//        
+//        q.setParameter("evento", evento.getIdEvento());
+//        
+//        return (List<Cadeira>) q.getResultList();       
+//
+//    }
+    
+    public static List<Cadeira> buscarTodasCadeirasByEvento(int evento) {
+
+        Query q = getConexao().createQuery("SELECT c FROM Cadeira c WHERE c.descricao = :descricao and (c.evento.idevento = evento:)");
+        
+        q.setParameter("evento", evento);
+        
+        return q.getResultList();       
+
     }
 
 

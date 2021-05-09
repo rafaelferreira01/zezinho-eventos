@@ -68,6 +68,13 @@ public class Cadeira implements Serializable {
         this.idCadeira = idCadeira;
     }
 
+    //
+    public Cadeira(Integer idCadeira, String descricao) {
+        this.idCadeira = idCadeira;
+        this.descricao = descricao;
+    }
+    //
+
     public Cadeira(Integer idCadeira, double valor) {
         this.idCadeira = idCadeira;
         this.valor = valor;

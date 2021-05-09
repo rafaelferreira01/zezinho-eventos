@@ -44,11 +44,7 @@ public class ViewVenderIngressoAction extends GenericCommander {
         double valorVagaEspecial = espaco.getValorVagaEspecial();
         
         
-        
-        List<Cliente> clientes = null;
-        clientes = ClienteDao.buscarTodosClientes();
-//      clientes =  ClienteDao.buscarTodosClientes( (Cliente) request.getAttribute("cliente"));
-        
+        List<Cliente> clientes = ClienteDao.buscarTodosClientes();
         
         int numVagaSalao = 500;
         int numCabine = 10;
@@ -62,30 +58,47 @@ public class ViewVenderIngressoAction extends GenericCommander {
             numVagaEspecial = 10;
         }
         
+        //
+        List<Cadeira> cadeirasTotal = new ArrayList<Cadeira>();//lista com todas cadeiras do evento, ocupadas ou não
+        Cadeira cadeira = new Cadeira();
+        for (int i = 1; i <= numCadeira; i++) {//
+            cadeira.setDescricao("CD"+i);
+            cadeirasTotal.add(cadeira);
+        }
         
+         List<Cadeira> cadeirasOcupadas = CadeiraDao.buscarTodasCadeirasByEvento(evento.getIdEvento());//lista de cadeiras ocupadas
+//        List<Cadeira> cadeirasOcupadas = CadeiraDao.buscarTodasCadeirasByEvento(evento);//lista de cadeiras ocupadas
         
-        
-        
-        
-        Cadeira cadeira;
-        List<Cadeira> cadeirasDisponivels = new ArrayList<Cadeira>();
 
+<<<<<<< Updated upstream
         for (int i = 1; i <= numCadeira; i++) {
 //            cadeira = new Cadeira(0, valorCadeira, espaco, evento);
         
             
             
   //          cadeirasDisponivels.add(cadeira);
+=======
+        List<Cadeira> cadeirasDisponivels = new ArrayList<Cadeira>();//cadeiras ainda disponiveis (nao reservadas)
+        
+        
+        //VER SE ASSENTO ESTA OCUPADO
+        for (int i = 0; i < cadeirasTotal.size(); i++) {//para todos os itens da lista total faça
+            for (int j = 0; j < cadeirasOcupadas.size(); j++) {//para todos os itens da lista de cadeiras ocupadas faça
+                if (!cadeirasTotal.get(i).getDescricao().equals(cadeirasOcupadas.get(j).getDescricao())) {
+                    cadeirasDisponivels.add(cadeirasTotal.get(i));
+                }
+            }         
+>>>>>>> Stashed changes
         }
 
         
         
         
-        
-        
-        
-         request.setAttribute("page", "/pages/outros/vendaIngressos.jsp");
-         
+        request.setAttribute("cadeirasDisponivels", cadeirasDisponivels);
+        request.setAttribute("clientes", clientes);
+
+        request.setAttribute("page", "/pages/outros/vendaIngressos.jsp");
+
          rd.forward(request, response);
     }
     
