@@ -35,12 +35,34 @@ public class ViewVenderIngressoAction extends GenericCommander {
     @Override
     public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher rd = request.getRequestDispatcher("template.jsp");
+        
+    
+        String titulo;
+        //Cliente cIngresso = new Cliente();
+        Evento eIngresso = new Evento();
+        List<Cliente> clientes = null;
+        if (request.getParameter("id")!=null){
+             titulo  = "Vender Ingresso";
+             eIngresso = EventoDao.buscarByIdEvento(Integer.parseInt(request.getParameter("id")));
+             clientes = ClienteDao.buscarTodosClientes();
+        }else{
+            titulo = "Erro!";
+        }
+      //  List<Cliente> clientes = ClienteDao.buscarTodosClientes(cliente);
+       request.setAttribute("eventosIngresso", eIngresso);
+       request.setAttribute("clientes", clientes);
+      //  }
 
-        List<Cliente> clientes = ClienteDao.buscarTodosClientes();
-
+      
+        request.setAttribute("page", "/pages/outros/vendaIngressos.jsp");
+/* 
         Evento evento = EventoDao.buscarByIdEvento(Integer.parseInt(request.getParameter("id")));
-
+        
+        
+        
         Espaco espaco = EspacoDao.buscarByEvento(evento);
+        
+        
 
 //        //ASSENTOS QUANTIDADE
 //        int numVagaSalao = 500;
@@ -82,10 +104,11 @@ public class ViewVenderIngressoAction extends GenericCommander {
             }
         }
 
-        request.setAttribute("cadeirasDisponivels", cadeirasDisponivels);
-        request.setAttribute("clientes", clientes);
 
-        request.setAttribute("page", "/pages/outros/vendaIngressos.jsp");
+        request.setAttribute("cadeirasDisponivels", cadeirasDisponivels);
+        
+
+       */ 
 
         rd.forward(request, response);
     }
