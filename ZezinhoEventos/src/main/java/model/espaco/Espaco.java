@@ -5,6 +5,10 @@
  */
 package model.espaco;
 
+import model.espaco.assento.VagaSalao;
+import model.espaco.assento.Cadeira;
+import model.espaco.assento.VagaEspecial;
+import model.espaco.assento.Cabine;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -19,12 +23,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import model.espaco.assento.Cabine;
-import model.espaco.assento.Cadeira;
-import model.espaco.TipoEspaco;
 import model.evento.Evento;
-import model.espaco.assento.VagaEspecial;
-import model.espaco.assento.VagaSalao;
 
 /**
  *
@@ -43,7 +42,6 @@ import model.espaco.assento.VagaSalao;
     @NamedQuery(name = "Espaco.findByValorCabine", query = "SELECT e FROM Espaco e WHERE e.valorCabine = :valorCabine"),
     @NamedQuery(name = "Espaco.findByValorVagaEspecial", query = "SELECT e FROM Espaco e WHERE e.valorVagaEspecial = :valorVagaEspecial"),
     @NamedQuery(name = "Espaco.findByValorVagaSalao", query = "SELECT e FROM Espaco e WHERE e.valorVagaSalao = :valorVagaSalao")})
-
 public class Espaco implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -83,7 +81,7 @@ public class Espaco implements Serializable {
     public Espaco() {
     }
     
-    //
+        //
 
     public Espaco(Integer idespaco, Evento evento, TipoEspaco tipoespaco) {
         this.idespaco = idespaco;
@@ -105,9 +103,7 @@ public class Espaco implements Serializable {
         this.tipoespaco = tipoespaco;
     }
     //
-    
-    
-    
+
     public Espaco(Integer idespaco) {
         this.idespaco = idespaco;
     }
@@ -254,7 +250,7 @@ public class Espaco implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.assento.Espaco[ idespaco=" + idespaco + " ]";
+        return "model.cliente.Espaco[ idespaco=" + idespaco + " ]";
     }
     
 }

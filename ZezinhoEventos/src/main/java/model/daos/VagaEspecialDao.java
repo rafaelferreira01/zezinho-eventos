@@ -44,13 +44,13 @@ public class VagaEspecialDao extends BaseDao {
     
     public static List<VagaEspecial> buscarTodasVagaEspecialByEvento(Evento evento, Espaco espaco) {
 
-        Query q = getConexao().createQuery("SELECT v, e FROM VagaEspecial v, Espaco e WHERE v.espaco.idespaco = :espaco and e.evento.idEvento = :evento");
+        Query q = getConexao().createQuery("SELECT c FROM VagaEspecial c WHERE c.espaco.idespaco = :espaco and c.espaco.evento.idEvento = :evento");
         q.setParameter("evento", evento.getIdEvento());
         q.setParameter("espaco", espaco.getIdespaco());
         
         try {
             
-            return q.getResultList();
+            return (List<VagaEspecial>) q.getResultList();
             
         } catch (NoResultException e) {
             return null;

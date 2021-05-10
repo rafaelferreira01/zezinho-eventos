@@ -5,6 +5,7 @@
  */
 package model.evento;
 
+import model.evento.Evento;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -104,7 +105,7 @@ public class TipoEvento implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.assento.TipoEvento[ idTipoEvento=" + idTipoEvento + " ]";
+        return "model.cliente.TipoEvento[ idTipoEvento=" + idTipoEvento + " ]";
     }
     
 }

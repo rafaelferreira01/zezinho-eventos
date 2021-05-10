@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +23,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import model.cliente.Cliente;
 import model.espaco.Espaco;
+import model.evento.TipoEvento;
 
 /**
  *
@@ -48,33 +50,29 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer idEvento;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(nullable = false, length = 45)
+    @Size(max = 45)
+    @Column(length = 45)
     private String nomeEvento;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataEvento;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private boolean capacidadeReduzida;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private double custoExtra;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private double custoInicial;
+    private Boolean capacidadeReduzida;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(precision = 22, scale = 0)
+    private Double custoExtra;
+    @Column(precision = 22, scale = 0)
+    private Double custoInicial;
+    @OneToMany(mappedBy = "evento")
+    private List<Cliente> clienteList;
+    @JoinColumn(name = "cliente", referencedColumnName = "cpf")
+    @ManyToOne
+    private Cliente cliente;
     @JoinColumn(name = "tipoevento", referencedColumnName = "idTipoEvento")
     @ManyToOne
     private TipoEvento tipoevento;
     @OneToMany(mappedBy = "evento")
     private List<Espaco> espacoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+    private List<EventoCliente> eventoClienteList;
 
     public Evento() {
     }
@@ -82,8 +80,8 @@ public class Evento implements Serializable {
     public Evento(Integer idEvento) {
         this.idEvento = idEvento;
     }
-
-    //
+    
+    	 //
     public Evento(Integer idEvento, String nomeEvento, Date dataEvento, boolean capacidadeReduzida, double custoExtra, double custoInicial) {
         this.idEvento = idEvento;
         this.nomeEvento = nomeEvento;
@@ -102,10 +100,7 @@ public class Evento implements Serializable {
         this.custoInicial = custoInicial;
         this.tipoevento = tipoevento;
     }
-    
-    
     //
-    
 
     public Integer getIdEvento() {
         return idEvento;
@@ -131,28 +126,44 @@ public class Evento implements Serializable {
         this.dataEvento = dataEvento;
     }
 
-    public boolean getCapacidadeReduzida() {
+    public Boolean getCapacidadeReduzida() {
         return capacidadeReduzida;
     }
 
-    public void setCapacidadeReduzida(boolean capacidadeReduzida) {
+    public void setCapacidadeReduzida(Boolean capacidadeReduzida) {
         this.capacidadeReduzida = capacidadeReduzida;
     }
 
-    public double getCustoExtra() {
+    public Double getCustoExtra() {
         return custoExtra;
     }
 
-    public void setCustoExtra(double custoExtra) {
+    public void setCustoExtra(Double custoExtra) {
         this.custoExtra = custoExtra;
     }
 
-    public double getCustoInicial() {
+    public Double getCustoInicial() {
         return custoInicial;
     }
 
-    public void setCustoInicial(double custoInicial) {
+    public void setCustoInicial(Double custoInicial) {
         this.custoInicial = custoInicial;
+    }
+
+    public List<Cliente> getClienteList() {
+        return clienteList;
+    }
+
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public TipoEvento getTipoevento() {
@@ -169,6 +180,14 @@ public class Evento implements Serializable {
 
     public void setEspacoList(List<Espaco> espacoList) {
         this.espacoList = espacoList;
+    }
+
+    public List<EventoCliente> getEventoClienteList() {
+        return eventoClienteList;
+    }
+
+    public void setEventoClienteList(List<EventoCliente> eventoClienteList) {
+        this.eventoClienteList = eventoClienteList;
     }
 
     @Override
@@ -193,7 +212,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.assento.Evento[ idEvento=" + idEvento + " ]";
+        return "model.cliente.Evento[ idEvento=" + idEvento + " ]";
     }
     
 }

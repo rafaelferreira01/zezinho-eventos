@@ -96,7 +96,7 @@ public class TipoEspaco implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.assento.TipoEspaco[ idTipoEspaco=" + idTipoEspaco + " ]";
+        return "model.cliente.TipoEspaco[ idTipoEspaco=" + idTipoEspaco + " ]";
     }
     
 }

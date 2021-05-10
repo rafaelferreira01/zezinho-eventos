@@ -88,12 +88,12 @@ public class SaveEventoAction extends GenericCommander {
                     }
                 } else {
                     quantCabine = 10;
-                    quantCadeira = 100;
-                    quantVagaEspecial = 20;
+                    quantCadeira = 300;
+                    quantVagaEspecial = 50;
                     if (evento.getCapacidadeReduzida()) {
                         quantCabine = 5;
-                        quantCadeira = 20;
-                        quantVagaEspecial = 10;
+                        quantCadeira = 150;
+                        quantVagaEspecial = 25;
                     }
                 }
                 

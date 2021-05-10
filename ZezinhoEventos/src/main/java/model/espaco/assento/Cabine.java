@@ -17,8 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import model.cliente.Cliente;
 import model.espaco.Espaco;
 
 /**
@@ -30,8 +30,7 @@ import model.espaco.Espaco;
 @NamedQueries({
     @NamedQuery(name = "Cabine.findAll", query = "SELECT c FROM Cabine c"),
     @NamedQuery(name = "Cabine.findByIdCabine", query = "SELECT c FROM Cabine c WHERE c.idCabine = :idCabine"),
-    @NamedQuery(name = "Cabine.findByDescricao", query = "SELECT c FROM Cabine c WHERE c.descricao = :descricao"),
-    @NamedQuery(name = "Cabine.findByValor", query = "SELECT c FROM Cabine c WHERE c.valor = :valor")})
+    @NamedQuery(name = "Cabine.findByDescricao", query = "SELECT c FROM Cabine c WHERE c.descricao = :descricao")})
 public class Cabine implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,10 +42,9 @@ public class Cabine implements Serializable {
     @Size(max = 4)
     @Column(length = 4)
     private String descricao;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private double valor;
+    @JoinColumn(name = "cliente", referencedColumnName = "cpf")
+    @ManyToOne
+    private Cliente cliente;
     @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
     @ManyToOne
     private Espaco espaco;
@@ -54,13 +52,17 @@ public class Cabine implements Serializable {
     public Cabine() {
     }
 
+    //
+    public Cabine(Integer idCabine, String descricao, Cliente cliente, Espaco espaco) {
+        this.idCabine = idCabine;
+        this.descricao = descricao;
+        this.cliente = cliente;
+        this.espaco = espaco;
+    }
+    //
+    
     public Cabine(Integer idCabine) {
         this.idCabine = idCabine;
-    }
-
-    public Cabine(Integer idCabine, double valor) {
-        this.idCabine = idCabine;
-        this.valor = valor;
     }
 
     public Integer getIdCabine() {
@@ -79,12 +81,12 @@ public class Cabine implements Serializable {
         this.descricao = descricao;
     }
 
-    public double getValor() {
-        return valor;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Espaco getEspaco() {
@@ -117,7 +119,7 @@ public class Cabine implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.assento.Cabine[ idCabine=" + idCabine + " ]";
+        return "model.cliente.Cabine[ idCabine=" + idCabine + " ]";
     }
     
 }

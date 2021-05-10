@@ -5,9 +5,14 @@
  */
 package model.cliente;
 
-import model.evento.Evento;
+import model.espaco.assento.VagaSalao;
+import model.espaco.assento.Cadeira;
+import model.espaco.assento.VagaEspecial;
+import model.espaco.assento.Cabine;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,13 +20,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import model.espaco.assento.Cabine;
-import model.espaco.assento.Cadeira;
-import model.espaco.assento.VagaEspecial;
-import model.espaco.assento.VagaSalao;
+import model.evento.Evento;
+import model.cliente.Cliente;
+import model.evento.EventoCliente;
 
 /**
  *
@@ -46,26 +51,24 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 45)
     @Column(nullable = false, length = 45)
     private String nome;
-    @JoinColumn(name = "cabine", referencedColumnName = "idCabine")
-    @ManyToOne
-    private Cabine cabine;
-    @JoinColumn(name = "cadeira", referencedColumnName = "idCadeira")
-    @ManyToOne
-    private Cadeira cadeira;
+    @OneToMany(mappedBy = "cliente")
+    private List<VagaSalao> vagaSalaoList;
     @JoinColumn(name = "evento", referencedColumnName = "idEvento")
     @ManyToOne
     private Evento evento;
-    @JoinColumn(name = "vagaespecial", referencedColumnName = "idVagaEspecial")
-    @ManyToOne
-    private VagaEspecial vagaespecial;
-    @JoinColumn(name = "vagasalao", referencedColumnName = "idVagasalao")
-    @ManyToOne
-    private VagaSalao vagasalao;
+    @OneToMany(mappedBy = "cliente")
+    private List<Evento> eventoList;
+    @OneToMany(mappedBy = "cliente")
+    private List<Cadeira> cadeiraList;
+    @OneToMany(mappedBy = "cliente")
+    private List<Cabine> cabineList;
+    @OneToMany(mappedBy = "cliente")
+    private List<VagaEspecial> vagaEspecialList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private List<EventoCliente> eventoClienteList;
 
     public Cliente() {
     }
-    
-    
 
     public Cliente(Integer cpf) {
         this.cpf = cpf;
@@ -92,20 +95,12 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public Cabine getCabine() {
-        return cabine;
+    public List<VagaSalao> getVagaSalaoList() {
+        return vagaSalaoList;
     }
 
-    public void setCabine(Cabine cabine) {
-        this.cabine = cabine;
-    }
-
-    public Cadeira getCadeira() {
-        return cadeira;
-    }
-
-    public void setCadeira(Cadeira cadeira) {
-        this.cadeira = cadeira;
+    public void setVagaSalaoList(List<VagaSalao> vagaSalaoList) {
+        this.vagaSalaoList = vagaSalaoList;
     }
 
     public Evento getEvento() {
@@ -116,20 +111,44 @@ public class Cliente implements Serializable {
         this.evento = evento;
     }
 
-    public VagaEspecial getVagaespecial() {
-        return vagaespecial;
+    public List<Evento> getEventoList() {
+        return eventoList;
     }
 
-    public void setVagaespecial(VagaEspecial vagaespecial) {
-        this.vagaespecial = vagaespecial;
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
     }
 
-    public VagaSalao getVagasalao() {
-        return vagasalao;
+    public List<Cadeira> getCadeiraList() {
+        return cadeiraList;
     }
 
-    public void setVagasalao(VagaSalao vagasalao) {
-        this.vagasalao = vagasalao;
+    public void setCadeiraList(List<Cadeira> cadeiraList) {
+        this.cadeiraList = cadeiraList;
+    }
+
+    public List<Cabine> getCabineList() {
+        return cabineList;
+    }
+
+    public void setCabineList(List<Cabine> cabineList) {
+        this.cabineList = cabineList;
+    }
+
+    public List<VagaEspecial> getVagaEspecialList() {
+        return vagaEspecialList;
+    }
+
+    public void setVagaEspecialList(List<VagaEspecial> vagaEspecialList) {
+        this.vagaEspecialList = vagaEspecialList;
+    }
+
+    public List<EventoCliente> getEventoClienteList() {
+        return eventoClienteList;
+    }
+
+    public void setEventoClienteList(List<EventoCliente> eventoClienteList) {
+        this.eventoClienteList = eventoClienteList;
     }
 
     @Override
@@ -154,7 +173,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "roda.testes.banco.Cliente[ cpf=" + cpf + " ]";
+        return "model.cliente.Cliente[ cpf=" + cpf + " ]";
     }
     
 }

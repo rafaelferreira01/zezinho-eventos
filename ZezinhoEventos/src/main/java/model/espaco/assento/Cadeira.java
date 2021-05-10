@@ -17,8 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import model.cliente.Cliente;
 import model.espaco.Espaco;
 
 /**
@@ -30,8 +30,7 @@ import model.espaco.Espaco;
 @NamedQueries({
     @NamedQuery(name = "Cadeira.findAll", query = "SELECT c FROM Cadeira c"),
     @NamedQuery(name = "Cadeira.findByIdCadeira", query = "SELECT c FROM Cadeira c WHERE c.idCadeira = :idCadeira"),
-    @NamedQuery(name = "Cadeira.findByDescricao", query = "SELECT c FROM Cadeira c WHERE c.descricao = :descricao"),
-    @NamedQuery(name = "Cadeira.findByValor", query = "SELECT c FROM Cadeira c WHERE c.valor = :valor")})
+    @NamedQuery(name = "Cadeira.findByDescricao", query = "SELECT c FROM Cadeira c WHERE c.descricao = :descricao")})
 public class Cadeira implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,10 +42,9 @@ public class Cadeira implements Serializable {
     @Size(max = 4)
     @Column(length = 4)
     private String descricao;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private double valor;
+    @JoinColumn(name = "cliente", referencedColumnName = "cpf")
+    @ManyToOne
+    private Cliente cliente;
     @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
     @ManyToOne
     private Espaco espaco;
@@ -55,29 +53,23 @@ public class Cadeira implements Serializable {
     }
     
     //
-    
-    public Cadeira(Integer idCadeira, String descricao, double valor, Espaco espaco) {
+
+    public Cadeira(Integer idCadeira, String descricao, Cliente cliente, Espaco espaco) {
         this.idCadeira = idCadeira;
         this.descricao = descricao;
-        this.valor = valor;
+        this.cliente = cliente;
         this.espaco = espaco;
     }
-    //
     
-    public Cadeira(Integer idCadeira) {
-        this.idCadeira = idCadeira;
-    }
-
-    //
+      
     public Cadeira(Integer idCadeira, String descricao) {
         this.idCadeira = idCadeira;
         this.descricao = descricao;
     }
     //
 
-    public Cadeira(Integer idCadeira, double valor) {
+    public Cadeira(Integer idCadeira) {
         this.idCadeira = idCadeira;
-        this.valor = valor;
     }
 
     public Integer getIdCadeira() {
@@ -96,12 +88,12 @@ public class Cadeira implements Serializable {
         this.descricao = descricao;
     }
 
-    public double getValor() {
-        return valor;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Espaco getEspaco() {
@@ -134,7 +126,7 @@ public class Cadeira implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.assento.Cadeira[ idCadeira=" + idCadeira + " ]";
+        return "model.cliente.Cadeira[ idCadeira=" + idCadeira + " ]";
     }
     
 }

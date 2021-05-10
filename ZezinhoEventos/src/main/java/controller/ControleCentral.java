@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package controller;
-
+import controller.actions.SaveVendaIngressoAction;
 import controller.actions.DeletarClienteAction;
 import controller.actions.DeletarEventoAction;
 import controller.actions.SaveClienteAction;
@@ -68,6 +68,7 @@ public class ControleCentral extends HttpServlet {
         
         
         comandos.put("venderIngresso", new ViewVenderIngressoAction(true));
+        comandos.put("gravarVendaIngresso", new SaveVendaIngressoAction(true));
         
        
         

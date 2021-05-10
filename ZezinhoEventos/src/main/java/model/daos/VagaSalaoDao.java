@@ -9,7 +9,9 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import static model.daos.BaseDao.getConexao;
+import model.espaco.Espaco;
 import model.espaco.assento.VagaSalao;
+import model.evento.Evento;
 /**
  *
  * @author Leonardo
@@ -37,6 +39,21 @@ public class VagaSalaoDao extends BaseDao {
             return null;
         }
 
+    }
+    
+    public static List<VagaSalao> buscarTodasVagaSalaoByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT c FROM VagaSalao c WHERE c.espaco.idespaco = :espaco and c.espaco.evento.idEvento = :evento");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return (List<VagaSalao>) q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }

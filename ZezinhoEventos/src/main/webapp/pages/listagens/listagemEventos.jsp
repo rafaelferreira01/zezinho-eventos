@@ -10,6 +10,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <table class="table table-striped">
+    
+    <c:if test="${requestScope.msg != null}">
+    
+<div class="alert alert-success">
+    ${requestScope.msg}
+</div>
+    
+</c:if>
 
     <fieldset>
         <legend>Pesquisar</legend>

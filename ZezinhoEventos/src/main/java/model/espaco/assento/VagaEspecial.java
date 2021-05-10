@@ -17,8 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import model.cliente.Cliente;
 import model.espaco.Espaco;
 
 /**
@@ -30,8 +30,7 @@ import model.espaco.Espaco;
 @NamedQueries({
     @NamedQuery(name = "VagaEspecial.findAll", query = "SELECT v FROM VagaEspecial v"),
     @NamedQuery(name = "VagaEspecial.findByIdVagaEspecial", query = "SELECT v FROM VagaEspecial v WHERE v.idVagaEspecial = :idVagaEspecial"),
-    @NamedQuery(name = "VagaEspecial.findByDescricao", query = "SELECT v FROM VagaEspecial v WHERE v.descricao = :descricao"),
-    @NamedQuery(name = "VagaEspecial.findByValor", query = "SELECT v FROM VagaEspecial v WHERE v.valor = :valor")})
+    @NamedQuery(name = "VagaEspecial.findByDescricao", query = "SELECT v FROM VagaEspecial v WHERE v.descricao = :descricao")})
 public class VagaEspecial implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,10 +42,9 @@ public class VagaEspecial implements Serializable {
     @Size(max = 4)
     @Column(length = 4)
     private String descricao;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private double valor;
+    @JoinColumn(name = "cliente", referencedColumnName = "cpf")
+    @ManyToOne
+    private Cliente cliente;
     @JoinColumn(name = "espaco", referencedColumnName = "idespaco")
     @ManyToOne
     private Espaco espaco;
@@ -54,13 +52,18 @@ public class VagaEspecial implements Serializable {
     public VagaEspecial() {
     }
 
+    //
+    public VagaEspecial(Integer idVagaEspecial, String descricao, Cliente cliente, Espaco espaco) {
+        this.idVagaEspecial = idVagaEspecial;
+        this.descricao = descricao;
+        this.cliente = cliente;
+        this.espaco = espaco;
+    }
+    
+    //
+
     public VagaEspecial(Integer idVagaEspecial) {
         this.idVagaEspecial = idVagaEspecial;
-    }
-
-    public VagaEspecial(Integer idVagaEspecial, double valor) {
-        this.idVagaEspecial = idVagaEspecial;
-        this.valor = valor;
     }
 
     public Integer getIdVagaEspecial() {
@@ -79,12 +82,12 @@ public class VagaEspecial implements Serializable {
         this.descricao = descricao;
     }
 
-    public double getValor() {
-        return valor;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Espaco getEspaco() {
@@ -117,7 +120,7 @@ public class VagaEspecial implements Serializable {
 
     @Override
     public String toString() {
-        return "model.espaco.assento.VagaEspecial[ idVagaEspecial=" + idVagaEspecial + " ]";
+        return "model.cliente.VagaEspecial[ idVagaEspecial=" + idVagaEspecial + " ]";
     }
     
 }
