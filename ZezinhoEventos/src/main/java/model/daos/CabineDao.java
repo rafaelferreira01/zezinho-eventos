@@ -9,7 +9,10 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import static model.daos.BaseDao.getConexao;
+import model.espaco.Espaco;
 import model.espaco.assento.Cabine;
+import model.espaco.assento.Cadeira;
+import model.evento.Evento;
 
 /**
  *
@@ -38,6 +41,20 @@ public class CabineDao extends BaseDao {
             return null;
         }
 
+    }
+    public static List<Cabine> buscarTodasCabinesByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT c, e FROM Cabine c, Espaco e WHERE c.espaco.idespaco = :espaco and e.evento.idEvento = :evento");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }

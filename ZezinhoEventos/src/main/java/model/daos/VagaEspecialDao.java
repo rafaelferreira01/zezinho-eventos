@@ -9,6 +9,9 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import static model.daos.BaseDao.getConexao;
+import model.espaco.Espaco;
+import model.espaco.assento.VagaEspecial;
+import model.evento.Evento;
 
 /**
  *
@@ -37,6 +40,21 @@ public class VagaEspecialDao extends BaseDao {
             return null;
         }
 
+    }
+    
+    public static List<VagaEspecial> buscarTodasVagaEspecialByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT v, e FROM VagaEspecial v, Espaco e WHERE v.espaco.idespaco = :espaco and e.evento.idEvento = :evento");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }
