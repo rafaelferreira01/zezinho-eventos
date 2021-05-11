@@ -72,17 +72,7 @@
                                 <a class="nav-link active"
                                    href="control?ac=listaEventos"> <i class="oi oi-cart"></i> <span>Lista de Eventos</span>
                                 </a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                   href="control?ac=Ingressos"> <i class="oi oi-cart"></i> <span>Vender Ingressos</span>
-                                </a>
-                                 </li> 
-                             <li class="nav-item">
-                                <a class="nav-link active"
-                                   href="control?ac=listaIngressos"> <i class="oi oi-cart"></i> <span>Lista de Ingressos</span>
-                                </a>
-                            </li>   
+                            </li>  
                             <li class="nav-item">
                                 <a class="nav-link"
                                    href="#"> <i class="oi oi-cart"></i> <span>Relatórios</span>
