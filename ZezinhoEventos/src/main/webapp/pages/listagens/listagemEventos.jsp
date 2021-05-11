@@ -92,8 +92,8 @@
 
                                 <c:forEach var="e" items="${requestScope.eventos}">
                                     <tr>
-                                        <td><a href="control?ac=venderIngresso&id=${e.idEvento}">${e.nomeEvento}</td>
-                                        <td>${e.dataEvento}</td>
+                                        <td><a href="control?ac=venderIngresso&id=${e.idEvento}">${e.nomeEvento} </td>
+                                        <td> <fmt:formatDate value="${e.dataEvento}"  pattern="dd/MM/yyyy" /> </td>
                                         <td> <a href="control?ac=editEvento&id=${e.idEvento}"><span> <i class="fa fa-edit"></i></span></a>
                                              <a href="#" class="btnExc" data-toggle="modal" data-target="#questionModal" data-evento="${e.nomeEvento}" data-id="${e.idEvento}">
                                          <i class="fa fa-trash"></i>
