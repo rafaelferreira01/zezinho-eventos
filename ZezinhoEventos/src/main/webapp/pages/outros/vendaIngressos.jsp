@@ -78,6 +78,7 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
                         </c:forEach>  
                     </select>        
                 </div><br>
+                <input type="hidden" name="cpVagaSalao" value="-1" />
 
             </c:when>
             <c:otherwise><!-- CASO CONTRARIO -->

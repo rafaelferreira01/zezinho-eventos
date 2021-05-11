@@ -67,16 +67,16 @@ public class SaveVendaIngressoAction extends GenericCommander {
             Espaco espaco;
             espaco = EspacoDao.buscarByEvento(evento);
         
-        if (espaco.getTipoespaco().getIdTipoEspaco() == 2) {
-            if (descricaoCadeira.equals("-1") && descricaoCabine.equals("-1")
-                    && descricaoVagaEspecial.equals("-1")) {
-                msg = "Você deve selecionar ao menos um tipo de assento!!!";
-            }
+        if (descricaoCadeira.equals("-1")
+                && descricaoCabine.equals("-1")
+                && descricaoVagaEspecial.equals("-1")
+                && descricaoVagaSalao.equals("-1")) {
+            msg = "Você deve selecionar ao menos um tipo de assento!!!";
         } else if (Integer.parseInt(request.getParameter("cpSearchClientes")) == -1) {
             msg = "Você deve selecionar um cliente!!!";
         } else {
 
-            
+
 
             //CADEIRA
             if (!descricaoCadeira.equals("-1")) {
@@ -122,8 +122,8 @@ public class SaveVendaIngressoAction extends GenericCommander {
             
             
             //VAGA SALAO
-            if (!descricaoVagaSalao.equals("")) {
-//            if (espaco.getTipoespaco().getIdTipoEspaco() == 1){
+//            if (!descricaoVagaSalao.equals("")) {
+            if (espaco.getTipoespaco().getIdTipoEspaco() == 1){
                 VagaSalaoDao.getConexao().getTransaction().begin();
 
                 VagaSalao vagaSalao;
