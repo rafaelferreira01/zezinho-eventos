@@ -130,10 +130,10 @@ public class ViewVenderIngressoAction extends GenericCommander {
         vagasEspeciaisDisponivels = new ArrayList<VagaEspecial>(vagasEspeciaisTotal);//cabines ainda disponiveis (nao reservadas)
 
         //ver se assento esta ocupado
-        for (int i = 0; i < cabinesOcupadas.size(); i++) {//para todos os itens da lista total faça
-            for (int j = 0; j < cabinesTotal.size(); j++) {//para todos os itens da lista de cadeiras ocupadas faça
-                if (cabinesOcupadas.get(i).getDescricao().equals(cabinesTotal.get(j).getDescricao())) {
-                    cabinesDisponivels.set(j, null);//faz o elemento no insicie ser null (se mandar remover ele mexe no inidicie tambem)
+        for (int i = 0; i < vagasEspeciaisOcupadas.size(); i++) {//para todos os itens da lista total faça
+            for (int j = 0; j < vagasEspeciaisTotal.size(); j++) {//para todos os itens da lista de cadeiras ocupadas faça
+                if (vagasEspeciaisOcupadas.get(i).getDescricao().equals(vagasEspeciaisTotal.get(j).getDescricao())) {
+                    vagasEspeciaisDisponivels.set(j, null);//faz o elemento no insicie ser null (se mandar remover ele mexe no inidicie tambem)
                     break;
                 }
             }
@@ -142,16 +142,15 @@ public class ViewVenderIngressoAction extends GenericCommander {
         
         
         //VAGA SALAO
-        List<VagaSalao> vagasSalaoOcupadas;
-        vagasSalaoOcupadas = VagaSalaoDao.buscarTodasVagaSalaoByEvento(evento, espaco);//lista de vagas ocupadas
-        
+        int NumeroDeVagasSalaoOcupadas;
+        NumeroDeVagasSalaoOcupadas = VagaSalaoDao.buscarTodasVagaSalaoByEvento(evento, espaco).size();//lista de vagas ocupadas
         
         request.setAttribute("espaco", espaco);
         request.setAttribute("evento", evento);
         request.setAttribute("cadeirasDisponivels", cadeirasDisponivels);
         request.setAttribute("cabinesDisponivels", cabinesDisponivels);
         request.setAttribute("vagasEspeciaisDisponivels", vagasEspeciaisDisponivels);
-        request.setAttribute("vagasSalaoDisponivels", espaco.getQuantvagaespecial() - vagasSalaoOcupadas.size());
+        request.setAttribute("NumeroDeVagasSalaoOcupadas", NumeroDeVagasSalaoOcupadas);
         request.setAttribute("clientes", clientes);
 
         request.setAttribute("page", "/pages/outros/vendaIngressos.jsp");

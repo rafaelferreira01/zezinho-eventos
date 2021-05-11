@@ -81,19 +81,14 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
 
             </c:when>
             <c:otherwise><!-- CASO CONTRARIO -->
-
                 <div class="Assento" id="vagaSalao">                 
                     <label for="Assento "> Vaga Salão - 
-                        ${requestScope.espaco.quantvagasalao-requestScope.vagasSalaoDisponivels.size()}/${requestScope.espaco.quantvagasalao}
-                        | R$${requestScope.espaco.valorVagaSalao} </label> 
+                        ${requestScope.NumeroDeVagasSalaoOcupadas}/${requestScope.espaco.quantvagaSalao}
+                        | R$${requestScope.espaco.valorVagaSalao} </label>
+                         <select name="cpVagaSalao" id="cpVagaSalao" class="form-control">
+                             <option value="a">Unico</option>
+                         </select>
                     <span name="cpVagaSalao" id="cpVagaSalao"></span>
-<!--                    <select name="cpVagaSalao" id="cpVagaSalao" class="form-control">  
-                        <option value="-1">Não comprar</option>   
-                        <c:forEach items="${requestScope.vagasSalaoDisponivels}" var="vs">
-                            <option value="${vs.descricao}">${vs.descricao}</option>                                   
-                        </c:forEach>  
-                    </select>        -->
-                </div><br>
             </c:otherwise>
         </c:choose>
 

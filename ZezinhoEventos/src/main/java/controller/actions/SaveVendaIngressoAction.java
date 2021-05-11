@@ -52,6 +52,8 @@ public class SaveVendaIngressoAction extends GenericCommander {
         String descricaoCadeira = request.getParameter("cpCadeiras");
         String descricaoCabine = request.getParameter("cpCabines");
         String descricaoVagaEspecial = request.getParameter("cpVagaEspecial");
+        String descricaoVagaSalao = request.getParameter("cpVagaSalao");
+        
 
         if (descricaoCadeira.equals("-1") && descricaoCabine.equals("-1")
                 && descricaoVagaEspecial.equals("-1")) {
@@ -114,6 +116,23 @@ public class SaveVendaIngressoAction extends GenericCommander {
                VagaEspecialDao.getConexao().persist(vagaEspecial);
                VagaEspecialDao.getConexao().getTransaction().commit();
             }
+            
+            
+            //VAGA SALAO
+            if (!descricaoVagaSalao.equals("")) {
+//            if (espaco.getTipoespaco().getIdTipoEspaco() == 1){
+                VagaSalaoDao.getConexao().getTransaction().begin();
+
+                VagaSalao vagaSalao;
+                vagaSalao = new VagaSalao(0,
+                        cliente,
+                        espaco);
+
+               VagaSalaoDao.getConexao().persist(vagaSalao);
+               VagaSalaoDao.getConexao().getTransaction().commit();
+            }
+            
+            
 
             //EVENTO_CLIENTE
             EventoClienteDao.getConexao().getTransaction().begin();
