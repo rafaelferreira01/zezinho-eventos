@@ -48,21 +48,13 @@ public class SaveVendaIngressoAction extends GenericCommander {
     @Override
     public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String msg;
+        String msg = "";
         String descricaoCadeira = request.getParameter("cpCadeiras");
         String descricaoCabine = request.getParameter("cpCabines");
         String descricaoVagaEspecial = request.getParameter("cpVagaEspecial");
         String descricaoVagaSalao = request.getParameter("cpVagaSalao");
         
-
-        if (descricaoCadeira.equals("-1") && descricaoCabine.equals("-1")
-                && descricaoVagaEspecial.equals("-1")) {
-            msg = "Você deve selecionar ao menos um tipo de assento!!!";
-        } else if (Integer.parseInt(request.getParameter("cpSearchClientes")) == -1) {
-            msg = "Você deve selecionar um cliente!!!";
-        } else {
-
-            //EVENTO
+        //EVENTO
 //            EventoDao.getConexao().getTransaction().begin();
             Evento evento;
             evento = EventoDao.buscarByIdEvento(Integer.parseInt(request.getParameter("cpEventoId")));
@@ -74,6 +66,17 @@ public class SaveVendaIngressoAction extends GenericCommander {
             //ESPACO
             Espaco espaco;
             espaco = EspacoDao.buscarByEvento(evento);
+        
+        if (espaco.getTipoespaco().getIdTipoEspaco() == 2) {
+            if (descricaoCadeira.equals("-1") && descricaoCabine.equals("-1")
+                    && descricaoVagaEspecial.equals("-1")) {
+                msg = "Você deve selecionar ao menos um tipo de assento!!!";
+            }
+        } else if (Integer.parseInt(request.getParameter("cpSearchClientes")) == -1) {
+            msg = "Você deve selecionar um cliente!!!";
+        } else {
+
+            
 
             //CADEIRA
             if (!descricaoCadeira.equals("-1")) {

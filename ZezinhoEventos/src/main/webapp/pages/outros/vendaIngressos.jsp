@@ -81,6 +81,9 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
 
             </c:when>
             <c:otherwise><!-- CASO CONTRARIO -->
+                <input type="hidden" name="cpCadeiras" value="-1" />
+                <input type="hidden" name="cpCabines" value="-1" />
+                <input type="hidden" name="cpVagaEspecial" value="-1" />
                 <div class="Assento" id="vagaSalao">                 
                     <label for="Assento "> Vaga Salão - 
                         ${requestScope.NumeroDeVagasSalaoOcupadas}/${requestScope.espaco.quantvagaSalao}
