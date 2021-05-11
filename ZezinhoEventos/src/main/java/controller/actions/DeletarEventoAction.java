@@ -10,6 +10,9 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.daos.EventoDao;
+import model.evento.Evento;
+
 
 /**
  *
@@ -24,6 +27,20 @@ public class DeletarEventoAction extends GenericCommander {
     @Override
     public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+         String id = request.getParameter("id");
+       
+        
+       
+        EventoDao.getConexao().getTransaction().begin();
+        
+        Evento evento = EventoDao.getConexao().find(Evento.class,Integer.parseInt(id));
+        
+        EventoDao.getConexao().remove(evento);
+        EventoDao.getConexao().getTransaction().commit();
+        
+        
+       
+        response.sendRedirect("control?ac=listaEventos");
     }
     
 }

@@ -94,11 +94,54 @@
                                     <tr>
                                         <td><a href="control?ac=venderIngresso&id=${e.idEvento}">${e.nomeEvento}</td>
                                         <td>${e.dataEvento}</td>
-                                        <td>A X</td>
-                                    </tr>
-                                </c:forEach>       
-                            </tbody>
+                                        <td> <a href="control?ac=editEvento&id=${e.idEvento}"><span> <i class="fa fa-edit"></i></span></a>
+                                             <a href="#" class="btnExc" data-toggle="modal" data-target="#questionModal" data-evento="${e.nomeEvento}" data-id="${e.idEvento}">
+                                         <i class="fa fa-trash"></i>
+                   </a>
+
+            </tr>
+
+        </c:forEach>          
 
 
-                            </table>
+    </tbody>
 
+
+</table>
+                        
+                        
+<!-- Modal -->
+<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar exclusão?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          Confirmar exclusão do evento <span id="qEvento" class="font-weight-bold">  </span>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Não </button>
+        <button id="btnExcluir" type="button" class="btn btn-danger"> Sim </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    
+    $(".btnExc").on("click",function(e){
+        $("#qEvento").html($(e.currentTarget).data("evento"));
+          $("#btnExcluir").data("id",$(e.currentTarget).data("id"))
+    });
+    
+     $("#btnExcluir").on("click",function(e){
+        console.log( $(e.currentTarget).data("id"));
+        
+        window.location = "control?ac=apgEvento&id="+$(e.currentTarget).data("id");
+     });
+
+</script>

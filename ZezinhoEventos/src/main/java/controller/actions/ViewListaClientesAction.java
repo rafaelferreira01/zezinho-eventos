@@ -36,7 +36,7 @@ public class ViewListaClientesAction extends GenericCommander {
         
         RequestDispatcher rd = request.getRequestDispatcher("template.jsp");
        
-       request.setAttribute("eventos", EventoDao.buscarTodosEventos());
+      // request.setAttribute("eventos", EventoDao.buscarTodosEventos());
        
         request.setAttribute("page", "/pages/listagens/listagemClientes.jsp");
        
@@ -63,7 +63,7 @@ public class ViewListaClientesAction extends GenericCommander {
        }
        
    request.setAttribute("clientes", clientes);
-   request.setAttribute("eventos", EventoDao.buscarTodosEventos());
+   
    
       
    
