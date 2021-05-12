@@ -81,10 +81,12 @@ public class SaveVendaIngressoAction extends GenericCommander {
             //CADEIRA
             if (!descricaoCadeira.equals("-1")) {
                 CadeiraDao.getConexao().getTransaction().begin();
-
+                
                 Cadeira cadeira;
                 cadeira = new Cadeira(0,
                         descricaoCadeira,
+                        Boolean.parseBoolean(request.getParameter("CpalimentoCadeira") != null ? "true" : "false"),
+                        Boolean.parseBoolean(request.getParameter("CpmeiaentradaCadeira") != null ? "true" : "false"),
                         cliente,
                         espaco);
 
@@ -113,6 +115,8 @@ public class SaveVendaIngressoAction extends GenericCommander {
                 VagaEspecial vagaEspecial;
                 vagaEspecial = new VagaEspecial(0,
                         descricaoVagaEspecial,
+                        Boolean.parseBoolean(request.getParameter("CpalimentoVagaEspecial") != null ? "true" : "false"),
+                        Boolean.parseBoolean(request.getParameter("CpmeiaentradaVagaEspecial") != null ? "true" : "false"),
                         cliente,
                         espaco);
 
@@ -128,6 +132,8 @@ public class SaveVendaIngressoAction extends GenericCommander {
 
                 VagaSalao vagaSalao;
                 vagaSalao = new VagaSalao(0,
+                        Boolean.parseBoolean(request.getParameter("CpalimentoVagaSalao") != null ? "true" : "false"),
+                        Boolean.parseBoolean(request.getParameter("CpmeiaentradaVagaSalao") != null ? "true" : "false"),
                         cliente,
                         espaco);
 

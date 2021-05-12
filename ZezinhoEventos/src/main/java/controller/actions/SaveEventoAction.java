@@ -69,6 +69,7 @@ public class SaveEventoAction extends GenericCommander {
                         Boolean.parseBoolean(request.getParameter("CpCapacidadeReduzida") != null ? "true" : "false"),
                         Double.parseDouble(request.getParameter("cpCustoExtra")),
                         Double.parseDouble(request.getParameter("cpCustoInicial")),
+                        Boolean.parseBoolean(request.getParameter("CpaceitaMeiaEntrada") != null ? "true" : "false"),
                         tipoEvento);
 
                 EventoDao.getConexao().persist(evento);

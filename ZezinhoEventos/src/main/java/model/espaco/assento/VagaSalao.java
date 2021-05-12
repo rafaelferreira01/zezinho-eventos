@@ -28,7 +28,9 @@ import model.espaco.Espaco;
 @Table(catalog = "zezinho_eventos", schema = "")
 @NamedQueries({
     @NamedQuery(name = "VagaSalao.findAll", query = "SELECT v FROM VagaSalao v"),
-    @NamedQuery(name = "VagaSalao.findByIdVagasalao", query = "SELECT v FROM VagaSalao v WHERE v.idVagasalao = :idVagasalao")})
+    @NamedQuery(name = "VagaSalao.findByIdVagasalao", query = "SELECT v FROM VagaSalao v WHERE v.idVagasalao = :idVagasalao"),
+    @NamedQuery(name = "VagaSalao.findByEhpgalimento", query = "SELECT v FROM VagaSalao v WHERE v.ehpgalimento = :ehpgalimento"),
+    @NamedQuery(name = "VagaSalao.findByEhmeiaentrada", query = "SELECT v FROM VagaSalao v WHERE v.ehmeiaentrada = :ehmeiaentrada")})
 public class VagaSalao implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +39,8 @@ public class VagaSalao implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer idVagasalao;
+    private Boolean ehpgalimento;
+    private Boolean ehmeiaentrada;
     @JoinColumn(name = "cliente", referencedColumnName = "cpf")
     @ManyToOne
     private Cliente cliente;
@@ -46,15 +50,40 @@ public class VagaSalao implements Serializable {
 
     public VagaSalao() {
     }
-
+    
     //
     public VagaSalao(Integer idVagasalao, Cliente cliente, Espaco espaco) {
         this.idVagasalao = idVagasalao;
         this.cliente = cliente;
         this.espaco = espaco;
     }
-    //
+
+    public VagaSalao(Integer idVagasalao, Boolean ehpgalimento, Boolean ehmeiaentrada, Cliente cliente, Espaco espaco) {
+        this.idVagasalao = idVagasalao;
+        this.ehpgalimento = ehpgalimento;
+        this.ehmeiaentrada = ehmeiaentrada;
+        this.cliente = cliente;
+        this.espaco = espaco;
+    }
+
+    public Boolean getEhpgalimento() {
+        return ehpgalimento;
+    }
+
+    public void setEhpgalimento(Boolean ehpgalimento) {
+        this.ehpgalimento = ehpgalimento;
+    }
+
+    public Boolean getEhmeiaentrada() {
+        return ehmeiaentrada;
+    }
+
+    public void setEhmeiaentrada(Boolean ehmeiaentrada) {
+        this.ehmeiaentrada = ehmeiaentrada;
+    }
     
+    
+    //
 
     public VagaSalao(Integer idVagasalao) {
         this.idVagasalao = idVagasalao;

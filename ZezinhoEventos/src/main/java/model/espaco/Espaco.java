@@ -5,10 +5,9 @@
  */
 package model.espaco;
 
-import model.espaco.assento.VagaSalao;
 import model.espaco.assento.Cadeira;
+import model.espaco.assento.VagaSalao;
 import model.espaco.assento.VagaEspecial;
-import model.espaco.assento.Cabine;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -24,6 +23,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import model.evento.Evento;
+import model.espaco.TipoEspaco;
 
 /**
  *
@@ -67,8 +67,6 @@ public class Espaco implements Serializable {
     private List<VagaSalao> vagaSalaoList;
     @OneToMany(mappedBy = "espaco")
     private List<Cadeira> cadeiraList;
-    @OneToMany(mappedBy = "espaco")
-    private List<Cabine> cabineList;
     @JoinColumn(name = "evento", referencedColumnName = "idEvento")
     @ManyToOne
     private Evento evento;
@@ -81,7 +79,7 @@ public class Espaco implements Serializable {
     public Espaco() {
     }
     
-        //
+    	        //
 
     public Espaco(Integer idespaco, Evento evento, TipoEspaco tipoespaco) {
         this.idespaco = idespaco;
@@ -194,14 +192,6 @@ public class Espaco implements Serializable {
 
     public void setCadeiraList(List<Cadeira> cadeiraList) {
         this.cadeiraList = cadeiraList;
-    }
-
-    public List<Cabine> getCabineList() {
-        return cabineList;
-    }
-
-    public void setCabineList(List<Cabine> cabineList) {
-        this.cabineList = cabineList;
     }
 
     public Evento getEvento() {

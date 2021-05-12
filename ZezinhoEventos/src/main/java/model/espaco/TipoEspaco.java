@@ -5,6 +5,7 @@
  */
 package model.espaco;
 
+import model.espaco.Espaco;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;

@@ -30,7 +30,9 @@ import model.espaco.Espaco;
 @NamedQueries({
     @NamedQuery(name = "VagaEspecial.findAll", query = "SELECT v FROM VagaEspecial v"),
     @NamedQuery(name = "VagaEspecial.findByIdVagaEspecial", query = "SELECT v FROM VagaEspecial v WHERE v.idVagaEspecial = :idVagaEspecial"),
-    @NamedQuery(name = "VagaEspecial.findByDescricao", query = "SELECT v FROM VagaEspecial v WHERE v.descricao = :descricao")})
+    @NamedQuery(name = "VagaEspecial.findByDescricao", query = "SELECT v FROM VagaEspecial v WHERE v.descricao = :descricao"),
+    @NamedQuery(name = "VagaEspecial.findByEhpgalimento", query = "SELECT v FROM VagaEspecial v WHERE v.ehpgalimento = :ehpgalimento"),
+    @NamedQuery(name = "VagaEspecial.findByEhmeiaentrada", query = "SELECT v FROM VagaEspecial v WHERE v.ehmeiaentrada = :ehmeiaentrada")})
 public class VagaEspecial implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +44,8 @@ public class VagaEspecial implements Serializable {
     @Size(max = 4)
     @Column(length = 4)
     private String descricao;
+    private Boolean ehpgalimento;
+    private Boolean ehmeiaentrada;
     @JoinColumn(name = "cliente", referencedColumnName = "cpf")
     @ManyToOne
     private Cliente cliente;
@@ -51,7 +55,7 @@ public class VagaEspecial implements Serializable {
 
     public VagaEspecial() {
     }
-
+    
     //
     public VagaEspecial(Integer idVagaEspecial, String descricao, Cliente cliente, Espaco espaco) {
         this.idVagaEspecial = idVagaEspecial;
@@ -59,6 +63,32 @@ public class VagaEspecial implements Serializable {
         this.cliente = cliente;
         this.espaco = espaco;
     }
+
+    public VagaEspecial(Integer idVagaEspecial, String descricao, Boolean ehpgalimento, Boolean ehmeiaentrada, Cliente cliente, Espaco espaco) {
+        this.idVagaEspecial = idVagaEspecial;
+        this.descricao = descricao;
+        this.ehpgalimento = ehpgalimento;
+        this.ehmeiaentrada = ehmeiaentrada;
+        this.cliente = cliente;
+        this.espaco = espaco;
+    }
+
+    public Boolean getEhpgalimento() {
+        return ehpgalimento;
+    }
+
+    public void setEhpgalimento(Boolean ehpgalimento) {
+        this.ehpgalimento = ehpgalimento;
+    }
+
+    public Boolean getEhmeiaentrada() {
+        return ehmeiaentrada;
+    }
+
+    public void setEhmeiaentrada(Boolean ehmeiaentrada) {
+        this.ehmeiaentrada = ehmeiaentrada;
+    }
+    
     
     //
 

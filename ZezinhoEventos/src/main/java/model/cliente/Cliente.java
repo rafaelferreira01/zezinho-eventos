@@ -5,14 +5,10 @@
  */
 package model.cliente;
 
-import model.espaco.assento.VagaSalao;
-import model.espaco.assento.Cadeira;
-import model.espaco.assento.VagaEspecial;
-import model.espaco.assento.Cabine;
+import model.evento.Evento;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,9 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import model.evento.Evento;
-import model.cliente.Cliente;
-import model.evento.EventoCliente;
 
 /**
  *
@@ -51,21 +44,11 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 45)
     @Column(nullable = false, length = 45)
     private String nome;
-    @OneToMany(mappedBy = "cliente")
-    private List<VagaSalao> vagaSalaoList;
     @JoinColumn(name = "evento", referencedColumnName = "idEvento")
     @ManyToOne
     private Evento evento;
     @OneToMany(mappedBy = "cliente")
     private List<Evento> eventoList;
-    @OneToMany(mappedBy = "cliente")
-    private List<Cadeira> cadeiraList;
-    @OneToMany(mappedBy = "cliente")
-    private List<Cabine> cabineList;
-    @OneToMany(mappedBy = "cliente")
-    private List<VagaEspecial> vagaEspecialList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<EventoCliente> eventoClienteList;
 
     public Cliente() {
     }
@@ -95,14 +78,6 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public List<VagaSalao> getVagaSalaoList() {
-        return vagaSalaoList;
-    }
-
-    public void setVagaSalaoList(List<VagaSalao> vagaSalaoList) {
-        this.vagaSalaoList = vagaSalaoList;
-    }
-
     public Evento getEvento() {
         return evento;
     }
@@ -117,38 +92,6 @@ public class Cliente implements Serializable {
 
     public void setEventoList(List<Evento> eventoList) {
         this.eventoList = eventoList;
-    }
-
-    public List<Cadeira> getCadeiraList() {
-        return cadeiraList;
-    }
-
-    public void setCadeiraList(List<Cadeira> cadeiraList) {
-        this.cadeiraList = cadeiraList;
-    }
-
-    public List<Cabine> getCabineList() {
-        return cabineList;
-    }
-
-    public void setCabineList(List<Cabine> cabineList) {
-        this.cabineList = cabineList;
-    }
-
-    public List<VagaEspecial> getVagaEspecialList() {
-        return vagaEspecialList;
-    }
-
-    public void setVagaEspecialList(List<VagaEspecial> vagaEspecialList) {
-        this.vagaEspecialList = vagaEspecialList;
-    }
-
-    public List<EventoCliente> getEventoClienteList() {
-        return eventoClienteList;
-    }
-
-    public void setEventoClienteList(List<EventoCliente> eventoClienteList) {
-        this.eventoClienteList = eventoClienteList;
     }
 
     @Override

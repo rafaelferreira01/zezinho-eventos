@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +24,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import model.cliente.Cliente;
-import model.espaco.Espaco;
-import model.evento.TipoEvento;
 
 /**
  *
@@ -41,7 +38,8 @@ import model.evento.TipoEvento;
     @NamedQuery(name = "Evento.findByDataEvento", query = "SELECT e FROM Evento e WHERE e.dataEvento = :dataEvento"),
     @NamedQuery(name = "Evento.findByCapacidadeReduzida", query = "SELECT e FROM Evento e WHERE e.capacidadeReduzida = :capacidadeReduzida"),
     @NamedQuery(name = "Evento.findByCustoExtra", query = "SELECT e FROM Evento e WHERE e.custoExtra = :custoExtra"),
-    @NamedQuery(name = "Evento.findByCustoInicial", query = "SELECT e FROM Evento e WHERE e.custoInicial = :custoInicial")})
+    @NamedQuery(name = "Evento.findByCustoInicial", query = "SELECT e FROM Evento e WHERE e.custoInicial = :custoInicial"),
+    @NamedQuery(name = "Evento.findByAceitameiaentrada", query = "SELECT e FROM Evento e WHERE e.aceitameiaentrada = :aceitameiaentrada")})
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,6 +59,7 @@ public class Evento implements Serializable {
     private Double custoExtra;
     @Column(precision = 22, scale = 0)
     private Double custoInicial;
+    private Boolean aceitameiaentrada;
     @OneToMany(mappedBy = "evento")
     private List<Cliente> clienteList;
     @JoinColumn(name = "cliente", referencedColumnName = "cpf")
@@ -69,19 +68,11 @@ public class Evento implements Serializable {
     @JoinColumn(name = "tipoevento", referencedColumnName = "idTipoEvento")
     @ManyToOne
     private TipoEvento tipoevento;
-    @OneToMany(mappedBy = "evento")
-    private List<Espaco> espacoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
-    private List<EventoCliente> eventoClienteList;
 
     public Evento() {
     }
-
-    public Evento(Integer idEvento) {
-        this.idEvento = idEvento;
-    }
     
-    	 //
+   //
     public Evento(Integer idEvento, String nomeEvento, Date dataEvento, boolean capacidadeReduzida, double custoExtra, double custoInicial) {
         this.idEvento = idEvento;
         this.nomeEvento = nomeEvento;
@@ -100,7 +91,30 @@ public class Evento implements Serializable {
         this.custoInicial = custoInicial;
         this.tipoevento = tipoevento;
     }
+
+    public Evento(Integer idEvento, String nomeEvento, Date dataEvento, Boolean capacidadeReduzida, Double custoExtra, Double custoInicial, Boolean aceitameiaentrada, TipoEvento tipoevento) {
+        this.idEvento = idEvento;
+        this.nomeEvento = nomeEvento;
+        this.dataEvento = dataEvento;
+        this.capacidadeReduzida = capacidadeReduzida;
+        this.custoExtra = custoExtra;
+        this.custoInicial = custoInicial;
+        this.aceitameiaentrada = aceitameiaentrada;
+        this.tipoevento = tipoevento;
+    }
     //
+    
+    public Boolean getAceitameiaentrada() {
+        return aceitameiaentrada;
+    }
+
+    public void setAceitameiaentrada(Boolean aceitameiaentrada) {
+        this.aceitameiaentrada = aceitameiaentrada;
+    }
+    
+    public Evento(Integer idEvento) {
+        this.idEvento = idEvento;
+    }
 
     public Integer getIdEvento() {
         return idEvento;
@@ -172,22 +186,6 @@ public class Evento implements Serializable {
 
     public void setTipoevento(TipoEvento tipoevento) {
         this.tipoevento = tipoevento;
-    }
-
-    public List<Espaco> getEspacoList() {
-        return espacoList;
-    }
-
-    public void setEspacoList(List<Espaco> espacoList) {
-        this.espacoList = espacoList;
-    }
-
-    public List<EventoCliente> getEventoClienteList() {
-        return eventoClienteList;
-    }
-
-    public void setEventoClienteList(List<EventoCliente> eventoClienteList) {
-        this.eventoClienteList = eventoClienteList;
     }
 
     @Override

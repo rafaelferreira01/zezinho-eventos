@@ -66,6 +66,13 @@
                 Capacidade Reduzida
             </label>
         </div>
+    
+    <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" id="aceitaMeiaEntrada" name="CpaceitaMeiaEntrada" >
+                Aceita meia entrada
+            </label>
+        </div>
 
         <div class="Evento" id="custoInicial"><br>
             <label for="custoInicial" class="form-label">Custo Inicial</label>
@@ -119,25 +126,32 @@
             if ($(this).val() == '1') {
                 $("#valorVagaSalao").show();
                 $("#valorCabine").hide();
-//                $("#valorCabine").val(0)
                 $("#valorVagaEspecial").hide();
-//                $("#valorVagaEspecial").val(0)
                 $("#valorCadeira").hide();
-//                $("#valorCadeira").val(0)
-                document.getElementById("valorCadeira").required = false;
-                document.getElementById("valorCabine").required = false;
-                document.getElementById("valorVagaEspecial").required = false;
-                document.getElementById("valorVagaSalao").required = true;
+
+                $("#valorCadeira").attr("required", false);
+                $("#valorCabine").attr("required", false);
+                $("#valorVagaEspecial").attr("required", false);
+                $("#valorVagaSalao").attr("required", true);
+//                document.getElementById("valorCadeira").required = false;
+//                document.getElementById("valorCabine").required = false;
+//                document.getElementById("valorVagaEspecial").required = false;
+//                document.getElementById("valorVagaSalao").required = true;
             } else {
                 $("#valorVagaSalao").hide();
-                $("#valorVagaSalao").val(0)
                 $("#valorCabine").show();
                 $("#valorVagaEspecial").show();
                 $("#valorCadeira").show();
-                document.getElementById("valorCadeira").required = true;
-                document.getElementById("valorCabine").required = true;
-                document.getElementById("valorVagaEspecial").required = true;
-                document.getElementById("valorVagaSalao").required = false;
+                $("#valorCadeira").attr("required", true);
+                $("#valorCabine").attr("required", true);
+                $("#valorVagaEspecial").attr("required", true);
+                $("#valorVagaSalao").attr("required", false);
+                
+                $("#valorVagaSalao").val(0);
+//                document.getElementById("valorCadeira").required = true;
+//                document.getElementById("valorCabine").required = true;
+//                document.getElementById("valorVagaEspecial").required = true;
+//                document.getElementById("valorVagaSalao").required = false;
             }
         }).trigger('change');
     });

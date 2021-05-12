@@ -30,7 +30,9 @@ import model.espaco.Espaco;
 @NamedQueries({
     @NamedQuery(name = "Cadeira.findAll", query = "SELECT c FROM Cadeira c"),
     @NamedQuery(name = "Cadeira.findByIdCadeira", query = "SELECT c FROM Cadeira c WHERE c.idCadeira = :idCadeira"),
-    @NamedQuery(name = "Cadeira.findByDescricao", query = "SELECT c FROM Cadeira c WHERE c.descricao = :descricao")})
+    @NamedQuery(name = "Cadeira.findByDescricao", query = "SELECT c FROM Cadeira c WHERE c.descricao = :descricao"),
+    @NamedQuery(name = "Cadeira.findByEhpgalimento", query = "SELECT c FROM Cadeira c WHERE c.ehpgalimento = :ehpgalimento"),
+    @NamedQuery(name = "Cadeira.findByEhmeiaentrada", query = "SELECT c FROM Cadeira c WHERE c.ehmeiaentrada = :ehmeiaentrada")})
 public class Cadeira implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +44,8 @@ public class Cadeira implements Serializable {
     @Size(max = 4)
     @Column(length = 4)
     private String descricao;
+    private Boolean ehpgalimento;
+    private Boolean ehmeiaentrada;
     @JoinColumn(name = "cliente", referencedColumnName = "cpf")
     @ManyToOne
     private Cliente cliente;
@@ -53,19 +57,46 @@ public class Cadeira implements Serializable {
     }
     
     //
-
     public Cadeira(Integer idCadeira, String descricao, Cliente cliente, Espaco espaco) {
         this.idCadeira = idCadeira;
         this.descricao = descricao;
         this.cliente = cliente;
         this.espaco = espaco;
     }
-    
+
+    public Cadeira(Integer idCadeira, String descricao, Boolean ehpgalimento, Boolean ehmeiaentrada, Cliente cliente, Espaco espaco) {
+        this.idCadeira = idCadeira;
+        this.descricao = descricao;
+        this.ehpgalimento = ehpgalimento;
+        this.ehmeiaentrada = ehmeiaentrada;
+        this.cliente = cliente;
+        this.espaco = espaco;
+    }
+
       
     public Cadeira(Integer idCadeira, String descricao) {
         this.idCadeira = idCadeira;
         this.descricao = descricao;
     }
+
+    public Boolean getEhpgalimento() {
+        return ehpgalimento;
+    }
+
+    public void setEhpgalimento(Boolean ehpgalimento) {
+        this.ehpgalimento = ehpgalimento;
+    }
+
+    public Boolean getEhmeiaentrada() {
+        return ehmeiaentrada;
+    }
+
+    public void setEhmeiaentrada(Boolean ehmeiaentrada) {
+        this.ehmeiaentrada = ehmeiaentrada;
+    }
+    
+    
+    
     //
 
     public Cadeira(Integer idCadeira) {
