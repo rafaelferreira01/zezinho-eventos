@@ -50,18 +50,18 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
                 <div class="mb-3">               
                     <label for="Assento "> Cadeira -
                         ${requestScope.espaco.quantcadeira-requestScope.cadeirasDisponivels.size()}/${requestScope.espaco.quantcadeira}
-                        | R$${requestScope.espaco.valorCadeira}
+                        | R$<span id="valcadeira">${requestScope.espaco.valorCadeira}</span>
                         
                         <c:if test="${requestScope.evento.aceitameiaentrada == true}">
                             <div class="form-check">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    <input class="form-check-input" type="checkbox" value="" id="meiaentradaCadeira" name="CpmeiaentradaCadeira" >
+                                    <input class="form-check-input" type="checkbox" value="" id="meiaentradaCadeiracheck" name="CpmeiaentradaCadeira" >
                                     Meia Entrada
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <label class="form-check-label" id="alimentoCadeira" for="flexCheckDefault">
-                                    <input class="form-check-input" type="checkbox" value="" name="CpalimentoCadeira" >
+                            <div class="form-check" id="alimentoCadeira">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox"  value="" id="alimentoCadeiracheck" name="CpalimentoCadeira" >
                                     Doação Alimento
                                 </label>
                             </div>
@@ -97,18 +97,18 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
                 <div class="Assento" id="vagaEspecial">                 
                     <label for="Assento "> Vaga Especial - 
                         ${requestScope.espaco.quantvagaespecial-requestScope.vagasEspeciaisDisponivels.size()}/${requestScope.espaco.quantvagaespecial}
-                        | R$${requestScope.espaco.valorVagaEspecial}
+                        | R$<span id="valvagaespecial">${requestScope.espaco.valorVagaEspecial}</span>
 
                         <c:if test="${requestScope.evento.aceitameiaentrada == true}">
                             <div class="form-check">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    <input class="form-check-input" type="checkbox" value="" id="meiaentradaVagaEspecial" name="CpmeiaentradaVagaEspecial" >
+                                    <input class="form-check-input" type="checkbox" value="" id="meiaentradaVagaEspecialcheck" name="CpmeiaentradaVagaEspecial" >
                                     Meia Entrada
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <label class="form-check-label" id="alimentoVagaEspecial" for="flexCheckDefault">
-                                    <input class="form-check-input" type="checkbox" value="" name="CpalimentoVagaEspecial" >
+                            <div class="form-check" id="alimentoVagaEspecial">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="alimentoVagaEspecialcheck" name="CpalimentoVagaEspecial" >
                                     Doação Alimento
                                 </label>
                             </div>
@@ -137,19 +137,19 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
                 <div class="Assento" id="vagaSalao">                 
                     <label for="Assento "> Vaga Salão - 
                         ${requestScope.NumeroDeVagasSalaoOcupadas}/${requestScope.espaco.quantvagaSalao}
-                        | R$${requestScope.espaco.valorVagaSalao}
+                        | R$<span id="valvagasalao">${requestScope.espaco.valorVagaSalao}</span>
                     
                     
                     <c:if test="${requestScope.evento.aceitameiaentrada == true}">
                             <div class="form-check">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    <input class="form-check-input" type="checkbox" value="" id="meiaentradaVagaSalao" name="CpmeiaentradaVagaSalao" >
+                                    <input class="form-check-input" type="checkbox" value="" id="meiaentradaVagaSalaocheck" name="CpmeiaentradaVagaSalao" >
                                     Meia Entrada
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <label class="form-check-label" id="alimentoVagaSalao" for="flexCheckDefault">
-                                    <input class="form-check-input" type="checkbox" value="" name="CpalimentoVagaSalao" >
+                            <div class="form-check" id="alimentoVagaSalao">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="alimentoVagaSalaocheck" name="CpalimentoVagaSalao" >
                                     Doação Alimento
                                 </label>
                             </div>
@@ -165,38 +165,70 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
             </c:otherwise>
         </c:choose>
 
-
         <div class = "text-center">
             <button type="submit" class="btn btn-primary bg-dark">Comprar</button>
         </div>
 </form>
 
-
-
-<script>
-    $(function () {
-        $("#meiaentradaCadeira").change(function () {
-                    if ($("#meiaentradaCadeira").is(":checked")) {
-                $("#alimentoCadeira").show();
-            } else {
-                $("#alimentoCadeira").hide();
-            }
-        }).trigger('change');
+    <script>
+        $(function () {
+            //CADEIRA
+            $("#alimentoCadeiracheck").change(function () {
+                        if ($("#alimentoCadeiracheck").is(":checked")) {
+                            $("#valcadeira").text(0);
+                } else {
+                    $("#valcadeira").text(${requestScope.espaco.valorCadeira}/2);
+                }
+            }).trigger('change');
+            
+            $("#meiaentradaCadeiracheck").change(function () {
+                        if ($("#meiaentradaCadeiracheck").is(":checked")) {
+                            $("#valcadeira").text(${requestScope.espaco.valorCadeira/2});
+                    $("#alimentoCadeira").show();
+                } else {
+                    $("#valcadeira").text(${requestScope.espaco.valorCadeira});
+                    $("#alimentoCadeira").hide();
+                }
+            }).trigger('change');
+            
+            
+            //VAGA ESPECIAL
+            $("#alimentoVagaEspecialcheck").change(function () {
+                            if ($("#alimentoVagaEspecialcheck").is(":checked")) {
+                                $("#valvagaespecial").text(0);
+                    } else {
+                        $("#valvagaespecial").text(${requestScope.espaco.valorCadeira}/2);
+                    }
+                }).trigger('change');
+                
+            $("#meiaentradaVagaEspecialcheck").change(function () {
+                        if ($("#meiaentradaVagaEspecialcheck").is(":checked")) {
+                             $("#valvagaespecial").text(${requestScope.espaco.valorVagaEspecial/2});
+                    $("#alimentoVagaEspecial").show();
+                } else {
+                    $("#valvagaespecial").text(${requestScope.espaco.valorVagaEspecial});
+                    $("#alimentoVagaEspecial").hide();
+                }
+            }).trigger('change');
         
-        $("#meiaentradaVagaEspecial").change(function () {
-                    if ($("#meiaentradaVagaEspecial").is(":checked")) {
-                $("#alimentoVagaEspecial").show();
-            } else {
-                $("#alimentoVagaEspecial").hide();
-            }
-        }).trigger('change');
         
-        $("#meiaentradaVagaSalao").change(function () {
-                    if ($("#meiaentradaVagaSalao").is(":checked")) {
-                $("#alimentoVagaSalao").show();
-            } else {
-                $("#alimentoVagaSalao").hide();
-            }
-        }).trigger('change');
-    });
-</script>
+            //VAGA ESPECIAL
+            $("#alimentoVagaSalaocheck").change(function () {
+                            if ($("#alimentoVagaSalaocheck").is(":checked")) {
+                                $("#valvagasalao").text(0);
+                    } else {
+                        $("#valvagasalao").text(${requestScope.espaco.valorVagaSalao}/2);
+                    }
+                }).trigger('change');
+                
+            $("#meiaentradaVagaSalaocheck").change(function () {
+                        if ($("#meiaentradaVagaSalaocheck").is(":checked")) {
+                             $("#valvagasalao").text(${requestScope.espaco.valorVagaSalao/2});
+                    $("#alimentoVagaSalao").show();
+                } else {
+                    $("#valvagasalao").text(${requestScope.espaco.valorVagaSalao});
+                    $("#alimentoVagaSalao").hide();
+                }
+            }).trigger('change');
+        });
+    </script>

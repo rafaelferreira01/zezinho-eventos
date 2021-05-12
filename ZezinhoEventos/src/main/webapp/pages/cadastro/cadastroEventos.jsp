@@ -147,7 +147,7 @@
                 $("#valorVagaEspecial").attr("required", true);
                 $("#valorVagaSalao").attr("required", false);
                 
-                $("#valorVagaSalao").val(0);
+//                $("#valorVagaSalao").val(0);
 //                document.getElementById("valorCadeira").required = true;
 //                document.getElementById("valorCabine").required = true;
 //                document.getElementById("valorVagaEspecial").required = true;
