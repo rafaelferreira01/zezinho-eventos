@@ -82,7 +82,7 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
                 <div class="Assento" id="vagaCabine">                 
                     <label for="Assento "> Cabine - 
                         ${requestScope.espaco.quantcabine-requestScope.cabinesDisponivels.size()}/${requestScope.espaco.quantcabine}
-                        | R$${requestScope.espaco.valorCabine} </label> 
+                        | R$<span id="valcabine">${requestScope.espaco.valorCabine}</span></label> 
                     <select name="cpCabines" id="cpCabines" class="form-control">
                         <option value="-1">Não comprar</option>   
                         <c:forEach items="${requestScope.cabinesDisponivels}" var="cb">
@@ -166,28 +166,73 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
         </c:choose>
 
         <div class = "text-center">
+            <h4>Total:&nbspR$<span id="valtotal">0</span><br><br>
             <button type="submit" class="btn btn-primary bg-dark">Comprar</button>
+            
         </div>
 </form>
 
     <script>
+        
+        function calcular() {
+            var total = 0.0;
+                if(${requestScope.espaco.tipoespaco.idTipoEspaco} == '1'){
+                    total += parseFloat($("#valvagasalao").text());
+            } else {
+                if($('#cpCadeiras option:selected').val() != -1){
+                    total += parseFloat($("#valcadeira").text());
+                }
+                if($('#cpCabines option:selected').val() != -1){
+                    total += parseFloat($("#valcabine").text());
+                }
+                if($('#cpVagaEspecial option:selected').val() != -1){
+                    total += parseFloat($("#valvagaespecial").text());
+                    }   
+                }
+         $("#valtotal").text(total);
+        }
+        
+        
+        //SELECT
+        $(function () {
+            $("#cpCadeiras").change(function () {
+                calcular();
+            }).trigger('change');
+            $("#cpCabines").change(function () {
+                calcular();
+            }).trigger('change');
+            $("#cpVagaEspecial").change(function () {
+                calcular();
+            }).trigger('change');
+            $("#cpVagaSalao").change(function () {
+                calcular();
+            }).trigger('change');
+        });
+        
+        
+        
+        //CHECKBOX
         $(function () {
             //CADEIRA
             $("#alimentoCadeiracheck").change(function () {
                         if ($("#alimentoCadeiracheck").is(":checked")) {
                             $("#valcadeira").text(0);
+                            calcular();
                 } else {
                     $("#valcadeira").text(${requestScope.espaco.valorCadeira}/2);
+                    calcular();
                 }
             }).trigger('change');
             
             $("#meiaentradaCadeiracheck").change(function () {
                         if ($("#meiaentradaCadeiracheck").is(":checked")) {
-                            $("#valcadeira").text(${requestScope.espaco.valorCadeira/2});
-                    $("#alimentoCadeira").show();
+                                $("#valcadeira").text(${requestScope.espaco.valorCadeira/2});
+                                $("#alimentoCadeira").show();
+                                calcular();
                 } else {
                     $("#valcadeira").text(${requestScope.espaco.valorCadeira});
                     $("#alimentoCadeira").hide();
+                    calcular();
                 }
             }).trigger('change');
             
@@ -196,8 +241,10 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
             $("#alimentoVagaEspecialcheck").change(function () {
                             if ($("#alimentoVagaEspecialcheck").is(":checked")) {
                                 $("#valvagaespecial").text(0);
+                                calcular();
                     } else {
                         $("#valvagaespecial").text(${requestScope.espaco.valorCadeira}/2);
+                        calcular();
                     }
                 }).trigger('change');
                 
@@ -205,9 +252,11 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
                         if ($("#meiaentradaVagaEspecialcheck").is(":checked")) {
                              $("#valvagaespecial").text(${requestScope.espaco.valorVagaEspecial/2});
                     $("#alimentoVagaEspecial").show();
+                    calcular();
                 } else {
                     $("#valvagaespecial").text(${requestScope.espaco.valorVagaEspecial});
                     $("#alimentoVagaEspecial").hide();
+                    calcular();
                 }
             }).trigger('change');
         
@@ -216,8 +265,10 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
             $("#alimentoVagaSalaocheck").change(function () {
                             if ($("#alimentoVagaSalaocheck").is(":checked")) {
                                 $("#valvagasalao").text(0);
+                                calcular();
                     } else {
                         $("#valvagasalao").text(${requestScope.espaco.valorVagaSalao}/2);
+                        calcular();
                     }
                 }).trigger('change');
                 
@@ -225,9 +276,11 @@ ${requestScope.espaco.tipoespaco.descricaoEspaco} -
                         if ($("#meiaentradaVagaSalaocheck").is(":checked")) {
                              $("#valvagasalao").text(${requestScope.espaco.valorVagaSalao/2});
                     $("#alimentoVagaSalao").show();
+                    calcular();
                 } else {
                     $("#valvagasalao").text(${requestScope.espaco.valorVagaSalao});
                     $("#alimentoVagaSalao").hide();
+                    calcular();
                 }
             }).trigger('change');
         });
