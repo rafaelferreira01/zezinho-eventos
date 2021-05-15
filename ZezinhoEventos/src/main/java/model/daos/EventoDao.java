@@ -54,30 +54,33 @@ public class EventoDao extends BaseDao {
     
     
 
-    public static List<Evento> buscarEventosFiltro(String nome, String dei, String def) {
+    public static List<Evento> buscarEventosFiltro(String nome, String dei, String def, int idespaco, int idtipo) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
-         Query q = getConexao().createQuery("SELECT e FROM Evento e WHERE e.nomeEvento LIKE :nome AND"
-                + "(e.dataEvento >= :dei and e.dataEvento <= :def )");
-          
+//         Query q = getConexao().createQuery("SELECT e FROM Evento e WHERE e.nomeEvento LIKE :nome and (e.tipoevento.idTipoEvento = :idtipo or -1 = :idtipo ) and (e.dataEvento >= :dei and e.dataEvento <= :def )");
 
-       
-       q.setParameter("nome","%" + nome + "%");
+Query q = getConexao().createQuery("SELECT e FROM Evento e, Espaco es WHERE e.nomeEvento LIKE :nome and (e.tipoevento.idTipoEvento = :idtipo or -1 = :idtipo ) and (es.evento.idEvento = e.idEvento and (es.tipoespaco.idTipoEspaco = :idespaco or -1 = :idespaco)) and (e.dataEvento >= :dei and e.dataEvento <= :def )");
+
+                q.setParameter("idtipo", idtipo);
+                q.setParameter("idespaco", idespaco);
+                q.setParameter("nome","%" + nome + "%");
        
        try {
             q.setParameter("dei", sdf.parse(dei));
         } catch (ParseException ex) {
             try {
-                q.setParameter("dt1", sdf.parse("1500-01-01"));
+                q.setParameter("dei", sdf.parse("1500-01-01"));
             } catch (ParseException ex1) {
             }
         }
 
         try {
-          
             q.setParameter("def", sdf.parse(def));
         } catch (ParseException ex) {
-            q.setParameter("def", new Date());
+            try {
+                q.setParameter("def", sdf.parse("9999-01-01"));
+            } catch (ParseException ex1) {
+            }
         }
 
         return q.getResultList();
@@ -97,4 +100,6 @@ public class EventoDao extends BaseDao {
          
           return q.getResultList();
     }
+    
+    
 }

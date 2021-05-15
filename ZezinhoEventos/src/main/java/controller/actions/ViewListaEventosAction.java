@@ -49,13 +49,18 @@ public class ViewListaEventosAction extends GenericCommander {
 
         
        
-         List<Evento> eventos = null;
+        List<Evento> eventos = null;
         if ( request.getParameter("cpSearchNomeEvento") == null ){
             eventos =  EventoDao.buscarTodosEventos();
         }else{
             String dei = request.getParameter("cpDataInicio"); //yyyy-mm-dd
             String def = request.getParameter("cpDataFim");
-            eventos = EventoDao.buscarEventosFiltro(request.getParameter("cpSearchNomeEvento"),dei,def);
+            eventos = EventoDao.buscarEventosFiltro(
+                    request.getParameter("cpSearchNomeEvento"),
+                    dei,
+                    def,
+                    Integer.parseInt(request.getParameter("cpEspacoEvento")),
+                    Integer.parseInt(request.getParameter("cpTipoEvento")));
             
         }
         request.setAttribute("eventos", eventos);
@@ -65,7 +70,14 @@ public class ViewListaEventosAction extends GenericCommander {
         
       request.setAttribute("espacos", espacos);
       request.setAttribute("tipoEventos", tipoEventos);
+      
+      
 
+      request.setAttribute("cpDataInicio", request.getParameter("cpDataInicio"));
+      request.setAttribute("cpDataFim", request.getParameter("cpDataFim"));
+      request.setAttribute("cpSearchNomeEvento", request.getParameter("cpSearchNomeEvento"));
+      request.setAttribute("cpTipoEvento", request.getParameter("cpTipoEvento"));
+      request.setAttribute("cpEspacoEvento", request.getParameter("cpEspacoEvento"));
         
 
         rd.forward(request, response);

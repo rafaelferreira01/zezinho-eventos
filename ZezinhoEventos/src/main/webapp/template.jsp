@@ -75,7 +75,7 @@
                             </li>  
                             <li class="nav-item">
                                 <a class="nav-link"
-                                   href="#"> <i class="oi oi-cart"></i> <span>Relatórios</span>
+                                   href="control?ac=relatorio"> <i class="oi oi-cart"></i> <span>Relatórios</span>
                                 </a>
                        
                   

@@ -57,4 +57,60 @@ public class VagaEspecialDao extends BaseDao {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static List<VagaEspecial> buscarTodasVagaEspecialGratisByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT c FROM VagaEspecial c WHERE c.espaco.idespaco = :espaco and c.espaco.evento.idEvento = :evento and c.ehpgalimento = true");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return (List<VagaEspecial>) q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public static List<VagaEspecial> buscarTodasVagaEspecialMeiaEntradaByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT c FROM VagaEspecial c WHERE c.espaco.idespaco = :espaco and c.espaco.evento.idEvento = :evento and (c.ehpgalimento = false and c.ehmeiaentrada = true)");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return (List<VagaEspecial>) q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public static List<VagaEspecial> buscarTodasVagaEspecialInteiraByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT c FROM VagaEspecial c WHERE c.espaco.idespaco = :espaco and c.espaco.evento.idEvento = :evento and (c.ehpgalimento = false and c.ehmeiaentrada = false)");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return (List<VagaEspecial>) q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    
+    
 }

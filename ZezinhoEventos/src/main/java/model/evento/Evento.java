@@ -6,6 +6,7 @@
 package model.evento;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -114,6 +115,12 @@ public class Evento implements Serializable {
     
     public Evento(Integer idEvento) {
         this.idEvento = idEvento;
+    }
+    
+    public String dataAmericana(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        return sdf.format(dataEvento);
     }
 
     public Integer getIdEvento() {

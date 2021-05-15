@@ -29,12 +29,15 @@
         <label for="Cliente" class="form-label">Nome</label>
         <input required type="text" class="form-control" id="nomeCliente" name="cpNomeCliente"
                value = ${requestScope.cliente.nome}>
-             
+                
     </div>
     <div class="cadCliente">
         <label for="Cliente" class="form-label"> CPF </label>
         <input required="" type="number" class="form-control" id="cpfCliente" name="cpCPF"
-                value = ${requestScope.cliente.cpf}>
+                value = ${requestScope.cliente.cpf}
+                <c:if test="${requestScope.cliente.nome != null}">
+                   readonly                   
+               </c:if>>
     </div>
     
     <div class = "text-center">

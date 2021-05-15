@@ -63,7 +63,7 @@ public class ControleCentral extends HttpServlet {
         comandos.put("Eventos", new ViewCadastroEventosAction(true));
         comandos.put("eventoCad", new SaveEventoAction(true));   
         comandos.put("listaEventos", new ViewListaEventosAction(true));
-        comandos.put("editEvento", new ViewCadastroClientesAction(true));
+        comandos.put("editEvento", new ViewCadastroEventosAction(true));
         comandos.put("apgEvento", new DeletarEventoAction(true));
         comandos.put("relatorio", new ViewRelatorioAction(true));
         

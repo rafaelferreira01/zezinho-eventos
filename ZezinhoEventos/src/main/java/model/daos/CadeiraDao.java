@@ -36,6 +36,7 @@ public class CadeiraDao extends BaseDao {
 //
 //    }
 //     and (c.espaco.evento.idEvento = evento:)
+    
     public static List<Cadeira> buscarTodasCadeirasByEvento(Evento evento, Espaco espaco) {
 
 //        Query q = getConexao().createQuery("SELECT c, e FROM Cadeira c, Espaco e WHERE c.espaco.idespaco = :espaco and e.evento.idEvento = :evento");
@@ -51,6 +52,57 @@ public class CadeiraDao extends BaseDao {
             return null;
         }
     }
+    
+    
+        public static List<Cadeira> buscarTodasCadeirasGratisByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT c FROM Cadeira c WHERE c.espaco.idespaco = :espaco and c.espaco.evento.idEvento = :evento and c.ehpgalimento = true");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return (List<Cadeira>) q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+        
+    
+         public static List<Cadeira> buscarTodasCadeirasMeiaEntradaByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT c FROM Cadeira c WHERE c.espaco.idespaco = :espaco and c.espaco.evento.idEvento = :evento and (c.ehpgalimento = false and c.ehmeiaentrada = true)");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return (List<Cadeira>) q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+
+    
+         public static List<Cadeira> buscarTodasCadeirasInteiraByEvento(Evento evento, Espaco espaco) {
+
+        Query q = getConexao().createQuery("SELECT c FROM Cadeira c WHERE c.espaco.idespaco = :espaco and c.espaco.evento.idEvento = :evento and (c.ehpgalimento = false and c.ehmeiaentrada = false)");
+        q.setParameter("evento", evento.getIdEvento());
+        q.setParameter("espaco", espaco.getIdespaco());
+        
+        try {
+            
+            return (List<Cadeira>) q.getResultList();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+
 
 
     public static Cadeira buscarByIdCadeira(int id) {
@@ -67,18 +119,4 @@ public class CadeiraDao extends BaseDao {
         }
 
     }
-    
-//    public static List<Cadeira> buscarCadeirasLivres(Evento evento) {
-//
-//        Query q = getConexao().createQuery("SELECT MAX(e.idEvento) FROM Evento e");
-//
-//        try {
-//
-//            return q.getResultList();
-//
-//        } catch (NoResultException e) {
-//            return null;
-//        }
-//    }
-
 }

@@ -34,25 +34,16 @@
                                 <label for="Cliente">CPF:</label>
                                 <input  type="text" name="cpSearchCPF" class="form-control"
                                         placeholder="CPF"/>  
-
                             </div> 
-
-                            <div class="form-group">                 
-                                <label for="Cliente">Eventos:</label> 
-                                <select name="cpSearchEventos" value="Eventos" class="form-control">  
-                                    <<option value="-1"> Todos Eventos </option>
-                                    <c:forEach items="${requestScope.eventos}" var="e">
-                                    <option value="${e.idEvento}">${e.nomeEvento}</option>
-                                </c:forEach> 
-                                </select>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="form-group">  
+                            <div>
+                                <button type="submit" class="btn btn-primary" >Pesquisar</button>
                             </div>
                         </div>
-
-
-                        <div class="form-group">               
-                            <button type="submit" class="btn btn-primary" >Pesquisar</button>
-                        </div>
-
+                    </div>
 
 
                         </form>
@@ -63,7 +54,6 @@
                             <tr>
                                 <th>Nome do Cliente</th>
                                 <th>CPF</th>
-                                <th>Evento</th>
                                 <th>Ação</th>
                             </tr>
                         </thead>
@@ -80,7 +70,6 @@
             <tr>
                 <td>${cliente.nome}</td>
                 <td>${cliente.cpf}</td>
-                <td>${cliente.evento} </td>
                 <td> 
                     <a href="control?ac=editCliente&cpf=${cliente.cpf}"><span> <i class="fa fa-edit"></i></span></a>
                     <a href="#" class="btnExc" data-toggle="modal" data-target="#questionModal" data-cliente="${cliente.nome}" data-cpf="${cliente.cpf}">
