@@ -11,7 +11,7 @@ insert into zezinho_eventos.tipoevento values (4,'Festa',null);
 
 
 
-
+d
 
 criar construtor do cliente que recebe só cpf e nome
 CRIAR TIPO evento no evento
